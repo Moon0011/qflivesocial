@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/splash_bg"
+    android:orientation="vertical"
+    android:weightSum="58">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="29.3"
+        android:orientation="vertical"
+        android:weightSum="29.3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="萌遇"
+                android:textColor="@android:color/white"
+                android:textSize="28.2sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="19.3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="相\n遇\n有\n时"
+                android:textColor="@android:color/white"
+                android:textSize="11.3sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11.5dp"
+                android:text="后\n会\n无\n期"
+                android:textColor="@android:color/white"
+                android:textSize="11.3sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13.2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:color/holo_blue_dark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15.5"
+        android:orientation="vertical"
+        android:weightSum="31">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
+            android:weightSum="3.5">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="2.3dp"
+                android:layout_weight="1"
+                android:src="@mipmap/splash_divider" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="选择登陆方式"
+                android:textColor="@android:color/white"
+                android:textSize="9.4sp" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="2.3dp"
+                android:layout_weight="1"
+                android:src="@mipmap/splash_divider" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="18"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="35.3dp"
+                android:layout_height="35.3dp"
+                android:src="@mipmap/ic_weibo" />
+
+            <ImageView
+                android:layout_width="35.3dp"
+                android:layout_height="35.3dp"
+                android:layout_marginLeft="17.5dp"
+                android:src="@mipmap/ic_weixin" />
+
+            <ImageView
+                android:layout_width="35.3dp"
+                android:layout_height="35.3dp"
+                android:layout_marginLeft="17.5dp"
+                android:src="@mipmap/ic_qq" />
+
+            <ImageView
+                android:layout_width="35.3dp"
+                android:layout_height="35.3dp"
+                android:layout_marginLeft="17.5dp"
+                android:src="@mipmap/ic_phone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:text="如果您使用本软件将默认同意《用户协议》"
+                android:textColor="@android:color/white"
+                android:textSize="9.4sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
