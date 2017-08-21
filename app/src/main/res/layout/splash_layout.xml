@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="相\n遇\n有\n时"
+                android:text="@string/splash_center_txt"
                 android:textColor="@android:color/white"
                 android:textSize="11.3sp" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11.5dp"
-                android:text="后\n会\n无\n期"
+                android:text="@string/splash_center_txt2"
                 android:textColor="@android:color/white"
                 android:textSize="11.3sp" />
         </LinearLayout>
@@ -144,8 +144,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:text="如果您使用本软件将默认同意《用户协议》"
+                android:text="@string/splash_bottom_txt"
                 android:textColor="@android:color/white"
+                android:textSize="9.4sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:text="@string/splash_bottom_txt2"
+                android:textColor="@android:color/holo_red_light"
                 android:textSize="9.4sp" />
 
         </LinearLayout>
