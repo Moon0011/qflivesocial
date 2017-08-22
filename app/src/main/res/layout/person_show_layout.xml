@@ -1,96 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="300dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="4.77">
+    android:padding="10dp"
+    android:weightSum="5">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.77">
+        android:layout_weight="4">
 
-        <!--<ImageView-->
-        <!--android:layout_width="16.8dp"-->
-        <!--android:layout_height="7.8dp"-->
-        <!--android:layout_gravity="top"-->
-        <!--android:src="@mipmap/hot_chat" />-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@mipmap/f_head">
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom"-->
-        <!--android:layout_marginBottom="9dp"-->
-        <!--android:layout_marginLeft="5.8dp"-->
-        <!--android:gravity="center"-->
-        <!--android:orientation="horizontal">-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
-        <!--<TextView-->
-        <!--android:id="@+id/textView4"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="小明"-->
-        <!--android:textSize="8.4sp" />-->
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="23dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="top"
+                    android:src="@mipmap/hot_chat" />
 
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="5.5dp"-->
-        <!--android:src="@mipmap/sex_count" />-->
-        <!--</LinearLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="热聊"
+                    android:textColor="@color/white"
+                    android:textSize="8.3sp" />
+            </RelativeLayout>
 
-        <!--<ImageView-->
-        <!--android:id="@+id/imageView2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:src="@mipmap/f_head" />-->
-    </FrameLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="9dp"
+                android:layout_marginLeft="5.8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小明"
+                    android:textSize="8.4sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5.5dp"
+                    android:src="@mipmap/sex_count" />
+            </LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/colorAccent"
         android:orientation="vertical">
 
-        <!--<TextView-->
-        <!--android:id="@+id/textView3"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5.8dp"-->
-        <!--android:text="守一城 等一人"-->
-        <!--android:textSize="6.8sp" />-->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.8dp"
+            android:text="守一城 等一人"
+            android:textSize="6.8sp" />
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5.3dp"-->
-        <!--android:orientation="horizontal">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5.3dp"
+            android:orientation="horizontal">
 
-        <!--<Button-->
-        <!--android:id="@+id/button"-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="10dp"-->
-        <!--android:background="@mipmap/home_top_button_bg2"-->
-        <!--android:text="同城面基"-->
-        <!--android:textSize="5.6sp" />-->
+            <Button
+                android:id="@+id/button"
+                android:layout_width="30dp"
+                android:layout_height="10dp"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="同城面基"
+                android:textSize="5.6sp" />
 
-        <!--<Button-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="10dp"-->
-        <!--android:layout_marginLeft="5.3dp"-->
-        <!--android:background="@mipmap/home_top_button_bg2"-->
-        <!--android:text="旅游达人"-->
-        <!--android:textSize="5.6sp" />-->
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="5.3dp"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="旅游达人"
+                android:textSize="5.6sp" />
 
-        <!--<Button-->
-        <!--android:layout_width="30dp"-->
-        <!--android:layout_height="10dp"-->
-        <!--android:layout_marginLeft="5.3dp"-->
-        <!--android:background="@mipmap/home_top_button_bg2"-->
-        <!--android:text="轻音体柔"-->
-        <!--android:textSize="5.6sp" />-->
-        <!--</LinearLayout>-->
+            <Button
+                android:layout_width="30dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="5.3dp"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="轻音体柔"
+                android:textSize="5.6sp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
