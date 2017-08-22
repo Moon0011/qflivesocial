@@ -5,4 +5,9 @@
     <string name="splash_bottom_txt2">《用户协议》</string>
     <string name="splash_center_txt">相\n遇\n有\n时</string>
     <string name="splash_center_txt2">后\n会\n无\n期</string>
+
+    <string name="home">首页</string>
+    <string name="message">消息</string>
+    <string name="discover">探索</string>
+    <string name="personal">我的</string>
 </resources>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/splash_bg"
+    android:background="@mipmap/app_bg"
     android:orientation="vertical"
     android:weightSum="58">
 
@@ -111,17 +111,20 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/img_weibo"
                 android:layout_width="35.3dp"
                 android:layout_height="35.3dp"
                 android:src="@mipmap/ic_weibo" />
 
             <ImageView
+                android:id="@+id/img_wechat"
                 android:layout_width="35.3dp"
                 android:layout_height="35.3dp"
                 android:layout_marginLeft="17.5dp"
                 android:src="@mipmap/ic_weixin" />
 
             <ImageView
+                android:id="@+id/img_qq"
                 android:layout_width="35.3dp"
                 android:layout_height="35.3dp"
                 android:layout_marginLeft="17.5dp"
@@ -154,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:text="@string/splash_bottom_txt2"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="#ff5491"
                 android:textSize="9.4sp" />
 
         </LinearLayout>
