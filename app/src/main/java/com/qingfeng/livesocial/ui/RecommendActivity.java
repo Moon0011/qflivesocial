@@ -4,12 +4,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 
+import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.RecomAdapter;
-import com.qingfeng.livesocial.bean.TodayStarBean;
+import com.qingfeng.livesocial.bean.RecommedRespBean;
+import com.qingfeng.livesocial.bean.RecommedRespBean.RecommendBean;
+import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 
-import java.util.ArrayList;
+import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -25,7 +32,7 @@ public class RecommendActivity extends BaseActivity {
     GridView gridview;
     @Bind(R.id.btn_jump)
     Button btnJump;
-    private List<TodayStarBean> datas;
+    private List<RecommendBean> datas;
 
     @Override
     protected int getLayoutById() {
@@ -34,19 +41,11 @@ public class RecommendActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        datas = new ArrayList<>();
-        datas.add(new TodayStarBean("阿夕", "f", 23, ""));
-        datas.add(new TodayStarBean("露露", "f", 22, ""));
-        datas.add(new TodayStarBean("P子", "f", 21, ""));
-        datas.add(new TodayStarBean("桃曦", "f", 23, ""));
-        datas.add(new TodayStarBean("桃曦", "f", 25, ""));
-        datas.add(new TodayStarBean("桃曦", "f", 20, ""));
     }
 
     @Override
     protected void initData() {
-        RecomAdapter adapter = new RecomAdapter(mContext, datas);
-        gridview.setAdapter(adapter);
+        getRecommendData();
     }
 
     @OnClick({R.id.btn_jump})
@@ -56,5 +55,36 @@ public class RecommendActivity extends BaseActivity {
                 gotoActivity(RecommendActivity.this, HomeActivity.class);
                 break;
         }
+    }
+
+    /**
+     * 推荐数据
+     */
+    private void getRecommendData() {
+        RequestParams params = new RequestParams(Urls.DAY_RECOMMEND);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("perfectInfoSucc == " + result);
+                RecommedRespBean respon = new Gson().fromJson(result, RecommedRespBean.class);
+                if ("y".equals(respon.getMsg())) {
+                    datas = respon.getResult();
+                    gridview.setAdapter(new RecomAdapter(mContext, datas, imageOptions));
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
     }
 }

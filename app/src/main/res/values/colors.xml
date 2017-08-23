@@ -8,4 +8,9 @@
 
     <color name="tab_txt_normal">#505055</color>
     <color name="tab_txt_selected">#ff4d8d</color>
+    <color name="textColor_svprogresshuddefault_msg">#000000</color>
+    <color name="bgColor_overlay">#60000000</color>
+    <color name="bgColor_overlay_black">#95000000</color>
+    <color name="roundColor_svprogresshuddefault">#e5e5e5</color>
+    <color name="roundProgressColor_svprogresshuddefault">@android:color/black</color>
 </resources>

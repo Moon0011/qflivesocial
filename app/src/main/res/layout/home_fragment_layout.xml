@@ -42,6 +42,7 @@
     </LinearLayout>
 
     <com.qingfeng.livesocial.widget.SlideShowView
+        android:id="@+id/slideshowview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="12.4" />

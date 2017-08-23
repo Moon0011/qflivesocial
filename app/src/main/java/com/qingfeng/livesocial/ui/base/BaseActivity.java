@@ -6,8 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.common.AppManager;
+import com.qingfeng.livesocial.util.StringUtils;
+import com.qingfeng.livesocial.widget.progressbar.SVProgressHUD;
+
+import org.xutils.image.ImageOptions;
 
 import butterknife.ButterKnife;
 
@@ -17,6 +24,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
+    protected ImageOptions imageOptions;
 
     protected abstract int getLayoutById();
 
@@ -40,6 +48,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         AppManager.getAppManager().addActivity(this);
         initView();
         initData();
+        imageOptions = new ImageOptions.Builder()
+                .setPlaceholderScaleType(ImageView.ScaleType.FIT_XY)
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
+                .setLoadingDrawableId(R.mipmap.ic_launcher)
+                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .build();
     }
 
     @Override
@@ -51,5 +65,19 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         AppManager.getAppManager().finishActivity(this);
+    }
+
+    protected void showToast(String msg) {
+        if (!StringUtils.isEmpty(msg)) {
+            Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    protected void showProgress() {
+        SVProgressHUD.show(mContext);
+    }
+
+    protected void dismissProgress() {
+        SVProgressHUD.dismiss(mContext);
     }
 }

@@ -10,12 +10,20 @@ import android.widget.GridView;
 
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PersonShowAdapter;
+import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
+import com.qingfeng.livesocial.widget.SlideShowView;
+
+import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+
 
 /**
  * Created by Administrator on 2017/8/22.
@@ -25,11 +33,14 @@ public class HomeFragment extends BaseFragment {
     TabLayout mTabLayout;
     @Bind(R.id.tab_viewpage)
     ViewPager mViewPager;
+    @Bind(R.id.slideshowview)
+    SlideShowView mSlideShowView;
     GridView homeGridView;
     private View view1, view2, view3, view4;
     private LayoutInflater mInflater;
     private final List<View> mViewList = new ArrayList<>();
     private final String[] mTitleArr = {"全部", "认证", "人气", "新秀"};
+    private String[] imageUrls;
 
     @Override
     protected int getLayoutId() {
@@ -48,7 +59,6 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
         mViewList.clear();
         mViewList.add(view1);
         mViewList.add(view2);
@@ -101,5 +111,28 @@ public class HomeFragment extends BaseFragment {
         public CharSequence getPageTitle(int position) {
             return mTitleArr[position];//页卡标题
         }
+    }
+
+    private void getSlideImg() {
+        RequestParams params = new RequestParams(Urls.PERFECT_INFO);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("perfectInfoSucc == " + result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
     }
 }
