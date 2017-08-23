@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PersonShowAdapter;
+import com.qingfeng.livesocial.bean.SlideRepsBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.MyScrollView;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
@@ -41,7 +43,6 @@ public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollL
     private LayoutInflater mInflater;
     private final List<View> mViewList = new ArrayList<>();
     private final String[] mTitleArr = {"全部", "认证", "人气", "新秀"};
-    private String[] imageUrls;
 
     @Override
     protected int getLayoutId() {
@@ -78,6 +79,7 @@ public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollL
 
         PersonShowAdapter adapter = new PersonShowAdapter(getActivity());
         homeGridView.setAdapter(adapter);
+        getSlideImg();
     }
 
 
@@ -121,11 +123,18 @@ public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollL
     }
 
     private void getSlideImg() {
-        RequestParams params = new RequestParams(Urls.PERFECT_INFO);
+        RequestParams params = new RequestParams(Urls.SLIDE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 LogUtil.e("perfectInfoSucc == " + result);
+                SlideRepsBean slideRepsBean = new Gson().fromJson(result, SlideRepsBean.class);
+                List<SlideRepsBean.SlideBean> slideBeanList = slideRepsBean.getResult();
+                String[] imageUrls = new String[slideBeanList.size()];
+                for (int i = 0; i < slideBeanList.size(); i++) {
+                    imageUrls[i] = slideBeanList.get(i).getPic();
+                }
+                mSlideShowView.bindImgSource(imageUrls);
             }
 
             @Override

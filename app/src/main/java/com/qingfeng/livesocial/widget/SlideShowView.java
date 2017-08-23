@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 
 import com.qingfeng.livesocial.R;
 
-import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
@@ -45,11 +44,7 @@ public class SlideShowView extends FrameLayout {
     private final static boolean isAutoPlay = true;
 
     //自定义轮播图的资源
-    public String[] imageUrls = new String[]{
-            "http://pic2.ooopic.com/10/78/94/18b1OOOPIC12.jpg",
-            "http://pic.35pic.com/11/01/21/19b1OOOPIC69.jpg",
-            "http://pic2.ooopic.com/10/58/91/98b1OOOPIC97.jpg",
-            "http://pic2.ooopic.com/10/65/14/50b1OOOPIC9a.jpg"};
+    public String[] imageUrls = new String[]{};
 
     private List<ImageView> imageViewsList;
 
@@ -64,6 +59,15 @@ public class SlideShowView extends FrameLayout {
     private Context context;
 
     protected ImageOptions imageOptions;
+
+    public String[] getImageUrls() {
+        return imageUrls;
+    }
+
+    public void bindImgSource(String[] imageUrls) {
+        this.imageUrls = imageUrls;
+        initUI(context);
+    }
 
     //Handler
     private Handler handler = new Handler() {
@@ -88,7 +92,7 @@ public class SlideShowView extends FrameLayout {
         this.context = context;
         initImageLoader();
         initData();
-        initUI(context);
+//        initUI(context);
         if (isAutoPlay) {
             startPlay();
         }
@@ -96,11 +100,6 @@ public class SlideShowView extends FrameLayout {
 
     private void initImageLoader() {
         imageOptions = new ImageOptions.Builder()
-//                .setSize(DensityUtil.dip2px(120), DensityUtil.dip2px(120))
-                .setRadius(DensityUtil.dip2px(5))
-                // 如果ImageView的大小不是定义为wrap_content, 不要crop.
-                .setCrop(true) // 很多时候设置了合适的scaleType也不需要它.
-                // 加载中或错误图片的ScaleType
                 .setPlaceholderScaleType(ImageView.ScaleType.FIT_XY)
                 .setImageScaleType(ImageView.ScaleType.FIT_XY)
                 .setLoadingDrawableId(R.mipmap.ic_launcher)

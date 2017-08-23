@@ -10,7 +10,7 @@ public class SlideRepsBean {
 
     /**
      * msg : y
-     * result : [{"id":2,"title":"这是一个测试","url":"","pic":"/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","status":1,"order":0},{"id":4,"title":"1111","url":"111111111","pic":"video.520cai.cn/public/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","status":1,"order":1},{"id":5,"title":"11111111111","url":"111111","pic":"video.520cai.cn/public/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","status":1,"order":0},{"id":6,"title":"11","url":"11","pic":"video.520cai.cn/public/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","status":1,"order":0}]
+     * result : [{"id":2,"title":"这是一个测试","url":"","pic":"http://video.520cai.cn/upload/zhibo/20170809/79b6c191b51d14fdf1d17f6ed35666b7.jpg","status":1,"order":0},{"id":4,"title":"1111","url":"111111111","pic":"http://video.520cai.cn/upload/zhibo/20170817/9a8aa0552177cee4e464de23ebc0aa39.jpg","status":1,"order":1},{"id":5,"title":"11111111111","url":"111111","pic":"http://video.520cai.cn/upload/zhibo/20170817/48352dc33a246b55e97db528e3c67dd1.jpg","status":1,"order":0},{"id":6,"title":"11","url":"11","pic":"http://video.520cai.cn/upload/zhibo/20170817/a7c7fa9fa53429bac09861f09c7064a5.jpg","status":1,"order":0}]
      */
 
     private String msg;
@@ -37,7 +37,7 @@ public class SlideRepsBean {
          * id : 2
          * title : 这是一个测试
          * url :
-         * pic : /upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png
+         * pic : http://video.520cai.cn/upload/zhibo/20170809/79b6c191b51d14fdf1d17f6ed35666b7.jpg
          * status : 1
          * order : 0
          */

@@ -1,7 +1,6 @@
 package com.qingfeng.livesocial.ui.base;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,8 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initData();
 
     protected void gotoActivity(Activity activity, Class nextActivity) {
-        startActivity(new Intent(activity, nextActivity),
-                ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+        startActivity(new Intent(activity, nextActivity));
     }
 
     @Override

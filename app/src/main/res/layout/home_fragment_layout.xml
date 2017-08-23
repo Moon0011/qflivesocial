@@ -44,12 +44,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="12.2">
-
+        android:layout_weight="12.2"
+        android:orientation="vertical">
 
         <com.qingfeng.livesocial.ui.MyScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
