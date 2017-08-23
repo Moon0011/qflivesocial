@@ -11,6 +11,7 @@ import android.widget.GridView;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PersonShowAdapter;
 import com.qingfeng.livesocial.common.Urls;
+import com.qingfeng.livesocial.ui.MyScrollView;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 import com.qingfeng.livesocial.widget.SlideShowView;
 
@@ -28,7 +29,7 @@ import butterknife.Bind;
 /**
  * Created by Administrator on 2017/8/22.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollListener {
     @Bind(R.id.tab)
     TabLayout mTabLayout;
     @Bind(R.id.tab_viewpage)
@@ -77,6 +78,12 @@ public class HomeFragment extends BaseFragment {
 
         PersonShowAdapter adapter = new PersonShowAdapter(getActivity());
         homeGridView.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onScroll(int scrollY) {
+
     }
 
     class MyPagerAdapter extends PagerAdapter {
