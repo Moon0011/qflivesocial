@@ -40,7 +40,7 @@ y--------------更新完成
 
 //今日推荐
 /index.php/api/user/dayrecommend
-传值
+传值  uid
 无
 返回值
 {"msg":"y","result":[{"uid":5,"anchorpic":"http:\/\/video.520cai.cn\/upload\/zhibo\/20170817\/a7c7fa9fa53429bac09861f09c7064a5.jpg","nickname":"\u6d4b\u8bd53","age":null,"totaltime":""}]}
@@ -55,7 +55,7 @@ totaltime------------通话总时长（完善资料页不显示）
 //首页主播列表分类
 //1全部 按时长  2人气 按收益  3新秀 按注册时间  认证 暂时不要
 /index.php/api/user/recommend
-传值
+传值 uid
 type------------------类别
 返回值
 {"msg":"y","result":[{"uid":4,"anchorpic":"http:\/\/video.520cai.cn\/upload\/zhibo\/20170817\/4454bcd62222d9bcf830cc2efe8c3323.jpg","nickname":"\u6d4b\u8bd52","age":null,"signature":"\u6d4b\u8bd5","labels":"","totaltime":"2468"}]}

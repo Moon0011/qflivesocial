@@ -69,6 +69,7 @@ public class LoginActivity extends BaseActivity {
             case R.id.btn_phone_login://登陆
                 showProgress();
                 login(etPhoneNum.getText().toString().trim(), VERIFY_CODE_TEST);
+//                gotoActivity(LoginActivity.this, RecommendActivity.class);
                 break;
             case R.id.tv_getVerifyCode://获取验证码
                 showProgress();
@@ -90,32 +91,36 @@ public class LoginActivity extends BaseActivity {
             public void onSuccess(String result) {
                 LogUtil.e("login == " + result);
                 LoginRespBean loginRespBean = new Gson().fromJson(result, LoginRespBean.class);
+                if ("a".equals(loginRespBean.getMsg())) {
+                    showToast("验证码不匹配");
+                    dismissProgress();
+                    return;
+                }
                 int uid = loginRespBean.getResult().getUid();
                 String username = loginRespBean.getResult().getUsername();
                 String sign = loginRespBean.getResult().getSign();
-                if ("a".equals(loginRespBean.getMsg())) {
-                    showToast("验证码不匹配");
-                } else {
-                    dismissProgress();
-                    UserInfoBean userInfoBean = new UserInfoBean(uid, username, sign, true);
-                    QFApplication.getInstance().saveUserInfo(userInfoBean);
-                    gotoActivity(LoginActivity.this, RecommendActivity.class);
-                    showToast("登陆成功");
-                }
+                UserInfoBean userInfoBean = new UserInfoBean(uid, username, sign, true);
+                QFApplication.getInstance().saveUserInfo(userInfoBean);
+                gotoActivity(LoginActivity.this, RecommendActivity.class);
+                showToast("登陆成功");
+                dismissProgress();
                 LogUtil.e("login: " + "uid = " + uid + " , username =" + username + " , sign =" + sign);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
+                dismissProgress();
             }
 
             @Override
             public void onCancelled(CancelledException cex) {
+                dismissProgress();
             }
 
             @Override
             public void onFinished() {
+                dismissProgress();
             }
         });
     }
@@ -138,14 +143,17 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
+                dismissProgress();
             }
 
             @Override
             public void onCancelled(CancelledException cex) {
+                dismissProgress();
             }
 
             @Override
             public void onFinished() {
+                dismissProgress();
             }
         });
     }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="today_recommend_img_height">17.3dp</dimen>
+    <dimen name="today_recommend_img_width">60dp</dimen>
+    <dimen name="today_recommend_img_txt_margin_left">12dp</dimen>
+    <dimen name="today_recommend_img_arrow_right_height">9.7dp</dimen>
+    <dimen name="today_recommend_img_arrow_right_width">5dp</dimen>
+    <dimen name="today_recommend_img_arrow_txt_margin_right">4dp</dimen>
+    <dimen name="hori_listview_height">135.3dp</dimen>
+</resources>

@@ -13,4 +13,5 @@
     <color name="bgColor_overlay_black">#95000000</color>
     <color name="roundColor_svprogresshuddefault">#e5e5e5</color>
     <color name="roundProgressColor_svprogresshuddefault">@android:color/black</color>
+    <color name="wd_common">#ECEAEA</color>
 </resources>

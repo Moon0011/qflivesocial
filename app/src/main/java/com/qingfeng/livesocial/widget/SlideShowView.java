@@ -44,7 +44,11 @@ public class SlideShowView extends FrameLayout {
     private final static boolean isAutoPlay = true;
 
     //自定义轮播图的资源
-    public String[] imageUrls = new String[]{};
+    public String[] imageUrls = new String[]{
+            "http://pic2.ooopic.com/10/78/94/18b1OOOPIC12.jpg",
+            "http://pic.35pic.com/11/01/21/19b1OOOPIC69.jpg",
+            "http://pic2.ooopic.com/10/58/91/98b1OOOPIC97.jpg",
+            "http://pic2.ooopic.com/10/65/14/50b1OOOPIC9a.jpg"};
 
     private List<ImageView> imageViewsList;
 
@@ -59,10 +63,6 @@ public class SlideShowView extends FrameLayout {
     private Context context;
 
     protected ImageOptions imageOptions;
-
-    public String[] getImageUrls() {
-        return imageUrls;
-    }
 
     public void bindImgSource(String[] imageUrls) {
         this.imageUrls = imageUrls;

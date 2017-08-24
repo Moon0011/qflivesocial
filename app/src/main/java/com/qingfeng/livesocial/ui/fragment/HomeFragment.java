@@ -2,19 +2,18 @@ package com.qingfeng.livesocial.ui.fragment;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
-import com.qingfeng.livesocial.adapter.PersonShowAdapter;
+import com.qingfeng.livesocial.adapter.PersonRecommendAdapter;
 import com.qingfeng.livesocial.bean.SlideRepsBean;
 import com.qingfeng.livesocial.common.Urls;
-import com.qingfeng.livesocial.ui.MyScrollView;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
+import com.qingfeng.livesocial.widget.HorizontalListView;
+import com.qingfeng.livesocial.widget.MViewPager;
 import com.qingfeng.livesocial.widget.SlideShowView;
 
 import org.xutils.common.Callback;
@@ -31,14 +30,15 @@ import butterknife.Bind;
 /**
  * Created by Administrator on 2017/8/22.
  */
-public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollListener {
+public class HomeFragment extends BaseFragment {
     @Bind(R.id.tab)
     TabLayout mTabLayout;
     @Bind(R.id.tab_viewpage)
-    ViewPager mViewPager;
+    MViewPager mViewPager;
     @Bind(R.id.slideshowview)
     SlideShowView mSlideShowView;
-    GridView homeGridView;
+
+    HorizontalListView horizontalListView;
     private View view1, view2, view3, view4;
     private LayoutInflater mInflater;
     private final List<View> mViewList = new ArrayList<>();
@@ -56,7 +56,7 @@ public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollL
         view2 = mInflater.inflate(R.layout.home_tab_authen_layout, null);
         view3 = mInflater.inflate(R.layout.home_tab_popularity_layout, null);
         view4 = mInflater.inflate(R.layout.home_tab_youngshow_layout, null);
-        homeGridView = (GridView) view1.findViewById(R.id.home_gridview);
+        horizontalListView = (HorizontalListView) view1.findViewById(R.id.hor_listview);
     }
 
     @Override
@@ -77,15 +77,9 @@ public class HomeFragment extends BaseFragment implements MyScrollView.OnScrollL
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
 
-        PersonShowAdapter adapter = new PersonShowAdapter(getActivity());
-        homeGridView.setAdapter(adapter);
+        PersonRecommendAdapter personRecommendAdapter = new PersonRecommendAdapter(getActivity());
+        horizontalListView.setAdapter(personRecommendAdapter);
         getSlideImg();
-    }
-
-
-    @Override
-    public void onScroll(int scrollY) {
-
     }
 
     class MyPagerAdapter extends PagerAdapter {
