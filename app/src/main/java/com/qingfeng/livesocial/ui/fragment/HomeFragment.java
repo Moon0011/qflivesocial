@@ -53,9 +53,9 @@ public class HomeFragment extends BaseFragment {
     protected void initWidget(View root) {
         mInflater = LayoutInflater.from(getActivity());
         view1 = mInflater.inflate(R.layout.home_tab_all_layout, null);
-        view2 = mInflater.inflate(R.layout.home_tab_authen_layout, null);
-        view3 = mInflater.inflate(R.layout.home_tab_popularity_layout, null);
-        view4 = mInflater.inflate(R.layout.home_tab_youngshow_layout, null);
+        view2 = mInflater.inflate(R.layout.home_tab_all_layout, null);
+        view3 = mInflater.inflate(R.layout.home_tab_all_layout, null);
+        view4 = mInflater.inflate(R.layout.home_tab_all_layout, null);
         horizontalListView = (HorizontalListView) view1.findViewById(R.id.hor_listview);
     }
 
