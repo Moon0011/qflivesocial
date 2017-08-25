@@ -2,83 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="58">
+    android:orientation="vertical">
+
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8.2"
-        android:gravity="bottom|center"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="今日之星"
-                android:textColor="#ff5491"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10.3dp"
-                android:src="@mipmap/today_star" />
-        </LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15.8sp"
-            android:text="不妨找她们聊聊吧，她们人气很高哦~"
-            android:textColor="#959595"
-            android:textSize="13sp" />
+            android:text="@string/recommend_today_start"
+            android:textColor="#ff5491"
+            android:textSize="25sp" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="37.5">
-
-        <GridView
-            android:id="@+id/gridview"
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="22.7dp"
             android:layout_height="match_parent"
-            android:layout_marginTop="15.8dp"
-            android:numColumns="2"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:scrollbars="none" />
+            android:layout_marginLeft="13.7dp"
+            android:src="@mipmap/today_star" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="21dp"
+        android:text="@string/recommend_statement"
+        android:textColor="#959595"
+        android:textSize="12.5sp" />
+
+
+    <!--<GridView-->
+    <!--android:id="@+id/gridview"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="21dp"-->
+    <!--android:numColumns="2"-->
+    <!--android:scrollbars="none" />-->
 
     <LinearLayout
+        android:id="@+id/ll_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7.5"
-        android:gravity="bottom|center">
-
-        <Button
-            android:id="@+id/btn_jump"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/jump"
-            android:text="跳过"
-            android:textColor="#959595"
-            android:textSize="15sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:orientation="vertical">
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4.8">
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn_jump"
+        android:layout_width="73.7dp"
+        android:layout_height="27dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="58.3dp"
+        android:background="@mipmap/jump"
+        android:text="跳过"
+        android:textColor="#959595"
+        android:textSize="12.5sp" />
 
 </LinearLayout>

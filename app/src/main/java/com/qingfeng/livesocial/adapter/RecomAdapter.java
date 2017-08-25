@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.qingfeng.livesocial.R;
@@ -54,7 +55,7 @@ public class RecomAdapter extends BaseAdapter {
             holder.name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.age = (TextView) convertView.findViewById(R.id.tv_age);
             holder.imgHead = (ImageView) convertView.findViewById(R.id.img_head);
-            holder.imgSex = (ImageView) convertView.findViewById(R.id.img_sex);
+//            holder.rlSex = (RelativeLayout) convertView.findViewById(R.id.rl_sex);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -67,7 +68,7 @@ public class RecomAdapter extends BaseAdapter {
                 null);
         String sex = mDatas.get(position).getSex();
         if ("女".equals(sex)) {
-            holder.imgSex.setImageResource(R.mipmap.sex_count_f);
+            holder.rlSex.setBackgroundResource(R.mipmap.sex_count_f);
         }
         return convertView;
     }
@@ -76,6 +77,6 @@ public class RecomAdapter extends BaseAdapter {
         public TextView name;
         public TextView age;
         public ImageView imgHead;
-        public ImageView imgSex;
+        public RelativeLayout rlSex;
     }
 }

@@ -1,5 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--splash-->
+    <dimen name="splash_mengyu_margin_top">78dp</dimen>
+    <dimen name="splash_mengyu_txt_size">34sp</dimen>
+    <dimen name="splash_mengyu_txt_height">33.7dp</dimen>
+    <dimen name="splash_mengyu_txt_width">75dp</dimen>
+    <dimen name="splash_xiangyu_txt_margin_top">29.7dp</dimen>
+    <dimen name="splash_xiangyu_txt_size">15sp</dimen>
+    <dimen name="splash_houhui_txt_margin_top">20.3dp</dimen>
+    <dimen name="splash_meizhi_margin_left_right">38dp</dimen>
+    <dimen name="splash_meizhi_height">101dp</dimen>
+    <dimen name="splash_meizhi_margin_top">33dp</dimen>
+    <dimen name="splash_choice_login_height">14dp</dimen>
+    <dimen name="splash_choice_login_margin_bottom">33dp</dimen>
+    <dimen name="splash_choice_login_margin_top">37.3dp</dimen>
+    <dimen name="splash_choice_login_txt_size">12.5sp</dimen>
+    <dimen name="splash_choice_login_line_width">80dp</dimen>
+    <dimen name="splash_choice_login_line_height">2.3dp</dimen>
+    <dimen name="splash_choice_login_line_margin_left_right">38dp</dimen>
+    <dimen name="splash_choice_login_txt_width">122.3dp</dimen>
+    <dimen name="splash_login_height">47dp</dimen>
+    <dimen name="splash_login_img_height_width">35.3dp</dimen>
+    <dimen name="splash_login_img_margin_left">23.3dp</dimen>
+    <dimen name="splash_login_margin_left_right">51.3dp</dimen>
+    <dimen name="splash_statement_height">12.7dp</dimen>
+    <dimen name="splash_statement_margin_bottom">42dp</dimen>
+    <dimen name="splash_statement_margin_top">20.7dp</dimen>
+    <dimen name="splash_statement_txt_size">12.5sp</dimen>
+    <!--login-->
+    <dimen name="login_mengyu_rl_height">112.3dp</dimen>
+    <dimen name="login_arrow_left_height">10.3dp</dimen>
+    <dimen name="login_arrow_left_width">14.3dp</dimen>
+    <dimen name="login_arrow_left_margin_left">24.3dp</dimen>
+    <dimen name="login_arrow_left_margin_right">25.7dp</dimen>
+    <dimen name="login_mengyu_txt_margin_top">78dp</dimen>
+    <dimen name="login_mengyu_txt_size">33sp</dimen>
+    <dimen name="login_hello_txt_size">22.6sp</dimen>
+    <dimen name="login_hello_txt_margin_left">48.3dp</dimen>
+    <dimen name="login_hello_txt_margin_top">147.7dp</dimen>
+    <dimen name="login_statement_txt_size">15sp</dimen>
+    <dimen name="login_statement_txt_margin_left">48.3dp</dimen>
+    <dimen name="login_statement_txt_margin_top1">11dp</dimen>
+    <dimen name="login_statement_txt_margin_top2">6dp</dimen>
+    <dimen name="login_input_height">15dp</dimen>
+    <dimen name="login_input_ll_margin_top">39dp</dimen>
+    <dimen name="login_input_ll_margin_top2">22.7dp</dimen>
+    <dimen name="login_input_margin_left">50.7dp</dimen>
+    <dimen name="login_input_margin_right">61.3dp</dimen>
+    <dimen name="login_input_label_txt_size">15sp</dimen>
+    <dimen name="login_input_edit_txt_size">17sp</dimen>
+    <dimen name="login_input_edit_txt_width">134dp</dimen>
+    <dimen name="login_input_under_line_width">260.7dp</dimen>
+    <dimen name="login_input_under_line_height">2.7dp</dimen>
+    <dimen name="login_input_under_line_margin_left">47dp</dimen>
+    <dimen name="login_input_under_line_margin_top">10.3dp</dimen>
+    <dimen name="login_btn_height">37dp</dimen>
+    <dimen name="login_btn_width">102.7dp</dimen>
+    <dimen name="login_btn_margin_bottom">104.7dp</dimen>
+    <dimen name="login_btn_margin_left">46.7dp</dimen>
+    <dimen name="login_btn_margin_top">51dp</dimen>
+    <dimen name="login_btn_txt_size">15sp</dimen>
+
+
+    <!--splash-->
     <dimen name="today_recommend_img_height">17.3dp</dimen>
     <dimen name="today_recommend_img_width">60dp</dimen>
     <dimen name="today_recommend_img_txt_margin_left">12dp</dimen>

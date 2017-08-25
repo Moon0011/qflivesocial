@@ -3,163 +3,131 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/app_bg"
-    android:orientation="vertical"
-    android:weightSum="58">
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="@dimen/splash_mengyu_txt_width"
+        android:layout_height="@dimen/splash_mengyu_txt_height"
+        android:layout_marginTop="@dimen/splash_mengyu_margin_top"
+        android:gravity="center"
+        android:text="@string/splash_app_name"
+        android:textColor="@color/white"
+        android:textSize="@dimen/splash_mengyu_txt_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/splash_xiangyu_txt_margin_top"
+        android:text="@string/splash_center_txt"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/splash_xiangyu_txt_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/splash_houhui_txt_margin_top"
+        android:text="@string/splash_center_txt2"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/splash_xiangyu_txt_size" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/splash_meizhi_height"
+        android:layout_marginLeft="@dimen/splash_meizhi_margin_left_right"
+        android:layout_marginRight="@dimen/splash_meizhi_margin_left_right"
+        android:layout_marginTop="@dimen/splash_meizhi_margin_top"
+        android:src="@android:color/holo_blue_dark" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="29.3"
-        android:orientation="vertical"
-        android:weightSum="29.3">
+        android:layout_height="@dimen/splash_choice_login_height"
+        android:layout_marginBottom="@dimen/splash_choice_login_margin_bottom"
+        android:layout_marginTop="@dimen/splash_choice_login_margin_top"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:gravity="center">
+        <View
+            android:layout_width="@dimen/splash_choice_login_line_width"
+            android:layout_height="@dimen/splash_choice_login_line_height"
+            android:layout_marginLeft="@dimen/splash_choice_login_line_margin_left_right"
+            android:background="@color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:text="萌遇"
-                android:textColor="@android:color/white"
-                android:textSize="28.2sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="19.3"
+        <TextView
+            android:layout_width="@dimen/splash_choice_login_txt_width"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:orientation="vertical">
+            android:text="@string/splash_choince_login"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/splash_choice_login_txt_size" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/splash_center_txt"
-                android:textColor="@android:color/white"
-                android:textSize="11.3sp" />
+        <View
+            android:layout_width="@dimen/splash_choice_login_line_width"
+            android:layout_height="@dimen/splash_choice_login_line_height"
+            android:layout_marginRight="@dimen/splash_choice_login_line_margin_left_right"
+            android:background="@color/white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="11.5dp"
-                android:text="@string/splash_center_txt2"
-                android:textColor="@android:color/white"
-                android:textSize="11.3sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="13.2">
+        android:layout_height="@dimen/splash_login_height"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@android:color/holo_blue_dark" />
+            android:id="@+id/img_weibo"
+            android:layout_width="@dimen/splash_login_img_height_width"
+            android:layout_height="@dimen/splash_login_img_height_width"
+            android:layout_marginLeft="@dimen/splash_login_margin_left_right"
+            android:src="@mipmap/ic_weibo" />
+
+        <ImageView
+            android:id="@+id/img_wechat"
+            android:layout_width="@dimen/splash_login_img_height_width"
+            android:layout_height="@dimen/splash_login_img_height_width"
+            android:layout_marginLeft="@dimen/splash_login_img_margin_left"
+            android:src="@mipmap/ic_weixin" />
+
+        <ImageView
+            android:id="@+id/img_qq"
+            android:layout_width="@dimen/splash_login_img_height_width"
+            android:layout_height="@dimen/splash_login_img_height_width"
+            android:layout_marginLeft="@dimen/splash_login_img_margin_left"
+            android:src="@mipmap/ic_qq" />
+
+        <ImageView
+            android:id="@+id/img_phone"
+            android:layout_width="@dimen/splash_login_img_height_width"
+            android:layout_height="@dimen/splash_login_img_height_width"
+            android:layout_marginLeft="@dimen/splash_login_img_margin_left"
+            android:layout_marginRight="@dimen/splash_login_margin_left_right"
+            android:src="@mipmap/ic_phone" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15.5"
-        android:orientation="vertical"
-        android:weightSum="31">
+        android:layout_height="@dimen/splash_statement_height"
+        android:layout_marginBottom="@dimen/splash_statement_margin_bottom"
+        android:layout_marginTop="@dimen/splash_statement_margin_top"
+        android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="19dp"
-            android:paddingRight="19dp"
-            android:weightSum="3.5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="@string/splash_bottom_txt"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/splash_statement_txt_size" />
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="2.3dp"
-                android:layout_weight="1"
-                android:src="@mipmap/splash_divider" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:text="@string/splash_bottom_txt2"
+            android:textColor="#ff5491"
+            android:textSize="@dimen/splash_statement_txt_size" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:gravity="center"
-                android:text="选择登陆方式"
-                android:textColor="@android:color/white"
-                android:textSize="9.4sp" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="2.3dp"
-                android:layout_weight="1"
-                android:src="@mipmap/splash_divider" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="18"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/img_weibo"
-                android:layout_width="35.3dp"
-                android:layout_height="35.3dp"
-                android:src="@mipmap/ic_weibo" />
-
-            <ImageView
-                android:id="@+id/img_wechat"
-                android:layout_width="35.3dp"
-                android:layout_height="35.3dp"
-                android:layout_marginLeft="17.5dp"
-                android:src="@mipmap/ic_weixin" />
-
-            <ImageView
-                android:id="@+id/img_qq"
-                android:layout_width="35.3dp"
-                android:layout_height="35.3dp"
-                android:layout_marginLeft="17.5dp"
-                android:src="@mipmap/ic_qq" />
-
-            <ImageView
-                android:id="@+id/img_phone"
-                android:layout_width="35.3dp"
-                android:layout_height="35.3dp"
-                android:layout_marginLeft="17.5dp"
-                android:src="@mipmap/ic_phone" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="10"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:text="@string/splash_bottom_txt"
-                android:textColor="@android:color/white"
-                android:textSize="9.4sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:text="@string/splash_bottom_txt2"
-                android:textColor="#ff5491"
-                android:textSize="9.4sp" />
-
-        </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
