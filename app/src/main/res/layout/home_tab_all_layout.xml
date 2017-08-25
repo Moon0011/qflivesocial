@@ -56,17 +56,10 @@
         android:layout_height="1dp"
         android:background="@mipmap/color_divider" />
 
-    <include layout="@layout/person_show_layout" />
-
-    <include layout="@layout/person_show_layout" />
-
-    <include layout="@layout/person_show_layout" />
-
-    <!--<include layout="@layout/person_show_layout" />-->
-
-    <!--<include layout="@layout/person_show_layout" />-->
-
-    <!--<include layout="@layout/person_show_layout" />-->
-
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
 
 </LinearLayout>

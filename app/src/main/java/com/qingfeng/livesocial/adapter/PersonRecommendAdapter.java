@@ -32,12 +32,12 @@ public class PersonRecommendAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 6;
+        return mDatas.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return mDatas.get(position);
     }
 
     @Override
@@ -47,20 +47,20 @@ public class PersonRecommendAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-//        ViewHolder holder = null;
-//        if (convertView == null) {
-//            holder = new ViewHolder();
-//            convertView = LayoutInflater.from(mContext).inflate(R.layout.person_show_layout, null);
-//            holder.name = (TextView) convertView.findViewById(R.id.tv_name);
-//            holder.age = (TextView) convertView.findViewById(R.id.tv_age);
-//            holder.imgHead = (ImageView) convertView.findViewById(R.id.img_head);
-//            convertView.setTag(holder);
-//        } else {
-//            holder = (ViewHolder) convertView.getTag();
-//        }
-//        holder.name.setText(mDatas.get(position).getName());
-//        holder.age.setText(String.valueOf(mDatas.get(position).getAge()));
-        return LayoutInflater.from(mContext).inflate(R.layout.person_recommend_layout, null);
+        ViewHolder holder = null;
+        if (convertView == null) {
+            holder = new ViewHolder();
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.person_recommend_layout, null);
+            holder.name = (TextView) convertView.findViewById(R.id.tv_name);
+            holder.age = (TextView) convertView.findViewById(R.id.tv_age);
+            holder.imgHead = (ImageView) convertView.findViewById(R.id.img_head);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.name.setText(mDatas.get(position).getName());
+        holder.age.setText(String.valueOf(mDatas.get(position).getAge()));
+        return convertView;
     }
 
     class ViewHolder {

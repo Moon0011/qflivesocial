@@ -34,7 +34,7 @@
             android:src="@mipmap/ic_search" />
     </RelativeLayout>
 
-    <com.amar.library.ui.StickyScrollView
+    <com.qingfeng.livesocial.widget.MStickScrollView
         android:id="@+id/stickyScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,6 +65,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
-    </com.amar.library.ui.StickyScrollView>
+    </com.qingfeng.livesocial.widget.MStickScrollView>
 
 </LinearLayout>

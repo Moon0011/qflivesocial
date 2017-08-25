@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">QFLiveSocialApp</string>
+    <string name="tip_double_click_exit">双击退出</string>
+
     <string name="splash_app_name">萌遇</string>
     <string name="splash_bottom_txt">如果您使用本软件将默认同意</string>
     <string name="splash_bottom_txt2">《用户协议》</string>
