@@ -1,25 +1,24 @@
 package com.qingfeng.livesocial.ui.fragment;
 
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.adapter.MViewPagerAdapter;
 import com.qingfeng.livesocial.adapter.TodayRecommendAdapter;
 import com.qingfeng.livesocial.bean.RecommedRespBean;
 import com.qingfeng.livesocial.bean.SlideRepsBean;
 import com.qingfeng.livesocial.bean.TotalLiveUserBean;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
+import com.qingfeng.livesocial.ui.RanklistActivity;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 import com.qingfeng.livesocial.widget.HorizontalListView;
-import com.qingfeng.livesocial.widget.MStickScrollView;
 import com.qingfeng.livesocial.widget.MViewPager;
 import com.qingfeng.livesocial.widget.SlideShowView;
 
@@ -32,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
@@ -48,11 +49,9 @@ public class HomeFragment extends BaseFragment {
     MViewPager mViewPager;
     @Bind(R.id.slideshowview)
     SlideShowView mSlideShowView;
-    @Bind(R.id.stickyScrollView)
-    MStickScrollView mStickScrollView;
 
     HorizontalListView horizontalListView;
-    LinearLayout ll_all_container;
+    LinearLayout ll_all_container, ll_popular_container, ll_youngshow_container;
     private View view1, view2, view3, view4;
     private LayoutInflater mInflater;
     private final List<View> mViewList = new ArrayList<>();
@@ -70,11 +69,13 @@ public class HomeFragment extends BaseFragment {
     protected void initWidget(View root) {
         mInflater = LayoutInflater.from(getActivity());
         view1 = mInflater.inflate(R.layout.home_tab_all_layout, null);
-        view2 = mInflater.inflate(R.layout.home_tab_popularity_layout, null);
+        view2 = mInflater.inflate(R.layout.home_tab_authen_layout, null);
         view3 = mInflater.inflate(R.layout.home_tab_popularity_layout, null);
-        view4 = mInflater.inflate(R.layout.home_tab_popularity_layout, null);
+        view4 = mInflater.inflate(R.layout.home_tab_youngshow_layout, null);
         horizontalListView = (HorizontalListView) view1.findViewById(R.id.hor_listview);
         ll_all_container = (LinearLayout) view1.findViewById(R.id.ll_container);
+        ll_popular_container = (LinearLayout) view3.findViewById(R.id.ll_container);
+        ll_youngshow_container = (LinearLayout) view4.findViewById(R.id.ll_container);
     }
 
     @Override
@@ -95,7 +96,7 @@ public class HomeFragment extends BaseFragment {
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleArr[2]));
         mTabLayout.addTab(mTabLayout.newTab().setText(mTitleArr[3]));
 
-        MyPagerAdapter mAdapter = new MyPagerAdapter(mViewList);
+        MViewPagerAdapter mAdapter = new MViewPagerAdapter(mViewList, mTitleArr);
         mViewPager.setAdapter(mAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
@@ -103,6 +104,17 @@ public class HomeFragment extends BaseFragment {
         getSlideImg();
         getRecommendData();
         getAllUserInfo();
+        getPopularUserInfo();
+        getYoungShowUserInfo();
+    }
+
+    @OnClick({R.id.ranklist})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ranklist:
+                gotoActivity(getActivity(), RanklistActivity.class);
+                break;
+        }
     }
 
     /**
@@ -139,7 +151,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     /**
-     * 首页主播数据
+     * 全部
      */
     private void getAllUserInfo() {
         RequestParams params = new RequestParams(Urls.RECOMMEND);
@@ -148,7 +160,7 @@ public class HomeFragment extends BaseFragment {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("getUserInfo == " + result);
+                LogUtil.e("getAllUserInfo == " + result);
                 Gson gson = new Gson();
                 TotalLiveUserBean bean = gson.fromJson(result, TotalLiveUserBean.class);
                 if (PARAM_Y.equals(bean.getMsg())) {
@@ -178,9 +190,123 @@ public class HomeFragment extends BaseFragment {
                         }
                         ll_all_container.addView(ll);
                     }
-                    String label = datas.get(0).getLabels();
-                    String nickname = datas.get(0).getNickname();
-                    String signature = datas.get(0).getSignature();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+
+    /**
+     * 人气
+     */
+    private void getPopularUserInfo() {
+        RequestParams params = new RequestParams(Urls.RECOMMEND);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_TYPE, TYPE_POPULAR_USER);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("getPopularUserInfo == " + result);
+                Gson gson = new Gson();
+                TotalLiveUserBean bean = gson.fromJson(result, TotalLiveUserBean.class);
+                if (PARAM_Y.equals(bean.getMsg())) {
+                    List<TotalLiveUserBean.LiveUserBean> datas = bean.getResult();
+                    int size = datas.size() % 2 == 0 ? datas.size() / 2 : datas.size() / 2 + 1;
+                    for (int i = 0; i < size; i++) {
+                        LinearLayout ll = (LinearLayout) mInflater.inflate(R.layout.person_show_layout, null);
+                        for (int j = 0; j < datas.size(); j += 2) {
+                            TextView nickName1 = (TextView) ll.findViewById(R.id.tv_nickname1);
+                            TextView nickName2 = (TextView) ll.findViewById(R.id.tv_nickname2);
+                            ImageView imageHead1 = (ImageView) ll.findViewById(R.id.img_head1);
+                            ImageView imageHead2 = (ImageView) ll.findViewById(R.id.img_head2);
+                            if (datas.get(j) != null) {
+                                nickName1.setText(datas.get(j).getNickname());
+                                x.image().bind(imageHead1,
+                                        datas.get(j).getAnchorpic(),
+                                        imageOptions,
+                                        null);
+                            }
+                            if (datas.get(j + 1) != null) {
+                                nickName2.setText(datas.get(j + 1).getNickname());
+                                x.image().bind(imageHead2,
+                                        datas.get(j + 1).getAnchorpic(),
+                                        imageOptions,
+                                        null);
+                            }
+                        }
+                        ll_popular_container.addView(ll);
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    /**
+     * 新秀
+     */
+    private void getYoungShowUserInfo() {
+        RequestParams params = new RequestParams(Urls.RECOMMEND);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_TYPE, TYPE_YOUNGSHOW_USER);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("getPopularUserInfo == " + result);
+                Gson gson = new Gson();
+                TotalLiveUserBean bean = gson.fromJson(result, TotalLiveUserBean.class);
+                if (PARAM_Y.equals(bean.getMsg())) {
+                    List<TotalLiveUserBean.LiveUserBean> datas = bean.getResult();
+                    int size = datas.size() % 2 == 0 ? datas.size() / 2 : datas.size() / 2 + 1;
+                    for (int i = 0; i < size; i++) {
+                        LinearLayout ll = (LinearLayout) mInflater.inflate(R.layout.person_show_layout, null);
+                        for (int j = 0; j < datas.size(); j += 2) {
+                            TextView nickName1 = (TextView) ll.findViewById(R.id.tv_nickname1);
+                            TextView nickName2 = (TextView) ll.findViewById(R.id.tv_nickname2);
+                            ImageView imageHead1 = (ImageView) ll.findViewById(R.id.img_head1);
+                            ImageView imageHead2 = (ImageView) ll.findViewById(R.id.img_head2);
+                            if (datas.get(j) != null) {
+                                nickName1.setText(datas.get(j).getNickname());
+                                x.image().bind(imageHead1,
+                                        datas.get(j).getAnchorpic(),
+                                        imageOptions,
+                                        null);
+                            }
+                            if (datas.get(j + 1) != null) {
+                                nickName2.setText(datas.get(j + 1).getNickname());
+                                x.image().bind(imageHead2,
+                                        datas.get(j + 1).getAnchorpic(),
+                                        imageOptions,
+                                        null);
+                            }
+                        }
+                        ll_youngshow_container.addView(ll);
+                    }
                 }
             }
 
@@ -207,7 +333,7 @@ public class HomeFragment extends BaseFragment {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("perfectInfoSucc == " + result);
+                LogUtil.e("getRecommendData == " + result);
                 RecommedRespBean respon = new Gson().fromJson(result, RecommedRespBean.class);
                 if (PARAM_Y.equals(respon.getMsg())) {
                     TodayRecommendAdapter todayRecommendAdapter = new TodayRecommendAdapter(getActivity(), respon.getResult(), imageOptions);
@@ -230,39 +356,9 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-
-    class MyPagerAdapter extends PagerAdapter {
-        private List<View> mViewList;
-
-        public MyPagerAdapter(List<View> mViewList) {
-            this.mViewList = mViewList;
-        }
-
-        @Override
-        public int getCount() {
-            return mViewList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;//官方推荐写法
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(mViewList.get(position));//添加页卡
-            return mViewList.get(position);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(mViewList.get(position));//删除页卡
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mTitleArr[position];//页卡标题
-        }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
-
 }

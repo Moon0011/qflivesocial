@@ -1,6 +1,8 @@
 package com.qingfeng.livesocial.ui.base;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,6 +31,10 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initWidget(View root);
 
     protected abstract void initData();
+
+    protected void gotoActivity(Activity activity, Class nextActivity) {
+        startActivity(new Intent(activity, nextActivity));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

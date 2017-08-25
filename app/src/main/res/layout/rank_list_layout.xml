@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="67.3dp">
+
+        <ImageView
+            android:layout_width="13.7dp"
+            android:layout_height="9.7dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/ranklist_arrow_left" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="200.7dp"
+            android:layout_height="28.3dp"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/home_top_button_bg"
+            app:tabIndicatorColor="@color/transparent"
+            app:tabSelectedTextColor="#ffffff"
+            app:tabBackground="@drawable/ranklist_tab_background"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabTextColor="#ff2874" />
+    </RelativeLayout>
+
+    <com.qingfeng.livesocial.widget.MViewPager
+        android:id="@+id/tab_viewpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

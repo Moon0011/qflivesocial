@@ -59,7 +59,6 @@ public class HomeActivity extends BaseActivity {
         return view;
     }
 
-
     @Override
     public void onBackPressed() {
         long curTime = SystemClock.uptimeMillis();

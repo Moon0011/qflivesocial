@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
 
     <color name="tab_txt_normal">#505055</color>
     <color name="tab_txt_selected">#ff4d8d</color>
