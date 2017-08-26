@@ -3,7 +3,6 @@ package com.qingfeng.livesocial.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +12,7 @@ import com.qingfeng.livesocial.bean.RecommedRespBean;
 import com.qingfeng.livesocial.bean.RecommedRespBean.RecommendBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.widget.RoundedImageView;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -84,8 +84,8 @@ public class RecommendActivity extends BaseActivity {
                             TextView nickName2 = (TextView) ll.findViewById(R.id.tv_name2);
                             TextView age = (TextView) ll.findViewById(R.id.tv_age);
                             TextView age2 = (TextView) ll.findViewById(R.id.tv_age2);
-                            ImageView imageHead = (ImageView) ll.findViewById(R.id.img_head);
-                            ImageView imageHead2 = (ImageView) ll.findViewById(R.id.img_head2);
+                            RoundedImageView imageHead = (RoundedImageView) ll.findViewById(R.id.img_head);
+                            RoundedImageView imageHead2 = (RoundedImageView) ll.findViewById(R.id.img_head2);
                             if (datas.get(j) != null) {
                                 nickName.setText(datas.get(j).getNickname());
                                 age.setText(datas.get(j).getAge());

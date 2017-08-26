@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:paddingBottom="23.3dp">
 
-        <ImageView
+        <com.qingfeng.livesocial.widget.RoundedImageView
             android:id="@+id/img_head"
             android:layout_width="95.3dp"
             android:layout_height="95.3dp"
@@ -71,7 +71,7 @@
         android:orientation="vertical"
         android:paddingBottom="23.3dp">
 
-        <ImageView
+        <com.qingfeng.livesocial.widget.RoundedImageView
             android:id="@+id/img_head2"
             android:layout_width="95.3dp"
             android:layout_height="95.3dp"
