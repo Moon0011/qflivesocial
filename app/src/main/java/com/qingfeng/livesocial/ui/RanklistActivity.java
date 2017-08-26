@@ -18,7 +18,6 @@ import butterknife.Bind;
 /**
  * Created by Administrator on 2017/8/25.
  */
-
 public class RanklistActivity extends BaseActivity {
     @Bind(R.id.tablayout)
     TabLayout tablayout;

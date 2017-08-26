@@ -50,7 +50,7 @@ public class PersonRecommendAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.person_recommend_layout, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.anchor_recommend_layout, null);
             holder.name = (TextView) convertView.findViewById(R.id.tv_name);
             holder.age = (TextView) convertView.findViewById(R.id.tv_age);
             holder.imgHead = (ImageView) convertView.findViewById(R.id.img_head);

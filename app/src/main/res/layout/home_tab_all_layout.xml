@@ -6,11 +6,11 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="22dp">
+        android:layout_height="@dimen/anchor_today_recommend_head_todayrecom_total_rl_height">
 
         <RelativeLayout
-            android:layout_width="@dimen/today_recommend_img_width"
-            android:layout_height="@dimen/today_recommend_img_height">
+            android:layout_width="@dimen/anchor_today_recommend_head_todayrecom_rl_width"
+            android:layout_height="@dimen/anchor_today_recommend_head_todayrecom_rl_height">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -22,38 +22,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/today_recommend_img_txt_margin_left"
+                android:layout_marginLeft="@dimen/anchor_today_recommend_head_todayrecom_txt_margin_left"
                 android:text="今日推荐"
                 android:textColor="@color/white"
-                android:textSize="9.8sp" />
+                android:textSize="@dimen/anchor_today_recommend_head_todayrecom_txt_size" />
         </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/today_recommend_img_arrow_txt_margin_right"
+            android:layout_marginRight="@dimen/anchor_today_recommend_head_todayrecom_txt_watchall_margin_right"
             android:layout_toLeftOf="@+id/img_arrow"
-            android:text="查看全部" />
+            android:text="查看全部"
+            android:textSize="@dimen/anchor_today_recommend_head_todayrecom_txt_watchall_size" />
 
         <ImageView
             android:id="@+id/img_arrow"
-            android:layout_width="@dimen/today_recommend_img_arrow_right_width"
-            android:layout_height="@dimen/today_recommend_img_arrow_right_height"
+            android:layout_width="@dimen/anchor_today_recommend_head_todayrecom_arrow_right_width"
+            android:layout_height="@dimen/anchor_today_recommend_head_todayrecom_arrow_right_height"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="5.3dp"
+            android:layout_marginRight="@dimen/anchor_today_recommend_head_todayrecom_arrow_right_margin_right"
             android:src="@mipmap/arrow_right" />
     </RelativeLayout>
 
-    <com.qingfeng.livesocial.widget.HorizontalListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/hor_listview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/hori_listview_height" />
+        android:layout_height="@dimen/anchor_today_recommend_head_todayrecom_hori_recyclview_height" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/anchor_today_recommend_head_todayrecom_color_divider_height"
         android:background="@mipmap/color_divider" />
 
     <LinearLayout

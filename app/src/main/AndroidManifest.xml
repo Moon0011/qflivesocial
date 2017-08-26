@@ -26,6 +26,7 @@
         <activity android:name=".ui.PerfectInfoActivity" />
         <activity android:name=".ui.RecommendActivity" />
         <activity android:name=".ui.RanklistActivity" />
+        <activity android:name=".ui.TestActivity" />
     </application>
 
 </manifest>
