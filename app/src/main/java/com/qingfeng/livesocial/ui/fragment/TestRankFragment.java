@@ -1,14 +1,15 @@
-package com.qingfeng.livesocial.ui;
+package com.qingfeng.livesocial.ui.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.RankRecyclerViewAdapter;
 import com.qingfeng.livesocial.bean.AttentionRankListRespBean;
 import com.qingfeng.livesocial.common.Urls;
-import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.ui.base.BaseFragment;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -26,21 +27,21 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYP
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
- * Created by Administrator on 2017/8/26.
+ * Created by hover on 2017/8/27.
  */
 
-public class TestActivity extends BaseActivity {
+public class TestRankFragment extends BaseFragment {
 
     @Bind(R.id.recyclelistview)
     RecyclerView recyclelistview;
 
     @Override
-    protected int getLayoutById() {
+    protected int getLayoutId() {
         return R.layout.test_layout;
     }
 
     @Override
-    protected void initView() {
+    protected void initWidget(View root) {
 
     }
 
@@ -60,8 +61,8 @@ public class TestActivity extends BaseActivity {
                 AttentionRankListRespBean respBean = new Gson().fromJson(result, AttentionRankListRespBean.class);
                 if (PARAM_Y.equals(respBean.getMsg())) {
                     List<AttentionRankListRespBean.AttentionRanklistBean> datas = respBean.getResult();
-                    RankRecyclerViewAdapter adapter = new RankRecyclerViewAdapter(mContext, datas, imageOptions);
-                    recyclelistview.setLayoutManager(new LinearLayoutManager(mContext));
+                    RankRecyclerViewAdapter adapter = new RankRecyclerViewAdapter(getActivity(), datas, imageOptions);
+                    recyclelistview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclelistview.setHasFixedSize(true);
                     recyclelistview.setAdapter(adapter);
                 }

@@ -17,7 +17,7 @@ import org.xutils.x;
 import java.util.List;
 
 
-public class TopRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RankRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Context mContext;
 
     private static final int TYPE_IMG_THREE = 1;      //2F(显示3张图片)
@@ -26,7 +26,7 @@ public class TopRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private List<AttentionRankListRespBean.AttentionRanklistBean> mDatas;
     private ImageOptions mImageOptions;
 
-    public TopRecyclerViewAdapter(Context context, List<AttentionRankListRespBean.AttentionRanklistBean> datas, ImageOptions imageOptions) {
+    public RankRecyclerViewAdapter(Context context, List<AttentionRankListRespBean.AttentionRanklistBean> datas, ImageOptions imageOptions) {
         this.mContext = context;
         this.mDatas = datas;
         this.mImageOptions = imageOptions;

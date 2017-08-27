@@ -1,14 +1,18 @@
-package com.qingfeng.livesocial.ui;
+package com.qingfeng.livesocial.ui.fragment;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.RankRecyclerViewAdapter;
 import com.qingfeng.livesocial.bean.AttentionRankListRespBean;
 import com.qingfeng.livesocial.common.Urls;
-import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.ui.base.BaseFragment;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -18,6 +22,7 @@ import org.xutils.x;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE_CARE_VALUE;
@@ -26,27 +31,26 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYP
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
- * Created by Administrator on 2017/8/26.
+ * Created by hover on 2017/8/27.
  */
 
-public class TestActivity extends BaseActivity {
-
+public class ChildRanklistFragment extends BaseFragment {
     @Bind(R.id.recyclelistview)
     RecyclerView recyclelistview;
 
     @Override
-    protected int getLayoutById() {
-        return R.layout.test_layout;
+    protected int getLayoutId() {
+        return R.layout.rank_list_childrank_layout;
     }
 
     @Override
-    protected void initView() {
+    protected void initWidget(View root) {
 
     }
 
     @Override
     protected void initData() {
-        getCareRanklist();
+
     }
 
     private void getCareRanklist() {
@@ -60,8 +64,8 @@ public class TestActivity extends BaseActivity {
                 AttentionRankListRespBean respBean = new Gson().fromJson(result, AttentionRankListRespBean.class);
                 if (PARAM_Y.equals(respBean.getMsg())) {
                     List<AttentionRankListRespBean.AttentionRanklistBean> datas = respBean.getResult();
-                    RankRecyclerViewAdapter adapter = new RankRecyclerViewAdapter(mContext, datas, imageOptions);
-                    recyclelistview.setLayoutManager(new LinearLayoutManager(mContext));
+                    RankRecyclerViewAdapter adapter = new RankRecyclerViewAdapter(getActivity(), datas, imageOptions);
+                    recyclelistview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclelistview.setHasFixedSize(true);
                     recyclelistview.setAdapter(adapter);
                 }
@@ -82,4 +86,17 @@ public class TestActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }

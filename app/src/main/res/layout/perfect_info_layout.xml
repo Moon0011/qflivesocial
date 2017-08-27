@@ -2,88 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="77">
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/perfect_addphoto_rl_height">
+
+        <ImageView
+            android:id="@+id/img_arrow_left"
+            android:layout_width="@dimen/perfect_addphoto_arrow_img_width"
+            android:layout_height="@dimen/perfect_addphoto_arrow_img_heigth"
+            android:layout_marginLeft="@dimen/perfect_addphoto_arrow_img_margin_left"
+            android:layout_marginTop="@dimen/perfect_addphoto_arrow_img_margin_top"
+            android:src="@mipmap/arrow_left2" />
+
+        <ImageView
+            android:id="@+id/img_photo_add"
+            android:layout_width="@dimen/perfect_addphoto_img_margin_width"
+            android:layout_height="@dimen/perfect_addphoto_img_margin_height"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/img_add" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/perfect_photo_txt_margin_top"
+        android:text="@string/photo"
+        android:textColor="#751c18"
+        android:textSize="@dimen/perfect_photo_txt_size" />
+
+    <EditText
+        android:id="@+id/et_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/perfect_nickname_et_margin_top"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="@string/nickname"
+        android:textColor="#751c18"
+        android:textColorHint="#787474"
+        android:textSize="@dimen/perfect_nickname_et_txt_size" />
+
+    <View
+        android:layout_width="@dimen/perfect_nickname_divider_width"
+        android:layout_height="@dimen/perfect_nickname_divider_height"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/perfect_nickname_divider_margin_top"
+        android:background="#fce5e4" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="24">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/img_arrow_left"
-                android:layout_width="10.8dp"
-                android:layout_height="7.8dp"
-                android:layout_gravity="left"
-                android:layout_marginLeft="18.3dp"
-                android:layout_marginTop="19.3dp"
-                android:src="@mipmap/arrow_left2" />
-
-
-            <ImageView
-                android:id="@+id/img_photo_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/img_add" />
-        </RelativeLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="照片"
-            android:textColor="#751c18"
-            android:textSize="23.8sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9.5"
-        android:gravity="bottom|center"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/et_nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
-            android:background="@null"
-            android:gravity="center"
-            android:hint="昵称"
-            android:textColor="#751c18"
-            android:textColorHint="#751c18"
-            android:textSize="18sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginTop="10.8dp"
-            android:background="#fce5e4" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="14"
-        android:gravity="center|bottom"
+        android:layout_height="@dimen/perfect_choice_sex_ll_height"
+        android:layout_marginTop="@dimen/perfect_choice_sex_ll_margin_top"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -94,17 +69,18 @@
 
             <ImageView
                 android:id="@+id/img_man"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/perfect_choice_sex_img_height_width"
+                android:layout_height="@dimen/perfect_choice_sex_img_height_width"
+                android:scaleType="fitXY"
                 android:src="@mipmap/man" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp"
-                android:text="男"
+                android:layout_marginTop="@dimen/perfect_choice_sex_txt_margin_top"
+                android:text="@string/man"
                 android:textColor="#787474"
-                android:textSize="18sp" />
+                android:textSize="@dimen/perfect_choice_sex_txt_size" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,53 +92,40 @@
 
             <ImageView
                 android:id="@+id/img_woman"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="@dimen/perfect_choice_sex_img_height_width"
+                android:layout_height="@dimen/perfect_choice_sex_img_height_width"
                 android:src="@mipmap/woman" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9.5dp"
-                android:text="女"
+                android:layout_marginTop="@dimen/perfect_choice_sex_txt_margin_top"
+                android:text="@string/woman"
                 android:textColor="#787474"
-                android:textSize="18sp" />
+                android:textSize="@dimen/perfect_choice_sex_txt_size" />
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="19"
-        android:gravity="center|bottom">
+    <RelativeLayout
+        android:id="@+id/rl_regist_succ"
+        android:layout_width="@dimen/perfect_btn_finish_rl_width"
+        android:layout_height="@dimen/perfect_btn_finish_rl_height"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/perfect_btn_finish_rl_margin_top">
 
-        <RelativeLayout
-            android:id="@+id/rl_regist_succ"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/perfectinfo_succ" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@mipmap/perfectinfo_succ" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="完成"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5.5">
-
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/finish"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/perfect_btn_finish_txt_size" />
+    </RelativeLayout>
 
 </LinearLayout>

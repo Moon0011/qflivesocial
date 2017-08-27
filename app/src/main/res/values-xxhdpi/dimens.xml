@@ -27,6 +27,30 @@
     <dimen name="splash_statement_margin_bottom">42dp</dimen>
     <dimen name="splash_statement_margin_top">20.7dp</dimen>
     <dimen name="splash_statement_txt_size">12.5sp</dimen>
+    <!--perfect info-->
+    <dimen name="perfect_addphoto_rl_height">198dp</dimen>
+    <dimen name="perfect_addphoto_arrow_img_width">14dp</dimen>
+    <dimen name="perfect_addphoto_arrow_img_heigth">10.3dp</dimen>
+    <dimen name="perfect_addphoto_arrow_img_margin_left">12.3dp</dimen>
+    <dimen name="perfect_addphoto_arrow_img_margin_top">14.3dp</dimen>
+    <dimen name="perfect_addphoto_img_margin_width">115dp</dimen>
+    <dimen name="perfect_addphoto_img_margin_height">115.3dp</dimen>
+    <dimen name="perfect_photo_txt_margin_top">19.3dp</dimen>
+    <dimen name="perfect_photo_txt_size">23.8sp</dimen>
+    <dimen name="perfect_nickname_et_margin_top">47.7dp</dimen>
+    <dimen name="perfect_nickname_et_txt_size">18sp</dimen>
+    <dimen name="perfect_nickname_divider_width">178dp</dimen>
+    <dimen name="perfect_nickname_divider_height">2.7dp</dimen>
+    <dimen name="perfect_nickname_divider_margin_top">10.7dp</dimen>
+    <dimen name="perfect_choice_sex_ll_height">84.3dp</dimen>
+    <dimen name="perfect_choice_sex_ll_margin_top">31.3dp</dimen>
+    <dimen name="perfect_choice_sex_img_height_width">58dp</dimen>
+    <dimen name="perfect_choice_sex_txt_margin_top">8dp</dimen>
+    <dimen name="perfect_choice_sex_txt_size">18sp</dimen>
+    <dimen name="perfect_btn_finish_rl_width">88.3dp</dimen>
+    <dimen name="perfect_btn_finish_rl_height">88.7dp</dimen>
+    <dimen name="perfect_btn_finish_rl_margin_top">60dp</dimen>
+    <dimen name="perfect_btn_finish_txt_size">18sp</dimen>
     <!--login-->
     <dimen name="login_mengyu_rl_height">112.3dp</dimen>
     <dimen name="login_arrow_left_height">10.3dp</dimen>

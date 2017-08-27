@@ -13,6 +13,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.common.AppManager;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.ui.fragment.HomeFragment;
+import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 
 /**
  * Created by Administrator on 2017/8/22.
@@ -21,7 +22,7 @@ import com.qingfeng.livesocial.ui.fragment.HomeFragment;
 public class HomeActivity extends BaseActivity {
     private LayoutInflater layoutInflater;
     private FragmentTabHost mTabHost;
-    private final Class fragmentArray[] = {HomeFragment.class, HomeFragment.class, HomeFragment.class, HomeFragment.class};
+    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, HomeFragment.class, HomeFragment.class};
     private int mTitleArray[] = {R.string.home, R.string.discover, R.string.message, R.string.personal};
     private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_discover, R.drawable.tab_message, R.drawable.tab_personal};
     private String mTextviewArray[] = {"home", "discover", "message", "personnal"};

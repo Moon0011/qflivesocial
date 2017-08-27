@@ -8,6 +8,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.MFragmentPagerAdapter;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.ui.fragment.DayRanklistFragment;
+import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 import com.qingfeng.livesocial.widget.MViewPager;
 
 import java.util.ArrayList;
@@ -38,8 +39,8 @@ public class RanklistActivity extends BaseActivity {
     @Override
     protected void initData() {
         fragments.add(new DayRanklistFragment());
-        fragments.add(new DayRanklistFragment());
-        fragments.add(new DayRanklistFragment());
+        fragments.add(new TestRankFragment());
+        fragments.add(new TestRankFragment());
         tabViewpage.setAdapter(new MFragmentPagerAdapter(getSupportFragmentManager(), titleArr, fragments));
         tablayout.setupWithViewPager(tabViewpage);
     }

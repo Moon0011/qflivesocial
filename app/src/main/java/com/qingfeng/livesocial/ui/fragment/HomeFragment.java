@@ -20,7 +20,7 @@ import com.qingfeng.livesocial.bean.SlideRepsBean;
 import com.qingfeng.livesocial.bean.TotalLiveUserBean;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
-import com.qingfeng.livesocial.ui.TestActivity;
+import com.qingfeng.livesocial.ui.RanklistActivity;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 import com.qingfeng.livesocial.util.StringUtils;
 import com.qingfeng.livesocial.widget.MViewPager;
@@ -115,7 +115,7 @@ public class HomeFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ranklist:
-                gotoActivity(getActivity(), TestActivity.class);
+                gotoActivity(getActivity(), RanklistActivity.class);
                 break;
         }
     }
