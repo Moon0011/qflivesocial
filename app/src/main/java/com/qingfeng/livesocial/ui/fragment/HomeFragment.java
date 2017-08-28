@@ -44,9 +44,11 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.qingfeng.livesocial.common.Constants.HOME_POPULAR_ANCHOR;
 import static com.qingfeng.livesocial.common.Constants.HOME_RECOMMEND_ANCHOR;
 import static com.qingfeng.livesocial.common.Constants.HOME_SLIDE_IMG;
 import static com.qingfeng.livesocial.common.Constants.HOME_TOTAL_ANCHOR;
+import static com.qingfeng.livesocial.common.Constants.HOME_YOUNGSHOW_ANCHOR;
 import static com.qingfeng.livesocial.common.Constants.PARAM_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
@@ -90,7 +92,6 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onRefresh() {
                 if (!isFirst) {
-                    getSlideImg();
                     getRecommendData();
                     getAllUserInfo();
                     getPopularUserInfo();
@@ -108,37 +109,6 @@ public class HomeFragment extends BaseFragment {
         ll_all_container = (LinearLayout) view1.findViewById(R.id.ll_container);
         ll_popular_container = (LinearLayout) view3.findViewById(R.id.ll_container);
         ll_youngshow_container = (LinearLayout) view4.findViewById(R.id.ll_container);
-
-//        AppOperator.runOnThread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                handler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        SlideRepsBean slideRepsBean = (SlideRepsBean) CacheManager.readObject(getActivity(), HOME_SLIDE_IMG);
-//                        bindSlideData(slideRepsBean);
-//
-//                        LiveAnchorRespBean totalBean = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_TOTAL_ANCHOR);
-//                        LiveAnchorRespBean popularBean = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_POPULAR_ANCHOR);
-//                        LiveAnchorRespBean youngShowBean = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_YOUNGSHOW_ANCHOR);
-//                        bindData(totalBean, ll_all_container);
-//                        bindData(popularBean, ll_popular_container);
-//                        bindData(youngShowBean, ll_youngshow_container);
-//
-//                        RecommedRespBean respon = (RecommedRespBean) CacheManager.readObject(getActivity(), HOME_RECOMMEND_ANCHOR);
-//                        bindRecommendData(respon);
-//                    }
-//                });
-//            }
-//        });
-
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -159,11 +129,102 @@ public class HomeFragment extends BaseFragment {
         mTabLayout.setupWithViewPager(mViewPager);
         mTabLayout.setTabsFromPagerAdapter(mAdapter);
 
-        getSlideImg();
-        getRecommendData();
-        getAllUserInfo();
-        getPopularUserInfo();
-        getYoungShowUserInfo();
+        AppOperator.runOnThread(new Runnable() {
+            @Override
+            public void run() {
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        SlideRepsBean respon = (SlideRepsBean) CacheManager.readObject(getActivity(), HOME_SLIDE_IMG);
+                        if (respon == null || isFirst) {
+                            getSlideImg();
+                        } else {
+                            bindSlideData(respon);
+                        }
+                    }
+                });
+            }
+        });
+        AppOperator.runOnThread(new Runnable() {
+            @Override
+            public void run() {
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        RecommedRespBean respon = (RecommedRespBean) CacheManager.readObject(getActivity(), HOME_RECOMMEND_ANCHOR);
+                        if (respon == null || isFirst) {
+                            getRecommendData();
+                        } else {
+                            bindRecommendData(respon);
+                        }
+                    }
+                });
+            }
+        });
+
+        AppOperator.runOnThread(new Runnable() {
+            @Override
+            public void run() {
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LiveAnchorRespBean respon = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_TOTAL_ANCHOR);
+                        if (respon == null || isFirst) {
+                            getAllUserInfo();
+                        } else {
+                            bindData(respon, ll_all_container);
+                        }
+                    }
+                });
+            }
+        });
+
+        AppOperator.runOnThread(new Runnable() {
+            @Override
+            public void run() {
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LiveAnchorRespBean respon = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_POPULAR_ANCHOR);
+                        if (respon == null || isFirst) {
+                            getPopularUserInfo();
+                        }else{
+                            bindData(respon, ll_popular_container);
+                        }
+                    }
+                });
+            }
+        });
+
+        AppOperator.runOnThread(new Runnable() {
+            @Override
+            public void run() {
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LiveAnchorRespBean respon = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_YOUNGSHOW_ANCHOR);
+                        if (respon == null || isFirst) {
+                            getYoungShowUserInfo();
+                        }else{
+                            bindData(respon, ll_youngshow_container);
+                        }
+                    }
+                });
+            }
+        });
+//
+//        if (isFirst) {
+//            getSlideImg();
+//            getRecommendData();
+//            getAllUserInfo();
+//            getPopularUserInfo();
+//            getYoungShowUserInfo();
+//        }
     }
 
     @OnClick({R.id.ranklist})
@@ -273,6 +334,14 @@ public class HomeFragment extends BaseFragment {
                 Gson gson = new Gson();
                 final LiveAnchorRespBean bean = gson.fromJson(result, LiveAnchorRespBean.class);
                 bindData(bean, ll_popular_container);
+                AppOperator.runOnThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (bean != null && bean.getResult() != null) {
+                            CacheManager.saveObject(getActivity(), bean, HOME_POPULAR_ANCHOR);
+                        }
+                    }
+                });
                 mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
@@ -308,6 +377,14 @@ public class HomeFragment extends BaseFragment {
                 Gson gson = new Gson();
                 final LiveAnchorRespBean bean = gson.fromJson(result, LiveAnchorRespBean.class);
                 bindData(bean, ll_youngshow_container);
+                AppOperator.runOnThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (bean != null && bean.getResult() != null) {
+                            CacheManager.saveObject(getActivity(), bean, HOME_YOUNGSHOW_ANCHOR);
+                        }
+                    }
+                });
                 mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
@@ -370,9 +447,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void bindSlideData(SlideRepsBean respon) {
-        if (respon == null) {
-            return;
-        }
         if (PARAM_Y.equals(respon.getMsg()) && respon.getResult() != null) {
             List<SlideRepsBean.SlideBean> slideBeanList = respon.getResult();
             String[] imageUrls = new String[slideBeanList.size()];
@@ -384,9 +458,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void bindRecommendData(RecommedRespBean respon) {
-        if (respon == null) {
-            return;
-        }
         if (PARAM_Y.equals(respon.getMsg()) && respon.getResult() != null) {
             HRecyclerViewAdapter hRecyclerViewAdapter = new HRecyclerViewAdapter(getActivity(), respon.getResult(), imageOptions);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -398,9 +469,6 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void bindData(final LiveAnchorRespBean bean, LinearLayout llContainer) {
-        if (bean == null) {
-            return;
-        }
         if (PARAM_Y.equals(bean.getMsg()) && bean.getResult() != null) {
             final List<LiveAnchorRespBean.LiveAnchorBean> datas = bean.getResult();
             int size = datas.size() % 2 == 0 ? datas.size() / 2 : datas.size() / 2 + 1;
