@@ -36,6 +36,12 @@ public abstract class BaseFragment extends Fragment {
         startActivity(new Intent(activity, nextActivity));
     }
 
+    protected void gotoActivityWithBundle(Activity activity, Class nextActivity, Bundle bundle) {
+        Intent intent = new Intent(activity, nextActivity);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(getLayoutId(), container, false);

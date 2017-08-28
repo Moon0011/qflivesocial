@@ -39,7 +39,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_T
 import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE_GLAMOUR_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE_RICHER_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYPE;
-import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYPE_DAY_VALUE;
+import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYPE_WEEK_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 import static com.qingfeng.livesocial.common.Constants.RICHER_RANKLIST;
 import static com.qingfeng.livesocial.common.Constants.RICHER_RANKLIST_NAME;
@@ -49,7 +49,7 @@ import static com.qingfeng.livesocial.common.Constants.RICHER_RANKLIST_NAME;
  * 日榜
  * Created by Administrator on 2017/8/25.
  */
-public class DayRanklistFragment extends BaseFragment {
+public class WeekRanklistFragment extends BaseFragment {
 
     @Bind(R.id.tablayout)
     TabLayout mTabLayout;
@@ -200,7 +200,7 @@ public class DayRanklistFragment extends BaseFragment {
      */
     private void getAttentionRanklist() {
         RequestParams params = new RequestParams(Urls.RANKLIST);
-        params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_DAY_VALUE);
+        params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_WEEK_VALUE);
         params.addParameter(PARAM_CHILDREN_RANKLIST_TYPE, PARAM_CHILDREN_RANKLIST_TYPE_ATTENTION_VALUE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -219,16 +219,15 @@ public class DayRanklistFragment extends BaseFragment {
                     recyclelistview1.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclelistview1.setHasFixedSize(true);
                     recyclelistview1.setAdapter(attentionAdapter);
+                    mSwipeRefreshLayout.setRefreshing(false);
+                    isFirst = false;
                 }
-                mSwipeRefreshLayout.setRefreshing(false);
-                isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
                 isFirst = false;
-                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -246,7 +245,7 @@ public class DayRanklistFragment extends BaseFragment {
      */
     private void getRicherRanklist() {
         RequestParams params = new RequestParams(Urls.RANKLIST);
-        params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_DAY_VALUE);
+        params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_WEEK_VALUE);
         params.addParameter(PARAM_CHILDREN_RANKLIST_TYPE, PARAM_CHILDREN_RANKLIST_TYPE_RICHER_VALUE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -265,16 +264,14 @@ public class DayRanklistFragment extends BaseFragment {
                     recyclelistview2.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclelistview2.setHasFixedSize(true);
                     recyclelistview2.setAdapter(richerAdapter);
+                    mSwipeRefreshLayout2.setRefreshing(false);
                 }
-                mSwipeRefreshLayout.setRefreshing(false);
-                isFirst = false;
+
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
-                isFirst = false;
             }
 
             @Override
@@ -292,7 +289,7 @@ public class DayRanklistFragment extends BaseFragment {
      */
     private void getGlamourRanklist() {
         RequestParams params = new RequestParams(Urls.RANKLIST);
-        params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_DAY_VALUE);
+        params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_WEEK_VALUE);
         params.addParameter(PARAM_CHILDREN_RANKLIST_TYPE, PARAM_CHILDREN_RANKLIST_TYPE_GLAMOUR_VALUE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -311,16 +308,13 @@ public class DayRanklistFragment extends BaseFragment {
                     recyclelistview3.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclelistview3.setHasFixedSize(true);
                     recyclelistview3.setAdapter(glamourAdapter);
+                    mSwipeRefreshLayout3.setRefreshing(false);
                 }
-                mSwipeRefreshLayout.setRefreshing(false);
-                isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
-                isFirst = false;
             }
 
             @Override

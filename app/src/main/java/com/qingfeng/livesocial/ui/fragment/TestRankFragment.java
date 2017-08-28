@@ -7,7 +7,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.RankRecyclerViewAdapter;
-import com.qingfeng.livesocial.bean.AttentionRankListRespBean;
+import com.qingfeng.livesocial.bean.RankListRespBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 
@@ -21,7 +21,7 @@ import java.util.List;
 import butterknife.Bind;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE;
-import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE_CARE_VALUE;
+import static com.qingfeng.livesocial.common.Constants.PARAM_CHILDREN_RANKLIST_TYPE_ATTENTION_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_PARENT_RANKLIST_TYPE_DAY_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
@@ -53,14 +53,14 @@ public class TestRankFragment extends BaseFragment {
     private void getCareRanklist() {
         RequestParams params = new RequestParams(Urls.RANKLIST);
         params.addParameter(PARAM_PARENT_RANKLIST_TYPE, PARAM_PARENT_RANKLIST_TYPE_DAY_VALUE);
-        params.addParameter(PARAM_CHILDREN_RANKLIST_TYPE, PARAM_CHILDREN_RANKLIST_TYPE_CARE_VALUE);
+        params.addParameter(PARAM_CHILDREN_RANKLIST_TYPE, PARAM_CHILDREN_RANKLIST_TYPE_ATTENTION_VALUE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 LogUtil.e("getCareRanklist == " + result);
-                AttentionRankListRespBean respBean = new Gson().fromJson(result, AttentionRankListRespBean.class);
+                RankListRespBean respBean = new Gson().fromJson(result, RankListRespBean.class);
                 if (PARAM_Y.equals(respBean.getMsg())) {
-                    List<AttentionRankListRespBean.AttentionRanklistBean> datas = respBean.getResult();
+                    List<RankListRespBean.RanklistBean> datas = respBean.getResult();
                     RankRecyclerViewAdapter adapter = new RankRecyclerViewAdapter(getActivity(), datas, imageOptions);
                     recyclelistview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclelistview.setHasFixedSize(true);

@@ -1,12 +1,13 @@
 package com.qingfeng.livesocial.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/23.
  */
 
-public class SlideRepsBean {
+public class SlideRepsBean implements Serializable{
 
     /**
      * msg : y
@@ -32,7 +33,7 @@ public class SlideRepsBean {
         this.result = result;
     }
 
-    public static class SlideBean {
+    public static class SlideBean implements Serializable{
         /**
          * id : 2
          * title : 这是一个测试

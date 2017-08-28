@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".ui.SplashActivity" />-->
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.PerfectInfoActivity" />
         <activity android:name=".ui.RecommendActivity" />
         <activity android:name=".ui.RanklistActivity" />
+        <activity android:name=".ui.AnchorDetailActivity" />
         <activity android:name=".ui.TestActivity" />
     </application>
 

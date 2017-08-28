@@ -22,7 +22,7 @@ import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 public class HomeActivity extends BaseActivity {
     private LayoutInflater layoutInflater;
     private FragmentTabHost mTabHost;
-    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, HomeFragment.class, HomeFragment.class};
+    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, TestRankFragment.class, TestRankFragment.class};
     private int mTitleArray[] = {R.string.home, R.string.discover, R.string.message, R.string.personal};
     private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_discover, R.drawable.tab_message, R.drawable.tab_personal};
     private String mTextviewArray[] = {"home", "discover", "message", "personnal"};

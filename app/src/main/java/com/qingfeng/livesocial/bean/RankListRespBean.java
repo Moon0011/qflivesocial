@@ -1,12 +1,13 @@
 package com.qingfeng.livesocial.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/26.
  */
 
-public class AttentionRankListRespBean {
+public class RankListRespBean implements Serializable{
 
 
     /**
@@ -15,7 +16,7 @@ public class AttentionRankListRespBean {
      */
 
     private String msg;
-    private List<AttentionRanklistBean> result;
+    private List<RanklistBean> result;
 
     public String getMsg() {
         return msg;
@@ -25,15 +26,15 @@ public class AttentionRankListRespBean {
         this.msg = msg;
     }
 
-    public List<AttentionRanklistBean> getResult() {
+    public List<RanklistBean> getResult() {
         return result;
     }
 
-    public void setResult(List<AttentionRanklistBean> result) {
+    public void setResult(List<RanklistBean> result) {
         this.result = result;
     }
 
-    public static class AttentionRanklistBean {
+    public static class RanklistBean implements Serializable{
         /**
          * uid : 1
          * anchorpic : http://video.520cai.cn/upload/zhibo/20170809/79b6c191b51d14fdf1d17f6ed35666b7.jpg

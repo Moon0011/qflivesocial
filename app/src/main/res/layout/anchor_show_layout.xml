@@ -12,6 +12,7 @@
         android:padding="@dimen/anchor_show_ll_padding">
 
         <FrameLayout
+            android:id="@+id/fl_anchor1"
             android:layout_width="@dimen/anchor_show_fl_width"
             android:layout_height="@dimen/anchor_show_fl_height">
 
@@ -146,6 +147,7 @@
         android:padding="@dimen/anchor_show_ll_padding">
 
         <FrameLayout
+            android:id="@+id/fl_anchor2"
             android:layout_width="@dimen/anchor_show_fl_width"
             android:layout_height="@dimen/anchor_show_fl_height">
 

@@ -15,7 +15,7 @@
             android:layout_height="@dimen/ranklist_top3_num_height"
             android:layout_marginLeft="@dimen/ranklist_top3_num_margin_left"
             android:scaleType="fitXY"
-            android:src="@mipmap/ranking_icon_no3" />
+            android:src="@mipmap/ranking_icon_no1" />
 
         <RelativeLayout
             android:layout_width="61dp"
@@ -27,7 +27,7 @@
                 android:layout_height="@dimen/ranklist_top3_head_height"
                 android:layout_centerInParent="true"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ranking_icon_head3" />
+                android:src="@mipmap/ranking_icon_head1" />
 
             <com.qingfeng.livesocial.widget.RoundedImageView
                 android:id="@+id/imghead"

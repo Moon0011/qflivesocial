@@ -11,6 +11,7 @@
         android:layout_height="@dimen/ranklist_head_rl_height">
 
         <ImageView
+            android:id="@+id/img_arrow_left"
             android:layout_width="@dimen/ranklist_arrow_left_width"
             android:layout_height="@dimen/ranklist_arrow_left_height"
             android:layout_marginLeft="@dimen/ranklist_arrow_left_margin_left"
@@ -31,13 +32,9 @@
             app:tabTextColor="#ff2874" />
     </RelativeLayout>
 
-    <!--<android.support.v4.view.ViewPager-->
-    <!--android:id="@+id/tab_viewpage"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="0dp"-->
-    <!--android:layout_weight="1" />-->
-    <com.qingfeng.livesocial.widget.MViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/tab_viewpage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>

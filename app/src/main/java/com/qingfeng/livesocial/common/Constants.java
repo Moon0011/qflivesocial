@@ -19,7 +19,13 @@ public class Constants {
     public static final String PARAM_NICKNAME = "nickname";
     public static final String PARAM_SEX = "sex";
 
-    public static final String CARE_RANKLIST_NAME = "关注榜";
+    public static final String ATTENTION_RANKLIST = "attention_ranklist";
+    public static final String RICHER_RANKLIST = "richer_ranklist";
+    public static final String GLAMOUR_RANKLIST = "glamour_ranklist";
+    public static final String DAY_RANKLIST_NAME = "日榜";
+    public static final String WEEK_RANKLIST_NAME = "周榜";
+    public static final String TOTAL_RANKLIST_NAME = "总榜";
+    public static final String ATTENTION_RANKLIST_NAME = "关注榜";
     public static final String RICHER_RANKLIST_NAME = "土豪榜";
     public static final String GLAMOUR_RANKLIST_NAME = "魅力榜";
     public static final String PARAM_PARENT_RANKLIST_TYPE = "type";//父榜：日 周 总榜
@@ -27,7 +33,13 @@ public class Constants {
     public static final String PARAM_PARENT_RANKLIST_TYPE_WEEK_VALUE = "2";
     public static final String PARAM_PARENT_RANKLIST_TYPE_TOTAL_VALUE = "3";
     public static final String PARAM_CHILDREN_RANKLIST_TYPE = "stype";//子榜：光注 土豪 魅力榜
-    public static final String PARAM_CHILDREN_RANKLIST_TYPE_CARE_VALUE = "1";
+    public static final String PARAM_CHILDREN_RANKLIST_TYPE_ATTENTION_VALUE = "1";
     public static final String PARAM_CHILDREN_RANKLIST_TYPE_RICHER_VALUE = "2";
     public static final String PARAM_CHILDREN_RANKLIST_TYPE_GLAMOUR_VALUE = "3";
+
+    public static final String HOME_SLIDE_IMG = "home_slide_img";
+    public static final String HOME_TOTAL_ANCHOR = "home_total_anchor";
+    public static final String HOME_POPULAR_ANCHOR = "home_popular_anchor";
+    public static final String HOME_YOUNGSHOW_ANCHOR = "home_youngshow_anchor";
+    public static final String HOME_RECOMMEND_ANCHOR = "home_recommend_anchor";
 }

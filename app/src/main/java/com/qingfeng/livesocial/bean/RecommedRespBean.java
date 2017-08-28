@@ -1,12 +1,13 @@
 package com.qingfeng.livesocial.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/8/23.
  */
 
-public class RecommedRespBean {
+public class RecommedRespBean implements Serializable{
 
     /**
      * msg : y
@@ -32,7 +33,7 @@ public class RecommedRespBean {
         this.result = result;
     }
 
-    public static class RecommendBean {
+    public static class RecommendBean implements Serializable{
         /**
          * uid : 5
          * anchorpic : http://video.520cai.cn/upload/zhibo/20170817/a7c7fa9fa53429bac09861f09c7064a5.jpg

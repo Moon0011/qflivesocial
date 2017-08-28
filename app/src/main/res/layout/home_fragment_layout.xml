@@ -54,38 +54,44 @@
             android:src="@mipmap/ic_search" />
     </RelativeLayout>
 
-    <com.qingfeng.livesocial.widget.MStickScrollView
-        android:id="@+id/stickyScrollView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:stickyHeader="@+id/tab">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.qingfeng.livesocial.widget.MStickScrollView
+            android:id="@+id/stickyScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:stickyHeader="@+id/tab">
 
-            <com.qingfeng.livesocial.widget.SlideShowView
-                android:id="@+id/slideshowview"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="136dp" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab"
-                android:layout_width="match_parent"
-                android:layout_height="50.7dp"
-                android:background="@color/white"
-                app:tabIndicatorColor="#ff2874"
-                app:tabSelectedTextColor="#ff2874"
-                app:tabTextAppearance="@style/TabLayoutTextStyle"
-                app:tabTextColor="#959595" />
+                <com.qingfeng.livesocial.widget.SlideShowView
+                    android:id="@+id/slideshowview"
+                    android:layout_width="match_parent"
+                    android:layout_height="136dp" />
 
-            <com.qingfeng.livesocial.widget.MViewPager
-                android:id="@+id/tab_viewpage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </com.qingfeng.livesocial.widget.MStickScrollView>
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="50.7dp"
+                    android:background="@color/white"
+                    app:tabIndicatorColor="#ff2874"
+                    app:tabSelectedTextColor="#ff2874"
+                    app:tabTextAppearance="@style/TabLayoutTextStyle"
+                    app:tabTextColor="#959595" />
 
+                <com.qingfeng.livesocial.widget.MViewPager
+                    android:id="@+id/tab_viewpage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </com.qingfeng.livesocial.widget.MStickScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
