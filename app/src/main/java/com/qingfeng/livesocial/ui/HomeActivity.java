@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.common.AppManager;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.ui.fragment.DiscoverFragment;
 import com.qingfeng.livesocial.ui.fragment.HomeFragment;
 import com.qingfeng.livesocial.ui.fragment.PersonalCenterFragment;
 import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
@@ -23,7 +24,7 @@ import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 public class HomeActivity extends BaseActivity {
     private LayoutInflater layoutInflater;
     private FragmentTabHost mTabHost;
-    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, TestRankFragment.class, PersonalCenterFragment.class};
+    private final Class fragmentArray[] = {HomeFragment.class, DiscoverFragment.class, TestRankFragment.class, PersonalCenterFragment.class};
     private int mTitleArray[] = {R.string.home, R.string.discover, R.string.message, R.string.personal};
     private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_discover, R.drawable.tab_message, R.drawable.tab_personal};
     private String mTextviewArray[] = {"home", "discover", "message", "personnal"};
@@ -84,16 +85,4 @@ public class HomeActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-
-//
-//    @Override
-//    public void onBackPressed() {
-//        long curTime = SystemClock.uptimeMillis();
-//        if ((curTime - mBackPressedTime) < (3 * 1000)) {
-//            AppManager.getAppManager().AppExit();
-//        } else {
-//            mBackPressedTime = curTime;
-//            Toast.makeText(this, R.string.tip_double_click_exit, Toast.LENGTH_LONG).show();
-//        }
-//    }
 }
