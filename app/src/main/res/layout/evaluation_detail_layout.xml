@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_head_rl_height">
+
+        <ImageView
+            android:id="@+id/img_arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/call_evaluation_head_arrow_left_margin_left"
+            android:src="@mipmap/arrow_left3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/call_evaluation_detail"
+            android:textColor="#ff5491"
+            android:textSize="@dimen/call_evaluation_head_txt_size" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f2f2f2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.qingfeng.livesocial.widget.RoundedImageView
+                android:layout_width="52.7dp"
+                android:layout_height="52.7dp"
+                android:layout_marginLeft="18.7dp"
+                android:layout_marginTop="21.3dp"
+                android:src="@mipmap/f_head" />
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40.7dp"
+                android:layout_marginLeft="10.3dp"
+                android:layout_marginTop="26.3dp"
+                android:text="下哦喂喂喂"
+                android:textColor="#172434"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_signature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="73dp"
+            android:layout_marginTop="11dp"
+            android:text="赞一个！"
+            android:textColor="#172434"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="23dp"
+            android:layout_marginLeft="73dp"
+            android:layout_marginTop="11dp"
+            android:text="2017/8/8 00:11:00"
+            android:textColor="#8e9091"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9.3dp"
+        android:background="#f2f2f2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="19.7dp"
+            android:text="好评度"
+            android:textColor="#8f9192"
+            android:textSize="13.3sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="31.7dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/rating_star_1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                android:src="@mipmap/rating_star_1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                android:src="@mipmap/rating_star_1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                android:src="@mipmap/rating_star_2" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                android:src="@mipmap/rating_star_3" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="9.3dp"
+        android:background="#f2f2f2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="168.3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19.7dp"
+            android:layout_marginTop="16dp"
+            android:text="标签"
+            android:textColor="#8f9192"
+            android:textSize="13.3sp" />
+
+        <Button
+            android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+            android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+            android:layout_marginLeft="54.7dp"
+            android:layout_marginTop="16.7dp"
+            android:background="@mipmap/home_top_button_bg2"
+            android:text="软萌 +2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+    </LinearLayout>
+</LinearLayout>

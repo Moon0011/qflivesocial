@@ -54,5 +54,11 @@
     <string name="msg_self">私信Ta</string>
     <string name="audio_chat">语音通话</string>
     <string name="video_chat">视频通话</string>
-
+    <!--call evaluation-->
+    <string name="impression_label">印象标签</string>
+    <string name="received_comments">收到的评价</string>
+    <string name="call_evaluation_detail">评价详情</string>
+    <!--personal center-->
+    <string name="my_wallet">我的账户</string>
+    <string name="anchor_anthen">主播认证</string>
 </resources>

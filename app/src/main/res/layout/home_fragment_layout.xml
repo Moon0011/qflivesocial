@@ -54,7 +54,7 @@
             android:src="@mipmap/ic_search" />
     </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
+    <com.qingfeng.livesocial.widget.MSwipeRefreshLayout
         android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -93,5 +93,5 @@
             </LinearLayout>
 
         </com.qingfeng.livesocial.widget.MStickScrollView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.qingfeng.livesocial.widget.MSwipeRefreshLayout>
 </LinearLayout>

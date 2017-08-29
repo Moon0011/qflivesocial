@@ -35,6 +35,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(new Intent(activity, nextActivity));
     }
 
+    protected void gotoActivityWithBundle(Activity activity, Class nextActivity, Bundle bundle) {
+        Intent intent = new Intent(activity, nextActivity);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_head_rl_height">
+
+        <ImageView
+            android:id="@+id/img_arrow_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/call_evaluation_head_arrow_left_margin_left"
+            android:src="@mipmap/arrow_left3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/call_evaluation"
+            android:textColor="#ff5491"
+            android:textSize="@dimen/call_evaluation_head_txt_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_introduce_rl_height"
+        android:background="@mipmap/timg">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/call_evaluation_anchor_introduce_ll_margin_bottom"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_introduce_ll_margin_left"
+            android:orientation="horizontal">
+
+            <com.qingfeng.livesocial.widget.RoundedImageView
+                android:layout_width="@dimen/call_evaluation_anchor_introduce_head_img_width_height"
+                android:layout_height="@dimen/call_evaluation_anchor_introduce_head_img_width_height"
+                android:layout_gravity="center"
+                android:src="@mipmap/f_head" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_introduce_nickname_ll_margin_left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小薇"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/call_evaluation_anchor_introduce_nickname_txt_size" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/call_evaluation_anchor_introduce_mengId_ll_margin_top"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="萌ID: 1454445"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/call_evaluation_anchor_introduce_mengId_txt_size" />
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/call_evaluation_anchor_introduce_sex_rl_width"
+                        android:layout_height="@dimen/call_evaluation_anchor_introduce_sex_rl_height"
+                        android:layout_marginLeft="@dimen/call_evaluation_anchor_introduce_sex_rl_margin_left">
+
+                        <ImageView
+                            android:id="@+id/imghead2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/recommend_sex_bg" />
+
+                        <TextView
+                            android:id="@+id/tv_age2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="@dimen/call_evaluation_anchor_introduce_sex_age_margin_right"
+                            android:text="21"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/call_evaluation_anchor_introduce_sex_age_txt_size" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/call_evaluation_anchor_introduce_siguture_margin_top"
+                    android:text="我得歌声啊"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/call_evaluation_anchor_introduce_siguture_txt_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_divider_height"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_impress_label_height"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_margin_left"
+            android:layout_marginTop="@dimen/call_evaluation_anchor_impress_label_margin_top"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/tips" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_txt_margin_left"
+                android:text="@string/impression_label"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_txt_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_btn_ll_margin_left"
+            android:layout_marginTop="@dimen/call_evaluation_anchor_impress_label_btn_ll_margin_top">
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="软萌 +2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_btn_margin_left"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="甜美 +5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_btn_margin_left"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="女神 +2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_btn_ll_margin_left"
+            android:layout_marginTop="@dimen/call_evaluation_anchor_impress_label_btn_ll_margin_top2">
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="软萌 +2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_btn_margin_left"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="甜美 +5"
+                android:textColor="@color/white"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_impress_label_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_impress_label_btn_heigth"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_impress_label_btn_margin_left"
+                android:background="@mipmap/more_bg"
+                android:text="更多"
+                android:textColor="#0f81d9"
+                android:textSize="@dimen/call_evaluation_anchor_impress_label_btn_txt_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_divider_height2"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_receive_recommend_ll_height"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_receive_recommend_img_margin_left"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_dianzan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_receive_recommend_txt_margin_left"
+            android:text="@string/received_comments"
+            android:textColor="#8e9091"
+            android:textSize="@dimen/call_evaluation_anchor_receive_recommend_txt_size" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_divider_height0"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:id="@+id/ll_evaluation_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_bottom_ll_heigth"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll2_margin_left"
+            android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll2_margin_top"
+            android:orientation="horizontal">
+
+            <com.qingfeng.livesocial.widget.RoundedImageView
+                android:layout_width="@dimen/call_evaluation_anchor_bottom_ll2_head_img_width_height"
+                android:layout_height="@dimen/call_evaluation_anchor_bottom_ll2_head_img_width_height"
+                android:layout_gravity="center"
+                android:src="@mipmap/f_head" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_margin_left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="小薇"
+                    android:textColor="#172434"
+                    android:textSize="@dimen/call_evaluation_anchor_bottom_ll3_nickname_txt_size" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_top"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/rating_star_1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                        android:src="@mipmap/rating_star_1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                        android:src="@mipmap/rating_star_1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                        android:src="@mipmap/rating_star_2" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
+                        android:src="@mipmap/rating_star_3" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:layout_width="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_width"
+                android:layout_height="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_height"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_margin_left"
+                android:background="@mipmap/home_top_button_bg2"
+                android:text="知心"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_margin_left"
+            android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_margin_top"
+            android:text="小薇小薇小薇"
+            android:textColor="#172434" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_time_margin_rigth"
+            android:text="2017/8/8 00:00:00"
+            android:textColor="#8e9091"
+            android:textSize="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_time_size" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/call_evaluation_anchor_divider_height0"
+        android:background="#eeeeee" />
+</LinearLayout>

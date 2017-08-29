@@ -1,7 +1,7 @@
 package com.qingfeng.livesocial.ui;
 
-import android.os.SystemClock;
 import android.support.v4.app.FragmentTabHost;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +13,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.common.AppManager;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.ui.fragment.HomeFragment;
+import com.qingfeng.livesocial.ui.fragment.PersonalCenterFragment;
 import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 
 /**
@@ -22,7 +23,7 @@ import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 public class HomeActivity extends BaseActivity {
     private LayoutInflater layoutInflater;
     private FragmentTabHost mTabHost;
-    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, TestRankFragment.class, TestRankFragment.class};
+    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, TestRankFragment.class, PersonalCenterFragment.class};
     private int mTitleArray[] = {R.string.home, R.string.discover, R.string.message, R.string.personal};
     private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_discover, R.drawable.tab_message, R.drawable.tab_personal};
     private String mTextviewArray[] = {"home", "discover", "message", "personnal"};
@@ -60,14 +61,39 @@ public class HomeActivity extends BaseActivity {
         return view;
     }
 
+    private long exitTime = 0;
+
+    /**
+     * 双击手机的后退键，退出程序！
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
-    public void onBackPressed() {
-        long curTime = SystemClock.uptimeMillis();
-        if ((curTime - mBackPressedTime) < (3 * 1000)) {
-            AppManager.getAppManager().AppExit();
-        } else {
-            mBackPressedTime = curTime;
-            Toast.makeText(this, R.string.tip_double_click_exit, Toast.LENGTH_LONG).show();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                AppManager.getAppManager().AppExit();
+//                System.exit(0);
+            }
+            return true;
         }
+        return super.onKeyDown(keyCode, event);
     }
+
+//
+//    @Override
+//    public void onBackPressed() {
+//        long curTime = SystemClock.uptimeMillis();
+//        if ((curTime - mBackPressedTime) < (3 * 1000)) {
+//            AppManager.getAppManager().AppExit();
+//        } else {
+//            mBackPressedTime = curTime;
+//            Toast.makeText(this, R.string.tip_double_click_exit, Toast.LENGTH_LONG).show();
+//        }
+//    }
 }

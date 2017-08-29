@@ -60,10 +60,6 @@ public class PerfectInfoActivity extends BaseActivity {
 
     @Override
     protected int getLayoutById() {
-//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-//        Transition transition = TransitionInflater.from(this).inflateTransition(R.transition.explode);
-//        getWindow().setExitTransition(transition);
-//        getWindow().setEnterTransition(transition);
         return R.layout.perfect_info_layout;
     }
 

@@ -1,5 +1,6 @@
 package com.qingfeng.livesocial.ui.fragment;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
 import com.qingfeng.livesocial.common.Urls;
+import com.qingfeng.livesocial.ui.CallEvaluationAcitivity;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 
 import org.xutils.common.Callback;
@@ -19,6 +21,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
@@ -50,6 +53,7 @@ public class AnchorDetailFragment extends BaseFragment {
     LinearLayout llGiftContainer;
     @Bind(R.id.tv_introduce)
     TextView tvIntroduce;
+    private String uid;
 
     @Override
     protected int getLayoutId() {
@@ -63,7 +67,7 @@ public class AnchorDetailFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        String uid = getArguments().getString(PARAM_UID);
+        uid = getArguments().getString(PARAM_UID);
         getAnchorDetail(uid);
     }
 
@@ -99,5 +103,19 @@ public class AnchorDetailFragment extends BaseFragment {
             public void onFinished() {
             }
         });
+    }
+
+    @OnClick({R.id.img_arrow_left, R.id.ll_call_evaluation})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_arrow_left:
+                getActivity().finish();
+                break;
+            case R.id.ll_call_evaluation:
+                Bundle b = new Bundle();
+                b.putString(PARAM_UID, uid);
+                gotoActivityWithBundle(getActivity(), CallEvaluationAcitivity.class, b);
+                break;
+        }
     }
 }

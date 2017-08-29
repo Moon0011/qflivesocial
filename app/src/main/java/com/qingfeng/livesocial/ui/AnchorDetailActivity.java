@@ -1,20 +1,32 @@
 package com.qingfeng.livesocial.ui;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TabHost;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
+import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
-import com.qingfeng.livesocial.ui.fragment.AnchorDetailFragment;
+
+import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
+import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
  * Created by Administrator on 2017/8/28.
@@ -22,13 +34,29 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 
 public class AnchorDetailActivity extends BaseActivity {
 
-    @Bind(android.R.id.tabhost)
-    FragmentTabHost mTabHost;
-    private final Class fragmentArray[] = {AnchorDetailFragment.class, AnchorDetailFragment.class, AnchorDetailFragment.class, AnchorDetailFragment.class};
-    private int mTitleArray[] = {R.string.send_gift, R.string.msg_self, R.string.audio_chat, R.string.video_chat};
-    private int mImageViewArray[] = {R.drawable.tab_anchor_gift, R.drawable.tab_anchor_chat, R.drawable.tab_anchor_phone, R.drawable.tab_anchor_video};
-    private String mTextviewArray[] = {"home", "discover", "message", "personnal"};
-    private LayoutInflater layoutInflater;
+    @Bind(R.id.video_bg_img)
+    ImageView videoImg;
+    @Bind(R.id.tv_nickname)
+    TextView tvNickname;
+    @Bind(R.id.rl_top_head)
+    RelativeLayout rlTopHead;
+    @Bind(R.id.img_video_player)
+    ImageView imgVideoPlayer;
+    @Bind(R.id.btn_label11)
+    Button btnLabel11;
+    @Bind(R.id.btn_label12)
+    Button btnLabel12;
+    @Bind(R.id.btn_label13)
+    Button btnLabel13;
+    @Bind(R.id.ll_labels1)
+    LinearLayout llLabels1;
+    @Bind(R.id.tv_label)
+    TextView tvLabel;
+    @Bind(R.id.ll_gift_container)
+    LinearLayout llGiftContainer;
+    @Bind(R.id.tv_introduce)
+    TextView tvIntroduce;
+    private String uid;
 
     @Override
     protected int getLayoutById() {
@@ -37,29 +65,92 @@ public class AnchorDetailActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
     }
 
     @Override
     protected void initData() {
-        String uid = (String) getIntent().getExtras().get(PARAM_UID);
-        layoutInflater = LayoutInflater.from(this);
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.contentPanel);
-        int fragmentCount = fragmentArray.length;
-        for (int i = 0; i < fragmentCount; ++i) {
-            TabHost.TabSpec tabSpec = mTabHost.newTabSpec(mTextviewArray[i]).setIndicator(getTabItemView(i));
-            Bundle bundle = new Bundle();
-            bundle.putString(PARAM_UID, uid);
-            mTabHost.addTab(tabSpec, fragmentArray[i], bundle);
-            mTabHost.getTabWidget().setDividerDrawable(null);
+        uid = getIntent().getExtras().getString(PARAM_UID);
+        getAnchorDetail(uid);
+    }
+
+
+    private void getAnchorDetail(String uid) {
+        RequestParams params = new RequestParams(Urls.WEBSITE);
+        params.addParameter(PARAM_UID, uid);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("getAnchorDetail == " + result);
+                AnchorDetailRespBean respBean = new Gson().fromJson(result, AnchorDetailRespBean.class);
+                if (PARAM_Y.equals(respBean.getMsg()) && respBean != null) {
+                    AnchorDetailRespBean.AnchorDetailBean bean = respBean.getResult();
+                    tvNickname.setText(bean.getNickname());
+                    x.image().bind(videoImg,
+                            bean.getVideo(),
+                            imageOptions,
+                            null);
+                    tvIntroduce.setText(bean.getSex() + " " + bean.getAge() + " " + bean.getConstellation() + " " + bean.getAddress());
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    @OnClick({R.id.img_arrow_left, R.id.ll_call_evaluation, R.id.ll_tab_sendgift, R.id.ll_tab_msgself, R.id.ll_tab_phone, R.id.ll_tab_video})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.img_arrow_left:
+                finish();
+                break;
+            case R.id.ll_call_evaluation:
+                Bundle b = new Bundle();
+                b.putString(PARAM_UID, uid);
+                gotoActivityWithBundle(AnchorDetailActivity.this, CallEvaluationAcitivity.class, b);
+                break;
+            case R.id.ll_tab_sendgift:
+                SendGiftFragment dialog = new SendGiftFragment();
+                dialog.show(getFragmentManager(), "sendgift");
+                break;
+            case R.id.ll_tab_msgself:
+                break;
+            case R.id.ll_tab_phone:
+                break;
+            case R.id.ll_tab_video:
+                break;
         }
     }
 
-    private View getTabItemView(int index) {
-        View view = layoutInflater.inflate(R.layout.home_tab_layout, null);
-        ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        icon.setImageResource(mImageViewArray[index]);
-        TextView title = (TextView) view.findViewById(R.id.title);
-        title.setText(mTitleArray[index]);
-        return view;
+    class SendGiftFragment extends DialogFragment {
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setStyle(DialogFragment.STYLE_NO_TITLE, android.R.style.Theme_Holo_Light_Dialog_MinWidth);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.send_gift_fragment_layout, container);
+            return view;
+        }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
     }
 }

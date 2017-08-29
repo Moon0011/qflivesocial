@@ -42,4 +42,9 @@ public class Constants {
     public static final String HOME_POPULAR_ANCHOR = "home_popular_anchor";
     public static final String HOME_YOUNGSHOW_ANCHOR = "home_youngshow_anchor";
     public static final String HOME_RECOMMEND_ANCHOR = "home_recommend_anchor";
+
+    public static final String MY_GIFT = "我的礼物";
+    public static final String SEND_GIFT = "送的礼物";
+    public static final String ATTENTION = "关注";
+    public static final String FANS = "粉丝";
 }

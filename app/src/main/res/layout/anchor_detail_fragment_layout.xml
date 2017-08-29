@@ -38,7 +38,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="@dimen/anchor_detail_fl_video_top_arrowleft_margin_left"
-                        android:src="@mipmap/ranklist_arrow_left" />
+                        android:src="@mipmap/arrow_left3" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -307,6 +307,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_call_evaluation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/anchor_detail_about_chat_txt_margin_top"

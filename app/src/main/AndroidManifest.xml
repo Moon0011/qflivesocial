@@ -26,6 +26,14 @@
         <activity android:name=".ui.RecommendActivity" />
         <activity android:name=".ui.RanklistActivity" />
         <activity android:name=".ui.AnchorDetailActivity" />
+        <activity android:name=".ui.CallEvaluationAcitivity" />
+        <activity android:name=".ui.EvaluationDetailAcitivity" />
+        <activity android:name=".ui.MyWalletActivity" />
+        <activity android:name=".ui.GiftActivity" />
+        <activity android:name=".ui.AnchorAnthenActivity" />
+        <activity android:name=".ui.AttentionActivity" />
+        <activity android:name=".ui.CallSettingActivity" />
+        <activity android:name=".ui.AnchorDataActivity" />
         <activity android:name=".ui.TestActivity" />
     </application>
 

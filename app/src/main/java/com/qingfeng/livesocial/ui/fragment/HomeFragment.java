@@ -30,6 +30,7 @@ import com.qingfeng.livesocial.ui.AnchorDetailActivity;
 import com.qingfeng.livesocial.ui.RanklistActivity;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 import com.qingfeng.livesocial.util.StringUtils;
+import com.qingfeng.livesocial.widget.MSwipeRefreshLayout;
 import com.qingfeng.livesocial.widget.MViewPager;
 import com.qingfeng.livesocial.widget.SlideShowView;
 
@@ -65,7 +66,7 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.slideshowview)
     SlideShowView mSlideShowView;
     @Bind(R.id.swiperefreshlayout)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    MSwipeRefreshLayout mSwipeRefreshLayout;
 
     RecyclerView hRecyclerView;
     LinearLayout ll_all_container, ll_popular_container, ll_youngshow_container;
@@ -217,14 +218,6 @@ public class HomeFragment extends BaseFragment {
                 });
             }
         });
-//
-//        if (isFirst) {
-//            getSlideImg();
-//            getRecommendData();
-//            getAllUserInfo();
-//            getPopularUserInfo();
-//            getYoungShowUserInfo();
-//        }
     }
 
     @OnClick({R.id.ranklist})
