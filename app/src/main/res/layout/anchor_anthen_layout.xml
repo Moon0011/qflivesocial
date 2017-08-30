@@ -224,6 +224,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_sumbit"
         android:layout_width="340.7dp"
         android:layout_height="40.7dp"
         android:layout_gravity="center"

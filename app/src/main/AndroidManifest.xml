@@ -33,7 +33,12 @@
         <activity android:name=".ui.AnchorAnthenActivity" />
         <activity android:name=".ui.AttentionActivity" />
         <activity android:name=".ui.CallSettingActivity" />
-        <activity android:name=".ui.AnchorDataActivity" />
+        <activity android:name=".ui.AnchorInfoActivity" />
+        <activity android:name=".ui.NicknameActivity" />
+        <activity android:name=".ui.LabelsActivity" />
+        <activity android:name=".ui.QianmingActivity" />
+        <activity android:name=".ui.AnswerIntervalActivity" />
+        <activity android:name=".ui.AnchorVideoAnthenActivity" />
         <activity android:name=".ui.TestActivity" />
     </application>
 

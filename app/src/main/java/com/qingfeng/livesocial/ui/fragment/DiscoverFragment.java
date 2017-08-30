@@ -14,8 +14,8 @@ import java.util.List;
 
 import butterknife.Bind;
 
-import static com.qingfeng.livesocial.common.Constants.MY_GIFT;
-import static com.qingfeng.livesocial.common.Constants.SEND_GIFT;
+import static com.qingfeng.livesocial.common.Constants.ALL;
+import static com.qingfeng.livesocial.common.Constants.ATTENTION;
 
 /**
  * Created by hover on 2017/8/29.
@@ -26,7 +26,7 @@ public class DiscoverFragment extends BaseFragment {
     TabLayout tablayout;
     @Bind(R.id.tab_viewpage)
     ViewPager tabViewpage;
-    private String titleArr[] = {MY_GIFT, SEND_GIFT};
+    private String titleArr[] = {ALL, ATTENTION};
     private List<Fragment> fragments = new ArrayList<>();
 
     @Override
@@ -36,14 +36,13 @@ public class DiscoverFragment extends BaseFragment {
 
     @Override
     protected void initWidget(View root) {
-
+        fragments.add(new DiscoverAllFragment());
+        fragments.add(new DiscoverAllFragment());
+        tabViewpage.setAdapter(new MFragmentPagerAdapter(getChildFragmentManager(), titleArr, fragments));
+        tablayout.setupWithViewPager(tabViewpage);
     }
 
     @Override
     protected void initData() {
-        fragments.add(new DiscoverAllFragment());
-        fragments.add(new DiscoverAllFragment());
-        tabViewpage.setAdapter(new MFragmentPagerAdapter(getFragmentManager(), titleArr, fragments));
-        tablayout.setupWithViewPager(tabViewpage);
     }
 }

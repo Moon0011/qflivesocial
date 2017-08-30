@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">QFLiveSocialApp</string>
-    <string name="tip_double_click_exit">双击退出</string>
+    <string name="tip_double_click_exit">再按一次退出程序</string>
     <!--splash-->
     <string name="splash_app_name">萌遇</string>
     <string name="splash_bottom_txt">如果您使用本软件将默认同意</string>
@@ -27,12 +27,7 @@
     <string name="recommend_statement">不妨找她们聊聊吧，她们人气很高哦~</string>
     <!--ranklist-->
     <string name="ranklist_attention_num">光注数  :</string>
-    <string name="day_ranklist">日榜</string>
-    <string name="week_ranklist">周榜</string>
-    <string name="total_ranklist">总榜</string>
-    <string name="attention_ranklist">关注榜</string>
-    <string name="richer_ranklist">土豪榜</string>
-    <string name="glamour_ranklist">魅力榜</string>
+
     <!--mainpage-->
     <string name="total_phone_talk_time">累计通话 : </string>
     <string name="home">首页</string>
@@ -61,4 +56,9 @@
     <!--personal center-->
     <string name="my_wallet">我的账户</string>
     <string name="anchor_anthen">主播认证</string>
+    <string name="edit_personal_data">编辑个人资料</string>
+    <string name="save">保存</string>
+    <string name="qianming">个性签名</string>
+    <string name="my_labels">我的标签</string>
+
 </resources>

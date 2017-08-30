@@ -112,8 +112,9 @@
                     android:id="@+id/btn_label11"
                     android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                     android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
-                    android:background="@mipmap/home_top_button_bg2"
+                    android:background="@mipmap/label_btn_bg"
                     android:text="同城面基"
+                    android:textColor="#ff5491"
                     android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
                     android:visibility="gone" />
 
@@ -122,8 +123,9 @@
                     android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                     android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
                     android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
-                    android:background="@mipmap/home_top_button_bg2"
+                    android:background="@mipmap/label_btn_bg"
                     android:text="旅游达人"
+                    android:textColor="#ff5491"
                     android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
                     android:visibility="gone" />
 
@@ -132,8 +134,9 @@
                     android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                     android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
                     android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
-                    android:background="@mipmap/home_top_button_bg2"
+                    android:background="@mipmap/label_btn_bg"
                     android:text="旅游达人"
+                    android:textColor="#ff5491"
                     android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
                     android:visibility="gone" />
             </LinearLayout>
@@ -247,8 +250,9 @@
                     android:id="@+id/btn_label21"
                     android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                     android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
-                    android:background="@mipmap/home_top_button_bg2"
+                    android:background="@mipmap/label_btn_bg"
                     android:text="同城面基"
+                    android:textColor="#ff5491"
                     android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
                     android:visibility="gone" />
 
@@ -257,8 +261,9 @@
                     android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                     android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
                     android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
-                    android:background="@mipmap/home_top_button_bg2"
+                    android:background="@mipmap/label_btn_bg"
                     android:text="旅游达人"
+                    android:textColor="#ff5491"
                     android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
                     android:visibility="gone" />
 
@@ -267,8 +272,9 @@
                     android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                     android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
                     android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
-                    android:background="@mipmap/home_top_button_bg2"
+                    android:background="@mipmap/label_btn_bg"
                     android:text="旅游达人"
+                    android:textColor="#ff5491"
                     android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
                     android:visibility="gone" />
             </LinearLayout>

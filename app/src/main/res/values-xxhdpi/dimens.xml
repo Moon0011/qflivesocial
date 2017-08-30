@@ -176,7 +176,7 @@
     <dimen name="anchor_show_discribe_bottom_label_width">39.7dp</dimen>
     <dimen name="anchor_show_discribe_bottom_label_heigth">13.7dp</dimen>
     <dimen name="anchor_show_discribe_bottom_label_txt_size">7.5sp</dimen>
-    <dimen name="anchor_show_discribe_bottom_label_margin_left">7.5sp</dimen>
+    <dimen name="anchor_show_discribe_bottom_label_margin_left">5dp</dimen>
     <!--anchor detail-->
     <dimen name="anchor_detail_fl_video_height">270.7dp</dimen>
     <dimen name="anchor_detail_fl_video_top_height">46dp</dimen>
@@ -247,7 +247,7 @@
     <dimen name="anchor_detail_gift_item_num_txt_size">12sp</dimen>
     <dimen name="anchor_detail_gift_item_num_txt_margin_top">5.7dp</dimen>
     <!--call evaluation-->
-    <dimen name="call_evaluation_head_rl_height">48.3dp</dimen>
+    <dimen name="call_evaluation_head_rl_height">46dp</dimen>
     <dimen name="call_evaluation_head_arrow_left_margin_left">16.3dp</dimen>
     <dimen name="call_evaluation_head_txt_size">16sp</dimen>
     <dimen name="call_evaluation_anchor_introduce_rl_height">204.7dp</dimen>

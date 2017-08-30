@@ -17,7 +17,26 @@ public class Constants {
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_ANCHORPIC = "anchorpic";
     public static final String PARAM_NICKNAME = "nickname";
+    public static final String PARAM_SIGNATURE = "signature";
+    public static final String PARAM_LABEL = "label";
+    public static final String PARAM_ADDRESS = "address";
+    public static final String PARAM_BIRTHDAY = "birthday";
     public static final String PARAM_SEX = "sex";
+    public static final String PARAM_HEADPIC = "headpic";
+
+    public static final String PARAM_ANCHORPIC_INFO_EDIT_TYPE_VALUE = "1";
+    public static final String PARAM_NICKNAME_INFO_EDIT_TYPE_VALUE = "2";
+    public static final String PARAM_SIGNATURE_INFO_EDIT_TYPE_VALUE = "3";
+    public static final String PARAM_LABEL_INFO_EDIT_TYPE_VALUE = "4";
+    public static final String PARAM_ADDRESS_INFO_EDIT_TYPE_VALUE = "5";
+    public static final String PARAM_BIRTHDAY_INFO_EDIT_TYPE_VALUE = "6";
+    public static final String PARAM_SEX_INFO_EDIT_TYPE_VALUE = "7";
+    public static final String PARAM_HEADPIC_INFO_EDIT_TYPE_VALUE = "8";
+    public static final String PARAM_LABEL_FOR_PERSONAL_TYPE = "1";
+    public static final String PARAM_LABEL_FOR_USER_TYPE = "2";
+
+    public static final String PARAM_GIFT_RECEIVE_TYPE = "1";
+    public static final String PARAM_GIFT_SEND_TYPE = "2";
 
     public static final String ATTENTION_RANKLIST = "attention_ranklist";
     public static final String RICHER_RANKLIST = "richer_ranklist";
@@ -46,5 +65,6 @@ public class Constants {
     public static final String MY_GIFT = "我的礼物";
     public static final String SEND_GIFT = "送的礼物";
     public static final String ATTENTION = "关注";
+    public static final String ALL = "全部";
     public static final String FANS = "粉丝";
 }

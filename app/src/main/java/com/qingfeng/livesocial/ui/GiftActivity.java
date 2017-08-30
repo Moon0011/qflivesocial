@@ -9,6 +9,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.MFragmentPagerAdapter;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.ui.fragment.MyGiftFragment;
+import com.qingfeng.livesocial.ui.fragment.SendGiftFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class GiftActivity extends BaseActivity {
     @Override
     protected void initData() {
         fragments.add(new MyGiftFragment());
-        fragments.add(new MyGiftFragment());
+        fragments.add(new SendGiftFragment());
         tabViewpage.setAdapter(new MFragmentPagerAdapter(getSupportFragmentManager(), titleArr, fragments));
         tablayout.setupWithViewPager(tabViewpage);
     }

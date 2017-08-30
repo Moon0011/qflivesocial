@@ -2,6 +2,9 @@ package com.qingfeng.livesocial.ui;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +16,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
+import com.qingfeng.livesocial.bean.SendGiftListRespBean;
+import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 
@@ -134,6 +140,8 @@ public class AnchorDetailActivity extends BaseActivity {
     }
 
     class SendGiftFragment extends DialogFragment {
+        private RecyclerView recyclerView;
+
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -144,13 +152,46 @@ public class AnchorDetailActivity extends BaseActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.send_gift_fragment_layout, container);
+            recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
             return view;
         }
 
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+            sendGiftList();
+        }
+
+        private void sendGiftList() {
+            RequestParams params = new RequestParams(Urls.RECOMMEND);
+            params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+            x.http().post(params, new Callback.CommonCallback<String>() {
+                @Override
+                public void onSuccess(String result) {
+                    LogUtil.e("sendGiftList == " + result);
+                    Gson gson = new Gson();
+                    final SendGiftListRespBean bean = gson.fromJson(result, SendGiftListRespBean.class);
+                    SendGiftAdapter adapter = new SendGiftAdapter(getActivity(), bean.getResult().getGiftinfo(), imageOptions);
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                    layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setHasFixedSize(true);
+                    recyclerView.setAdapter(adapter);
+                }
+
+                @Override
+                public void onError(Throwable ex, boolean isOnCallback) {
+                    LogUtil.e(ex.getMessage());
+                }
+
+                @Override
+                public void onCancelled(CancelledException cex) {
+                }
+
+                @Override
+                public void onFinished() {
+                }
+            });
         }
     }
 }

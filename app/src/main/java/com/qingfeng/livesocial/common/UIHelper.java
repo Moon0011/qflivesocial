@@ -1,5 +1,9 @@
 package com.qingfeng.livesocial.common;
 
+import android.widget.ImageView;
+
+import com.qingfeng.livesocial.R;
+
 /**
  * Created by Administrator on 2017/8/23.
  */
@@ -15,6 +19,14 @@ public class UIHelper {
             return "验证码发送成功";
         } else {
             return "未知";
+        }
+    }
+
+    public static void setSexLabel(String sex, ImageView imgView) {
+        if ("女".equals(sex)) {
+            imgView.setImageResource(R.mipmap.recommend_sex_bg);
+        } else if ("男".equals(sex)) {
+            imgView.setImageResource(R.mipmap.recommend_sex_bg);
         }
     }
 }

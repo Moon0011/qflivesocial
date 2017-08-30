@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="319.7dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_gift1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift1"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_selected"
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gift2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift2"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gift3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift3"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gift4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift4"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eeeeee" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_gift5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift5"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gift6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift6"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gift7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift7"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#eeeeee" />
+
+        <RelativeLayout
+            android:id="@+id/rl_gift8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="79dp"
+                android:layout_height="81dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="4dp">
+
+                <ImageView
+                    android:id="@+id/img_gift8"
+                    android:layout_width="29dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/f_head" />
+
+                <TextView
+                    android:id="@+id/tv_giftname8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="玫瑰"
+                    android:textColor="#3e3e3e"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_needcoin8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="10萌点"
+                    android:textColor="#ff5491"
+                    android:textSize="6sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="16.3dp"
+                android:layout_height="16.3dp"
+                android:layout_marginLeft="1.3dp"
+                android:layout_marginTop="1.7dp"
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/sure_icon" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

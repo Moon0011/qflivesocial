@@ -17,6 +17,7 @@
                 android:layout_height="203.7dp">
 
                 <ImageView
+                    android:id="@+id/img_room_bg"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
@@ -32,6 +33,7 @@
                     android:orientation="horizontal">
 
                     <com.qingfeng.livesocial.widget.RoundedImageView
+                        android:id="@+id/img_head"
                         android:layout_width="@dimen/call_evaluation_anchor_introduce_head_img_width_height"
                         android:layout_height="@dimen/call_evaluation_anchor_introduce_head_img_width_height"
                         android:layout_gravity="center"
@@ -44,6 +46,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/tv_nickname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="小薇"
@@ -60,7 +63,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="萌ID: 1454445"
+                                android:text="萌ID: "
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/call_evaluation_anchor_introduce_mengId_txt_size" />
+
+                            <TextView
+                                android:id="@+id/tv_curr_roomnum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1454445"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/call_evaluation_anchor_introduce_mengId_txt_size" />
 
@@ -70,14 +81,14 @@
                                 android:layout_marginLeft="@dimen/call_evaluation_anchor_introduce_sex_rl_margin_left">
 
                                 <ImageView
-                                    android:id="@+id/imghead2"
+                                    android:id="@+id/img_sex"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:scaleType="fitXY"
                                     android:src="@mipmap/recommend_sex_bg" />
 
                                 <TextView
-                                    android:id="@+id/tv_age2"
+                                    android:id="@+id/tv_age"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
@@ -90,6 +101,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tv_signature"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/call_evaluation_anchor_introduce_siguture_margin_top"
@@ -383,14 +395,6 @@
                     android:checked="true"
                     android:textOff="@null"
                     android:textOn="@null" />
-                <!--<CheckBox-->
-                <!--android:layout_width="34.3dp"-->
-                <!--android:layout_height="19.7dp"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_centerVertical="true"-->
-                <!--android:layout_marginRight="15dp"-->
-                <!--android:button="@drawable/do_not_disturb" />-->
-
 
             </RelativeLayout>
 
@@ -431,6 +435,11 @@
                     android:layout_marginRight="22.7dp"
                     android:src="@mipmap/arrow_right2" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="11.7dp"
+                android:background="#eeeeee" />
         </LinearLayout>
     </com.amar.library.ui.StickyScrollView>
 </LinearLayout>

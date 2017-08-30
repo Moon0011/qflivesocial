@@ -2,9 +2,7 @@ package com.qingfeng.livesocial.ui.fragment;
 
 import android.view.View;
 
-import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
-import com.qingfeng.livesocial.bean.GiftRespBean;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
@@ -14,18 +12,15 @@ import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
-import java.util.List;
-
-import static com.qingfeng.livesocial.common.Constants.PARAM_GIFT_RECEIVE_TYPE;
+import static com.qingfeng.livesocial.common.Constants.PARAM_GIFT_SEND_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
-import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
  * Created by Administrator on 2017/8/29.
  */
 
-public class MyGiftFragment extends BaseFragment {
+public class SendGiftFragment extends BaseFragment {
     @Override
     protected int getLayoutId() {
         return R.layout.my_gift_fragment_layout;
@@ -38,24 +33,24 @@ public class MyGiftFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        receiveGift();
+        sendGift();
     }
 
-    private void receiveGift() {
+    private void sendGift() {
         RequestParams params = new RequestParams(Urls.GIFT);
         params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
-        params.addParameter(PARAM_TYPE, PARAM_GIFT_RECEIVE_TYPE);
+        params.addParameter(PARAM_TYPE, PARAM_GIFT_SEND_TYPE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("receiveGift == " + result);
-                GiftRespBean respBean = new Gson().fromJson(result, GiftRespBean.class);
-                if (respBean != null && PARAM_Y.equals(respBean.getMsg())) {
-                    List<GiftRespBean.GiftBean> datas = respBean.getResult();
-                    if (datas != null && datas.size() > 0) {
-
-                    }
-                }
+                LogUtil.e("sendGift == " + result);
+//                MyWalletRespBean respBean = new Gson().fromJson(result, MyWalletRespBean.class);
+//                if (respBean != null && PARAM_Y.equals(respBean.getMsg())) {
+//                    MyWalletRespBean.MyWalletBean bean = respBean.getResult();
+//                    if (bean != null) {
+//
+//                    }
+//                }
             }
 
             @Override

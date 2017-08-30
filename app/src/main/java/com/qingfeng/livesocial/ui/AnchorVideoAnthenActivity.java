@@ -4,13 +4,13 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 
 /**
- * Created by Administrator on 2017/8/29.
+ * Created by Administrator on 2017/8/30.
  */
 
-public class AnchorDataActivity extends BaseActivity {
+public class AnchorVideoAnthenActivity extends BaseActivity {
     @Override
     protected int getLayoutById() {
-        return R.layout.anchor_data_layout;
+        return R.layout.anchor_video_anthen_layout;
     }
 
     @Override
