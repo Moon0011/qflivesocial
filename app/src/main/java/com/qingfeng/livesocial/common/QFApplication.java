@@ -90,7 +90,7 @@ public class QFApplication extends Application {
                 setProperty("user.username", userInfo.getUsername());
                 setProperty("user.sign", userInfo.getSign());
                 setProperty("user.isLogin",
-                        String.valueOf(userInfo.isLogin()));
+                        String.valueOf(userInfo.getIslogin()));
             }
         });
     }
@@ -119,7 +119,7 @@ public class QFApplication extends Application {
         userInfoBean.setUid(StringUtils.toInt(getProperty("user.uid"), 0));
         userInfoBean.setUsername(getProperty("user.username"));
         userInfoBean.setSign(getProperty("user.sign"));
-        userInfoBean.setLogin(StringUtils.toBool(getProperty("user.isLogin")));
+        userInfoBean.setIslogin(StringUtils.toInt(getProperty("user.isLogin")));
         return userInfoBean;
     }
 

@@ -16,7 +16,7 @@
             android:layout_marginTop="@dimen/perfect_addphoto_arrow_img_margin_top"
             android:src="@mipmap/arrow_left2" />
 
-        <ImageView
+        <com.qingfeng.livesocial.widget.RoundedImageView
             android:id="@+id/img_photo_add"
             android:layout_width="@dimen/perfect_addphoto_img_margin_width"
             android:layout_height="@dimen/perfect_addphoto_img_margin_height"
@@ -41,6 +41,7 @@
         android:layout_marginTop="@dimen/perfect_nickname_et_margin_top"
         android:background="@null"
         android:gravity="center"
+        android:text="ximing"
         android:hint="@string/nickname"
         android:textColor="#751c18"
         android:textColorHint="#787474"

@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.util.StringUtils;
 
 import org.xutils.image.ImageOptions;
 
@@ -31,6 +33,12 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initWidget(View root);
 
     protected abstract void initData();
+
+    protected void showToast(String msg) {
+        if (!StringUtils.isEmpty(msg)) {
+            Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+        }
+    }
 
     protected void gotoActivity(Activity activity, Class nextActivity) {
         startActivity(new Intent(activity, nextActivity));

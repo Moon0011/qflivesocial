@@ -22,11 +22,15 @@ import com.qingfeng.livesocial.bean.SendGiftListRespBean;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.util.StringUtils;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -48,20 +52,32 @@ public class AnchorDetailActivity extends BaseActivity {
     RelativeLayout rlTopHead;
     @Bind(R.id.img_video_player)
     ImageView imgVideoPlayer;
-    @Bind(R.id.btn_label11)
-    Button btnLabel11;
-    @Bind(R.id.btn_label12)
-    Button btnLabel12;
-    @Bind(R.id.btn_label13)
-    Button btnLabel13;
+    @Bind(R.id.btn_label1)
+    Button btnLabel1;
+    @Bind(R.id.btn_label2)
+    Button btnLabel2;
+    @Bind(R.id.btn_label3)
+    Button btnLabel3;
+    @Bind(R.id.btn_label4)
+    Button btnLabel4;
     @Bind(R.id.ll_labels1)
     LinearLayout llLabels1;
-    @Bind(R.id.tv_label)
-    TextView tvLabel;
+    @Bind(R.id.tv_signature)
+    TextView tvSignature;
     @Bind(R.id.ll_gift_container)
     LinearLayout llGiftContainer;
     @Bind(R.id.tv_introduce)
     TextView tvIntroduce;
+    @Bind(R.id.tv_voice_time)
+    TextView tvVoiceTime;
+    @Bind(R.id.tv_comment_rating)
+    TextView tvCommentRating;
+    @Bind(R.id.tv_comment_num)
+    TextView tvCommentNum;
+    @Bind(R.id.tv_total_talktime)
+    TextView tvTotalTalktime;
+    @Bind(R.id.tv_fans)
+    TextView tv_fans;
     private String uid;
 
     @Override
@@ -80,7 +96,6 @@ public class AnchorDetailActivity extends BaseActivity {
         getAnchorDetail(uid);
     }
 
-
     private void getAnchorDetail(String uid) {
         RequestParams params = new RequestParams(Urls.WEBSITE);
         params.addParameter(PARAM_UID, uid);
@@ -96,7 +111,25 @@ public class AnchorDetailActivity extends BaseActivity {
                             bean.getVideo(),
                             imageOptions,
                             null);
-                    tvIntroduce.setText(bean.getSex() + " " + bean.getAge() + " " + bean.getConstellation() + " " + bean.getAddress());
+                    tvIntroduce.setText(bean.getSex() + "  " + bean.getAge() + "  " + bean.getConstellation() + "  " + bean.getAddress());
+                    tvVoiceTime.setText(bean.getVoice());
+                    tvCommentRating.setText("好评度" + bean.getRating());
+                    tvCommentNum.setText(bean.getCommentnum() + "条评论");
+                    tvTotalTalktime.setText(bean.getTotaltime() + "分钟");
+                    tvSignature.setText(bean.getSignature());
+                    tv_fans.setText(String.valueOf(bean.getAttentionnum()));
+                    List<Button> btnContainer = new ArrayList<Button>();
+                    btnContainer.add(btnLabel1);
+                    btnContainer.add(btnLabel2);
+                    btnContainer.add(btnLabel3);
+                    btnContainer.add(btnLabel4);
+                    if (!StringUtils.isEmpty(bean.getLabels())) {
+                        String[] labelArr = bean.getLabels().split(",");
+                        for (int k = 0; k < labelArr.length; k++) {
+                            btnContainer.get(k).setVisibility(View.VISIBLE);
+                            btnContainer.get(k).setText(labelArr[k]);
+                        }
+                    }
                 }
             }
 
@@ -141,6 +174,7 @@ public class AnchorDetailActivity extends BaseActivity {
 
     class SendGiftFragment extends DialogFragment {
         private RecyclerView recyclerView;
+        private Button btnSendGift;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -153,6 +187,13 @@ public class AnchorDetailActivity extends BaseActivity {
                                  Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.send_gift_fragment_layout, container);
             recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+            btnSendGift = (Button) view.findViewById(R.id.btn_sendgift);
+            btnSendGift.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             return view;
         }
 
@@ -163,7 +204,7 @@ public class AnchorDetailActivity extends BaseActivity {
         }
 
         private void sendGiftList() {
-            RequestParams params = new RequestParams(Urls.RECOMMEND);
+            RequestParams params = new RequestParams(Urls.SEND_GIFT_LIST);
             params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
             x.http().post(params, new Callback.CommonCallback<String>() {
                 @Override

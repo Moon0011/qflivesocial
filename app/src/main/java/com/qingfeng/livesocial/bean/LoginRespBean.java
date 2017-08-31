@@ -6,13 +6,14 @@ package com.qingfeng.livesocial.bean;
 
 public class LoginRespBean {
 
+
     /**
-     * msg : y
-     * result : {"uid":11,"username":"18601230114","sign":"eJxNjV1vgjAYRv9Lb11mCy3YJbvwi8WgUnSyLDFpOihaDZVBB5pl-32ImO32nPe8zzd4na8fRRyfvrTh5pJL8AQgeGixSqQ2KlWyaCAaOBBZNkQId1rkuUq4MNwukn9VmRx5q64RhhDaLsFuJ*U5V4XkIjW3p4QQqznpbCWLUp10IyyIyHUN-kmjMtkm0HIpoY5931O7Bi*mm-EsnGymg0mPZb7e9oOxobon8TFilifY4SUOs2jbf-PmoygYZTWtZ7vgsj*sl04deGkYfYq4StmyKh1vj32xosOPYSB89r5Cmbt4Bj*-D9lX5g__"}
+     * msg : yy
+     * result : {"uid":29,"username":"18371458526","sign":"eJxNjV9PgzAUR79LXzXSUgrEZA91YoIZMZsjboSkIVDk4sYaKH*m8buLSNxez7nnd7-QdvV6l6Tpqa200Gcl0T3C6HbCkMlKQw6yHiFxqUMs5jLTnnWiFGQi0YLW2VXVZB9iUr*RhTGmDrOcWcpBQS1Fkuu-UcaYOZ7MtpN1A6dqFCYmjJgU44vUcJRTgi3iuMz*-wfvIw689dJ-5GXTRkOX0yPfcvIUGwdq8q78XKWbUPax0UMQNp6ODR7ylgMvNpHLnr3dw45ayu-66DCw9g3sdXETLPflSwGBT8-7Ou37xQJ9-wC9L1ls","islogin":1}
      */
 
     private String msg;
-    private LoginRespData result;
+    private LoginInfoBean result;
 
     public String getMsg() {
         return msg;
@@ -22,24 +23,26 @@ public class LoginRespBean {
         this.msg = msg;
     }
 
-    public LoginRespData getResult() {
+    public LoginInfoBean getResult() {
         return result;
     }
 
-    public void setResult(LoginRespData result) {
+    public void setResult(LoginInfoBean result) {
         this.result = result;
     }
 
-    public static class LoginRespData {
+    public static class LoginInfoBean {
         /**
-         * uid : 11
-         * username : 18601230114
-         * sign : eJxNjV1vgjAYRv9Lb11mCy3YJbvwi8WgUnSyLDFpOihaDZVBB5pl-32ImO32nPe8zzd4na8fRRyfvrTh5pJL8AQgeGixSqQ2KlWyaCAaOBBZNkQId1rkuUq4MNwukn9VmRx5q64RhhDaLsFuJ*U5V4XkIjW3p4QQqznpbCWLUp10IyyIyHUN-kmjMtkm0HIpoY5931O7Bi*mm-EsnGymg0mPZb7e9oOxobon8TFilifY4SUOs2jbf-PmoygYZTWtZ7vgsj*sl04deGkYfYq4StmyKh1vj32xosOPYSB89r5Cmbt4Bj*-D9lX5g__
+         * uid : 29
+         * username : 18371458526
+         * sign : eJxNjV9PgzAUR79LXzXSUgrEZA91YoIZMZsjboSkIVDk4sYaKH*m8buLSNxez7nnd7-QdvV6l6Tpqa200Gcl0T3C6HbCkMlKQw6yHiFxqUMs5jLTnnWiFGQi0YLW2VXVZB9iUr*RhTGmDrOcWcpBQS1Fkuu-UcaYOZ7MtpN1A6dqFCYmjJgU44vUcJRTgi3iuMz*-wfvIw689dJ-5GXTRkOX0yPfcvIUGwdq8q78XKWbUPax0UMQNp6ODR7ylgMvNpHLnr3dw45ayu-66DCw9g3sdXETLPflSwGBT8-7Ou37xQJ9-wC9L1ls
+         * islogin : 1
          */
 
         private int uid;
         private String username;
         private String sign;
+        private int islogin;
 
         public int getUid() {
             return uid;
@@ -63,6 +66,14 @@ public class LoginRespBean {
 
         public void setSign(String sign) {
             this.sign = sign;
+        }
+
+        public int getIslogin() {
+            return islogin;
+        }
+
+        public void setIslogin(int islogin) {
+            this.islogin = islogin;
         }
     }
 }

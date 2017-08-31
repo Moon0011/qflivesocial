@@ -150,21 +150,25 @@
                     android:orientation="horizontal">
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_width="76.3dp"
+                        android:layout_height="30.3dp">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@mipmap/sound_voice_play" />
 
                         <TextView
+                            android:id="@+id/tv_voice_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:layout_centerInParent="true"
+                            android:layout_marginRight="20dp"
                             android:text="40"
-                            android:textColor="@color/white" />
+                            android:textColor="@color/white"
+                            android:textSize="13.8sp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -359,10 +363,19 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_comment_rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/anchor_detail_about_chat_call_evaluation_txt_margin_left"
                         android:text="好评度95%"
+                        android:textSize="@dimen/anchor_detail_about_chat_txt_size2" />
+
+                    <TextView
+                        android:id="@+id/tv_comment_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="100条评论"
                         android:textSize="@dimen/anchor_detail_about_chat_txt_size2" />
 
                     <ImageView
@@ -417,6 +430,7 @@
                         android:textSize="@dimen/anchor_detail_about_chat_txt_size1" />
 
                     <TextView
+                        android:id="@+id/tv_total_talktime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/anchor_detail_about_chat_txt_margin_left"
@@ -450,30 +464,47 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/btn_label11"
+                            android:id="@+id/btn_label1"
                             android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                             android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
-                            android:background="@mipmap/home_top_button_bg2"
+                            android:background="@mipmap/label_btn_bg"
                             android:text="同城面基"
-                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size" />
+                            android:textColor="#ff5491"
+                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
+                            android:visibility="gone" />
 
                         <Button
-                            android:id="@+id/btn_label12"
+                            android:id="@+id/btn_label2"
                             android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                             android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
                             android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
-                            android:background="@mipmap/home_top_button_bg2"
+                            android:background="@mipmap/label_btn_bg"
                             android:text="旅游达人"
-                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size" />
+                            android:textColor="#ff5491"
+                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
+                            android:visibility="gone" />
 
                         <Button
-                            android:id="@+id/btn_label13"
+                            android:id="@+id/btn_label3"
                             android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
                             android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
                             android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
-                            android:background="@mipmap/home_top_button_bg2"
+                            android:background="@mipmap/label_btn_bg"
                             android:text="旅游达人"
-                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size" />
+                            android:textColor="#ff5491"
+                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/btn_label4"
+                            android:layout_width="@dimen/anchor_show_discribe_bottom_label_width"
+                            android:layout_height="@dimen/anchor_show_discribe_bottom_label_heigth"
+                            android:layout_marginLeft="@dimen/anchor_show_discribe_bottom_label_margin_left"
+                            android:background="@mipmap/label_btn_bg"
+                            android:text="旅游达人"
+                            android:textColor="#ff5491"
+                            android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
+                            android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -496,7 +527,7 @@
                     android:textColor="#373737" />
 
                 <TextView
-                    android:id="@+id/tv_label"
+                    android:id="@+id/tv_signature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/anchor_detail_personal_label_txt_margin_left2"
@@ -522,6 +553,7 @@
                     android:textColor="#373737" />
 
                 <TextView
+                    android:id="@+id/tv_fans"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/anchor_detail_fans_txt_margin_left2"

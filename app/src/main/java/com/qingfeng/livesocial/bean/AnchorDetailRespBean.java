@@ -69,7 +69,7 @@ public class AnchorDetailRespBean {
         private String labels;
         private String commentnum;
         private String rating;
-        private Object attentionnum;
+        private String attentionnum;
         private int totaltime;
         private List<?> photo;
 
@@ -193,11 +193,11 @@ public class AnchorDetailRespBean {
             this.rating = rating;
         }
 
-        public Object getAttentionnum() {
+        public String getAttentionnum() {
             return attentionnum;
         }
 
-        public void setAttentionnum(Object attentionnum) {
+        public void setAttentionnum(String attentionnum) {
             this.attentionnum = attentionnum;
         }
 

@@ -9,6 +9,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.MFragmentPagerAdapter;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.ui.fragment.AttentionFragment;
+import com.qingfeng.livesocial.ui.fragment.FansFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class AttentionActivity extends BaseActivity {
     @Override
     protected void initData() {
         fragments.add(new AttentionFragment());
-        fragments.add(new AttentionFragment());
+        fragments.add(new FansFragment());
         tabViewpage.setAdapter(new MFragmentPagerAdapter(getSupportFragmentManager(), titleArr, fragments));
         tablayout.setupWithViewPager(tabViewpage);
     }

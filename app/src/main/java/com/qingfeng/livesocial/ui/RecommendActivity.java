@@ -29,9 +29,6 @@ import butterknife.OnClick;
  */
 
 public class RecommendActivity extends BaseActivity {
-
-    //    @Bind(R.id.gridview)
-//    GridView gridview;
     @Bind(R.id.btn_jump)
     Button btnJump;
     @Bind(R.id.ll_container)
@@ -59,6 +56,7 @@ public class RecommendActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_jump:
                 gotoActivity(RecommendActivity.this, HomeActivity.class);
+                finish();
                 break;
         }
     }
@@ -75,7 +73,6 @@ public class RecommendActivity extends BaseActivity {
                 RecommedRespBean respon = new Gson().fromJson(result, RecommedRespBean.class);
                 if ("y".equals(respon.getMsg())) {
                     datas = respon.getResult();
-//                    gridview.setAdapter(new RecomAdapter(mContext, datas, imageOptions));
                     int size = datas.size() % 2 == 0 ? datas.size() / 2 : datas.size() / 2 + 1;
                     for (int i = 0; i < size; i++) {
                         LinearLayout ll = (LinearLayout) mInflater.inflate(R.layout.recommend_item_layout, null);

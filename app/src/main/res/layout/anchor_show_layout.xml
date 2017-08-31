@@ -6,6 +6,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/ll_anchor_item1"
         android:layout_width="@dimen/anchor_show_ll_width"
         android:layout_height="@dimen/anchor_show_ll_height"
         android:orientation="vertical"
@@ -144,6 +145,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_anchor_item2"
         android:layout_width="@dimen/anchor_show_ll_width"
         android:layout_height="@dimen/anchor_show_ll_height"
         android:orientation="vertical"

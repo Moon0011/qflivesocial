@@ -22,4 +22,5 @@ public class Urls {
     public static final String MY_WALLET = String.format("http://%s/index.php/api/user/account", DOMAIN_NAME);//我的账户
     public static final String GIFT= String.format("http://%s/index.php/api/user/gift", DOMAIN_NAME);//礼物页
     public static final String SEND_GIFT_LIST= String.format("http://%s/index.php/api/user/giftlists", DOMAIN_NAME);//送出礼物页
+    public static final String ATTENTION= String.format("http://%s/index.php/api/user/attpage", DOMAIN_NAME);//关注页
 }

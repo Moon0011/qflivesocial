@@ -10,24 +10,24 @@ public class UserInfoBean implements Serializable {
     private int uid;
     private String username;
     private String sign;
-    private boolean login;
+    private int islogin;
 
     public UserInfoBean() {
     }
 
-    public UserInfoBean(int uid, String username, String sign, boolean login) {
+    public UserInfoBean(int uid, String username, String sign, int islogin) {
         this.uid = uid;
         this.username = username;
         this.sign = sign;
-        this.login = login;
+        this.islogin = islogin;
     }
 
-    public boolean isLogin() {
-        return login;
+    public int getIslogin() {
+        return islogin;
     }
 
-    public void setLogin(boolean login) {
-        this.login = login;
+    public void setIslogin(int islogin) {
+        this.islogin = islogin;
     }
 
     public int getUid() {

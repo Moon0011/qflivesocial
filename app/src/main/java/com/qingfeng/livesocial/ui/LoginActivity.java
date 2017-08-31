@@ -99,9 +99,14 @@ public class LoginActivity extends BaseActivity {
                 int uid = loginRespBean.getResult().getUid();
                 String username = loginRespBean.getResult().getUsername();
                 String sign = loginRespBean.getResult().getSign();
-                UserInfoBean userInfoBean = new UserInfoBean(uid, username, sign, true);
+                int islogin = loginRespBean.getResult().getIslogin();
+                UserInfoBean userInfoBean = new UserInfoBean(uid, username, sign, islogin);
                 QFApplication.getInstance().saveUserInfo(userInfoBean);
-                gotoActivity(LoginActivity.this, RecommendActivity.class);
+                if (islogin == 0) {
+                    gotoActivity(LoginActivity.this, PerfectInfoActivity.class);
+                } else {
+                    gotoActivity(LoginActivity.this, RecommendActivity.class);
+                }
                 showToast("登陆成功");
                 dismissProgress();
                 LogUtil.e("login: " + "uid = " + uid + " , username =" + username + " , sign =" + sign);

@@ -58,6 +58,7 @@
         android:background="#eeeeee" />
 
     <Button
+        android:id="@+id/btn_sendgift"
         android:layout_width="239.7dp"
         android:layout_height="28.7dp"
         android:layout_gravity="center"

@@ -193,7 +193,7 @@ public class HomeFragment extends BaseFragment {
                         LiveAnchorRespBean respon = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_POPULAR_ANCHOR);
                         if (respon == null || isFirst) {
                             getPopularUserInfo();
-                        }else{
+                        } else {
                             bindData(respon, ll_popular_container);
                         }
                     }
@@ -211,7 +211,7 @@ public class HomeFragment extends BaseFragment {
                         LiveAnchorRespBean respon = (LiveAnchorRespBean) CacheManager.readObject(getActivity(), HOME_YOUNGSHOW_ANCHOR);
                         if (respon == null || isFirst) {
                             getYoungShowUserInfo();
-                        }else{
+                        } else {
                             bindData(respon, ll_youngshow_container);
                         }
                     }
@@ -465,86 +465,175 @@ public class HomeFragment extends BaseFragment {
         if (PARAM_Y.equals(bean.getMsg()) && bean.getResult() != null) {
             final List<LiveAnchorRespBean.LiveAnchorBean> datas = bean.getResult();
             int size = datas.size() % 2 == 0 ? datas.size() / 2 : datas.size() / 2 + 1;
+            if (size <= 0) {
+                return;
+            }
+            int m = 0;
             for (int i = 0; i < size; i++) {
                 LinearLayout ll = (LinearLayout) mInflater.inflate(R.layout.anchor_show_layout, null);
-                for (int j = 0; j < datas.size(); j += 2) {
-                    FrameLayout anchor1 = (FrameLayout) ll.findViewById(R.id.fl_anchor1);
-                    FrameLayout anchor2 = (FrameLayout) ll.findViewById(R.id.fl_anchor2);
-                    TextView nickName1 = (TextView) ll.findViewById(R.id.tv_nickname1);
-                    TextView nickName2 = (TextView) ll.findViewById(R.id.tv_nickname2);
-                    TextView age = (TextView) ll.findViewById(R.id.tv_age);
-                    TextView age2 = (TextView) ll.findViewById(R.id.tv_age2);
-                    TextView signature1 = (TextView) ll.findViewById(R.id.tv_signature1);
-                    TextView signature2 = (TextView) ll.findViewById(R.id.tv_signature2);
-                    ImageView imageHead1 = (ImageView) ll.findViewById(R.id.img_head1);
-                    ImageView imageHead2 = (ImageView) ll.findViewById(R.id.img_head2);
-                    Button btnlabel11 = (Button) ll.findViewById(R.id.btn_label11);
-                    Button btnlabel12 = (Button) ll.findViewById(R.id.btn_label12);
-                    Button btnlabel13 = (Button) ll.findViewById(R.id.btn_label13);
-                    List<Button> btnContainer1 = new ArrayList<Button>();
-                    btnContainer1.add(btnlabel11);
-                    btnContainer1.add(btnlabel12);
-                    btnContainer1.add(btnlabel13);
-                    Button btnlabel21 = (Button) ll.findViewById(R.id.btn_label21);
-                    Button btnlabel22 = (Button) ll.findViewById(R.id.btn_label22);
-                    Button btnlabel23 = (Button) ll.findViewById(R.id.btn_label23);
-                    List<Button> btnContainer2 = new ArrayList<Button>();
-                    btnContainer2.add(btnlabel21);
-                    btnContainer2.add(btnlabel22);
-                    btnContainer2.add(btnlabel23);
-                    if (datas.get(j) != null) {
-                        nickName1.setText(datas.get(j).getNickname());
-                        age.setText(datas.get(j).getAge());
-                        signature1.setText(datas.get(j).getSignature());
-                        String labels = datas.get(j).getLabels();
-                        if (!StringUtils.isEmpty(labels)) {
-                            String[] labelArr = labels.split(",");
+                FrameLayout anchor1 = (FrameLayout) ll.findViewById(R.id.fl_anchor1);
+                FrameLayout anchor2 = (FrameLayout) ll.findViewById(R.id.fl_anchor2);
+                LinearLayout llitem1 = (LinearLayout) ll.findViewById(R.id.ll_anchor_item1);
+                LinearLayout llitem2 = (LinearLayout) ll.findViewById(R.id.ll_anchor_item2);
+                TextView nickName1 = (TextView) ll.findViewById(R.id.tv_nickname1);
+                TextView nickName2 = (TextView) ll.findViewById(R.id.tv_nickname2);
+                TextView age = (TextView) ll.findViewById(R.id.tv_age);
+                TextView age2 = (TextView) ll.findViewById(R.id.tv_age2);
+                TextView signature1 = (TextView) ll.findViewById(R.id.tv_signature1);
+                TextView signature2 = (TextView) ll.findViewById(R.id.tv_signature2);
+                ImageView imageHead1 = (ImageView) ll.findViewById(R.id.img_head1);
+                ImageView imageHead2 = (ImageView) ll.findViewById(R.id.img_head2);
+                Button btnlabel11 = (Button) ll.findViewById(R.id.btn_label11);
+                Button btnlabel12 = (Button) ll.findViewById(R.id.btn_label12);
+                Button btnlabel13 = (Button) ll.findViewById(R.id.btn_label13);
+                List<Button> btnContainer1 = new ArrayList<Button>();
+                btnContainer1.add(btnlabel11);
+                btnContainer1.add(btnlabel12);
+                btnContainer1.add(btnlabel13);
+                Button btnlabel21 = (Button) ll.findViewById(R.id.btn_label21);
+                Button btnlabel22 = (Button) ll.findViewById(R.id.btn_label22);
+                Button btnlabel23 = (Button) ll.findViewById(R.id.btn_label23);
+                List<Button> btnContainer2 = new ArrayList<Button>();
+                btnContainer2.add(btnlabel21);
+                btnContainer2.add(btnlabel22);
+                btnContainer2.add(btnlabel23);
+                if (size > 1) {
+                    if (i == size - 1) {
+                        int p = datas.size() - 1;
+                        nickName1.setText(datas.get(p).getNickname());
+                        age.setText(datas.get(p).getAge());
+                        signature1.setText(datas.get(p).getSignature());
+                        String labels1 = datas.get(p).getLabels();
+                        if (!StringUtils.isEmpty(labels1)) {
+                            String[] labelArr = labels1.split(",");
                             for (int k = 0; k < labelArr.length; k++) {
                                 btnContainer1.get(k).setVisibility(View.VISIBLE);
                                 btnContainer1.get(k).setText(labelArr[k]);
                             }
                         }
                         x.image().bind(imageHead1,
-                                datas.get(j).getAnchorpic(),
+                                datas.get(p).getAnchorpic(),
                                 imageOptions,
                                 null);
-                        final int pos = j;
+                        final int pos1 = p;
                         anchor1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Bundle b = new Bundle();
-                                String uid = String.valueOf(datas.get(pos).getUid());
+                                String uid = String.valueOf(datas.get(pos1).getUid());
                                 b.putString(PARAM_UID, uid);
                                 gotoActivityWithBundle(getActivity(), AnchorDetailActivity.class, b);
                             }
                         });
-                    }
-                    if (datas.get(j + 1) != null) {
-                        nickName2.setText(datas.get(j + 1).getNickname());
-                        age2.setText(datas.get(j + 1).getAge());
-                        signature2.setText(datas.get(j + 1).getSignature());
-                        String labels = datas.get(j + 1).getLabels();
-                        if (!StringUtils.isEmpty(labels)) {
-                            String[] labelArr = labels.split(",");
+                        llitem2.setVisibility(View.INVISIBLE);
+                    } else {
+                        nickName1.setText(datas.get(m).getNickname());
+                        age.setText(datas.get(m).getAge());
+                        signature1.setText(datas.get(m).getSignature());
+                        String labels1 = datas.get(m).getLabels();
+                        if (!StringUtils.isEmpty(labels1)) {
+                            String[] labelArr = labels1.split(",");
+                            for (int k = 0; k < labelArr.length; k++) {
+                                btnContainer1.get(k).setVisibility(View.VISIBLE);
+                                btnContainer1.get(k).setText(labelArr[k]);
+                            }
+                        }
+                        x.image().bind(imageHead1,
+                                datas.get(m).getAnchorpic(),
+                                imageOptions,
+                                null);
+                        final int pos1 = m;
+                        anchor1.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Bundle b = new Bundle();
+                                String uid = String.valueOf(datas.get(pos1).getUid());
+                                b.putString(PARAM_UID, uid);
+                                gotoActivityWithBundle(getActivity(), AnchorDetailActivity.class, b);
+                            }
+                        });
+
+                        nickName2.setText(datas.get(m + 1).getNickname());
+                        age2.setText(datas.get(m + 1).getAge());
+                        signature2.setText(datas.get(m + 1).getSignature());
+                        String labels2 = datas.get(m + 1).getLabels();
+                        if (!StringUtils.isEmpty(labels2)) {
+                            String[] labelArr = labels2.split(",");
                             for (int k = 0; k < labelArr.length; k++) {
                                 btnContainer2.get(k).setVisibility(View.VISIBLE);
                                 btnContainer2.get(k).setText(labelArr[k]);
                             }
                         }
                         x.image().bind(imageHead2,
-                                datas.get(j + 1).getAnchorpic(),
+                                datas.get(m + 1).getAnchorpic(),
                                 imageOptions,
                                 null);
-                        final int pos = j + 1;
+                        final int pos2 = m + 1;
                         anchor2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 Bundle b = new Bundle();
-                                b.putString(PARAM_UID, String.valueOf(datas.get(pos).getUid()));
+                                b.putString(PARAM_UID, String.valueOf(datas.get(pos2).getUid()));
                                 gotoActivityWithBundle(getActivity(), AnchorDetailActivity.class, b);
                             }
                         });
+
+                        m += 2;
                     }
+                } else {
+                    i = m;
+                    nickName1.setText(datas.get(i).getNickname());
+                    age.setText(datas.get(i).getAge());
+                    signature1.setText(datas.get(i).getSignature());
+                    String labels1 = datas.get(i).getLabels();
+                    if (!StringUtils.isEmpty(labels1)) {
+                        String[] labelArr = labels1.split(",");
+                        for (int k = 0; k < labelArr.length; k++) {
+                            btnContainer1.get(k).setVisibility(View.VISIBLE);
+                            btnContainer1.get(k).setText(labelArr[k]);
+                        }
+                    }
+                    x.image().bind(imageHead1,
+                            datas.get(i).getAnchorpic(),
+                            imageOptions,
+                            null);
+                    final int pos1 = i;
+                    anchor1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle b = new Bundle();
+                            String uid = String.valueOf(datas.get(pos1).getUid());
+                            b.putString(PARAM_UID, uid);
+                            gotoActivityWithBundle(getActivity(), AnchorDetailActivity.class, b);
+                        }
+                    });
+
+                    nickName2.setText(datas.get(i + 1).getNickname());
+                    age2.setText(datas.get(i + 1).getAge());
+                    signature2.setText(datas.get(i + 1).getSignature());
+                    String labels2 = datas.get(i + 1).getLabels();
+                    if (!StringUtils.isEmpty(labels2)) {
+                        String[] labelArr = labels2.split(",");
+                        for (int k = 0; k < labelArr.length; k++) {
+                            btnContainer2.get(k).setVisibility(View.VISIBLE);
+                            btnContainer2.get(k).setText(labelArr[k]);
+                        }
+                    }
+                    x.image().bind(imageHead2,
+                            datas.get(i + 1).getAnchorpic(),
+                            imageOptions,
+                            null);
+                    final int pos2 = i + 1;
+                    anchor2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Bundle b = new Bundle();
+                            b.putString(PARAM_UID, String.valueOf(datas.get(pos2).getUid()));
+                            gotoActivityWithBundle(getActivity(), AnchorDetailActivity.class, b);
+                        }
+                    });
+
+                    m += 2;
                 }
                 llContainer.addView(ll);
             }

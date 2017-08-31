@@ -47,7 +47,7 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:id="@+id/rl_selected"
+                android:id="@+id/rl_selected1"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
@@ -106,11 +106,13 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected2"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
                 android:layout_marginTop="1.7dp"
-                android:background="@mipmap/ellipse">
+                android:background="@mipmap/ellipse"
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -167,6 +169,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected3"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
@@ -226,6 +229,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected4"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
@@ -291,6 +295,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected5"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
@@ -350,6 +355,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected6"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
@@ -409,6 +415,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected7"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"
@@ -468,6 +475,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_selected8"
                 android:layout_width="16.3dp"
                 android:layout_height="16.3dp"
                 android:layout_marginLeft="1.3dp"

@@ -68,22 +68,22 @@ public class PersonalCenterFragment extends BaseFragment {
     @OnClick({R.id.rl_wallet, R.id.rl_gift, R.id.rl_attention, R.id.rl_anchor_anthen, R.id.rl_setting, R.id.ll_data})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.rl_wallet:
+            case R.id.rl_wallet://钱包
                 gotoActivity(getActivity(), MyWalletActivity.class);
                 break;
-            case R.id.rl_gift:
+            case R.id.rl_gift://礼物
                 gotoActivity(getActivity(), GiftActivity.class);
                 break;
-            case R.id.rl_attention:
+            case R.id.rl_attention://关注
                 gotoActivity(getActivity(), AttentionActivity.class);
                 break;
-            case R.id.rl_anchor_anthen:
+            case R.id.rl_anchor_anthen://主播认证
                 gotoActivity(getActivity(), AnchorAnthenActivity.class);
                 break;
-            case R.id.rl_setting:
+            case R.id.rl_setting://通话设置
                 gotoActivity(getActivity(), CallSettingActivity.class);
                 break;
-            case R.id.ll_data:
+            case R.id.ll_data://资料编辑
                 gotoActivity(getActivity(), AnchorInfoActivity.class);
                 break;
         }
@@ -103,7 +103,7 @@ public class PersonalCenterFragment extends BaseFragment {
                         tvNickname.setText(bean.getNickname());
                         tvAge.setText(bean.getAge());
                         tvSignature.setText(bean.getSignature());
-                        tvCurrRoomnum.setText(bean.getCurroomnum());
+                        tvCurrRoomnum.setText(String.valueOf(bean.getCurroomnum()));
                         UIHelper.setSexLabel(bean.getSex(), imgSex);
                         x.image().bind(imgHead,
                                 bean.getAnchorpic(),

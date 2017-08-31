@@ -20,6 +20,8 @@ import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.util.GlideImageLoader;
+import com.qingfeng.livesocial.util.StringUtils;
+import com.qingfeng.livesocial.widget.RoundedImageView;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -44,7 +46,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 
 public class PerfectInfoActivity extends BaseActivity {
     @Bind(R.id.img_photo_add)
-    ImageView imgPhotoAdd;
+    RoundedImageView imgPhotoAdd;
     @Bind(R.id.rl_regist_succ)
     RelativeLayout rlRegistSucc;
     @Bind(R.id.img_man)
@@ -128,7 +130,11 @@ public class PerfectInfoActivity extends BaseActivity {
         int uid = QFApplication.getInstance().getLoginUser().getUid();
         RequestParams params = new RequestParams(Urls.PERFECT_INFO);
         params.addParameter(PARAM_UID, uid);
-        params.addParameter(PARAM_ANCHORPIC, "sdsdfsdfsdf");
+        if (StringUtils.isEmpty(filePath)) {
+            showToast("头像未选");
+            return;
+        }
+        params.addParameter(PARAM_ANCHORPIC, encode(filePath));
         params.addQueryStringParameter(PARAM_NICKNAME, nickName);
         params.addQueryStringParameter(PARAM_SEX, sex);
         x.http().post(params, new Callback.CommonCallback<String>() {

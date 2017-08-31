@@ -37,6 +37,8 @@ public class Constants {
 
     public static final String PARAM_GIFT_RECEIVE_TYPE = "1";
     public static final String PARAM_GIFT_SEND_TYPE = "2";
+    public static final String PARAM_ATTENTION_TYPE = "1";
+    public static final String PARAM_FANS_TYPE = "2";
 
     public static final String ATTENTION_RANKLIST = "attention_ranklist";
     public static final String RICHER_RANKLIST = "richer_ranklist";

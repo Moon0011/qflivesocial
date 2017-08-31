@@ -22,15 +22,16 @@ import java.util.List;
 
 import butterknife.Bind;
 
-import static com.qingfeng.livesocial.common.Constants.PARAM_ATTENTION_TYPE;
+import static com.qingfeng.livesocial.common.Constants.PARAM_FANS_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
+import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
  * Created by Administrator on 2017/8/29.
  */
 
-public class AttentionFragment extends BaseFragment {
+public class FansFragment extends BaseFragment {
     @Bind(R.id.recyclerview)
     RecyclerView recyclerview;
     @Bind(R.id.swiperefreshlayout)
@@ -48,34 +49,36 @@ public class AttentionFragment extends BaseFragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getAtentionList();
+                getFansList();
             }
         });
     }
 
     @Override
     protected void initData() {
-        getAtentionList();
+        getFansList();
     }
 
-    private void getAtentionList() {
+    private void getFansList() {
         RequestParams params = new RequestParams(Urls.ATTENTION);
         params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
-        params.addParameter(PARAM_TYPE, PARAM_ATTENTION_TYPE);
+        params.addParameter(PARAM_TYPE, PARAM_FANS_TYPE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("getAtentionList == " + result);
+                LogUtil.e("getFansList == " + result);
                 Gson gson = new Gson();
                 AttentionRespBean respBean = gson.fromJson(result, AttentionRespBean.class);
-                if (respBean.getResult() != null && respBean.getResult().size() > 0) {
-                    List<AttentionRespBean.AttentionBean> datas = (List<AttentionRespBean.AttentionBean>) respBean.getResult();
-                    AttentionAdapter adapter = new AttentionAdapter(getActivity(), datas, imageOptions);
-                    recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    recyclerview.setHasFixedSize(true);
-                    recyclerview.setAdapter(adapter);
-                } else {
-                    showToast("暂时无数据");
+                if (respBean != null && PARAM_Y.equals(respBean.getMsg())) {
+                    if (respBean.getResult() != null && respBean.getResult().size() > 0) {
+                        List<AttentionRespBean.AttentionBean> datas = (List<AttentionRespBean.AttentionBean>) respBean.getResult();
+                        AttentionAdapter adapter = new AttentionAdapter(getActivity(), datas, imageOptions);
+                        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerview.setHasFixedSize(true);
+                        recyclerview.setAdapter(adapter);
+                    } else {
+                        showToast("暂时无数据");
+                    }
                 }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
