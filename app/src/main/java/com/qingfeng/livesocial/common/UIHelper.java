@@ -29,4 +29,14 @@ public class UIHelper {
             imgView.setImageResource(R.mipmap.recommend_sex_bg);
         }
     }
+
+    public static String setSex(String sex) {
+        if ("f".equals(sex)) {
+            return "女";
+        } else if ("m".equals(sex)) {
+            return "男";
+        }
+        return "";
+    }
+
 }

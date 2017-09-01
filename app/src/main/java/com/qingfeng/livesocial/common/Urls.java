@@ -20,7 +20,8 @@ public class Urls {
     public static final String PERSONAL_CENTER_ANCHOR_INFO = String.format("http://%s/index.php/api/user/userinfo", DOMAIN_NAME);//个人中心-主播信息
     public static final String PERSONAL_CENTER_ANCHOR_INFO_GET_LABELS = String.format("http://%s/index.php/api/user/label", DOMAIN_NAME);//获取标签
     public static final String MY_WALLET = String.format("http://%s/index.php/api/user/account", DOMAIN_NAME);//我的账户
-    public static final String GIFT= String.format("http://%s/index.php/api/user/gift", DOMAIN_NAME);//礼物页
-    public static final String SEND_GIFT_LIST= String.format("http://%s/index.php/api/user/giftlists", DOMAIN_NAME);//送出礼物页
-    public static final String ATTENTION= String.format("http://%s/index.php/api/user/attpage", DOMAIN_NAME);//关注页
+    public static final String GIFT = String.format("http://%s/index.php/api/user/gift", DOMAIN_NAME);//礼物页
+    public static final String SEND_GIFT_LIST = String.format("http://%s/index.php/api/user/giftlists", DOMAIN_NAME);//送出礼物页
+    public static final String ATTENTION = String.format("http://%s/index.php/api/user/attpage", DOMAIN_NAME);//关注页
+    public static final String DELETE_PHOTO = String.format("http://%s/index.php/api/user/delphoto", DOMAIN_NAME);//删除图片
 }

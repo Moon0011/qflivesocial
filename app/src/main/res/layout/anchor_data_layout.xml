@@ -270,6 +270,7 @@
         android:background="#eeeeee" />
 
     <RelativeLayout
+        android:id="@+id/rl_address"
         android:layout_width="match_parent"
         android:layout_height="40.3dp">
 
@@ -315,6 +316,7 @@
         android:background="#eeeeee" />
 
     <RelativeLayout
+        android:id="@+id/rl_birthday"
         android:layout_width="match_parent"
         android:layout_height="40.3dp">
 
@@ -360,6 +362,7 @@
         android:background="#eeeeee" />
 
     <RelativeLayout
+        android:id="@+id/rl_sex"
         android:layout_width="match_parent"
         android:layout_height="40.3dp">
 
@@ -405,6 +408,7 @@
         android:background="#eeeeee" />
 
     <RelativeLayout
+        android:id="@+id/rl_constell"
         android:layout_width="match_parent"
         android:layout_height="40.3dp">
 

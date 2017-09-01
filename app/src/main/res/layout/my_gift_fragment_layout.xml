@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <com.amar.library.ui.StickyScrollView
+    <com.qingfeng.livesocial.widget.MSwipeRefreshLayout
+        android:id="@+id/swiperefreshlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/ll_container"
+        <com.amar.library.ui.StickyScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        </LinearLayout>
-    </com.amar.library.ui.StickyScrollView>
+            <LinearLayout
+                android:id="@+id/ll_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </com.amar.library.ui.StickyScrollView>
+    </com.qingfeng.livesocial.widget.MSwipeRefreshLayout>
 </LinearLayout>

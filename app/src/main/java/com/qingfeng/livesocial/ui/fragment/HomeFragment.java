@@ -58,7 +58,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 /**
  * Created by Administrator on 2017/8/22.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.OnItemClickListener {
     @Bind(R.id.tab)
     TabLayout mTabLayout;
     @Bind(R.id.tab_viewpage)
@@ -78,6 +78,7 @@ public class HomeFragment extends BaseFragment {
     private static final String TYPE_POPULAR_USER = "2";//人气
     private static final String TYPE_YOUNGSHOW_USER = "3";//新秀
     private boolean isFirst = true;
+    private List<RecommedRespBean.RecommendBean> recommedDatas;
     private Handler handler = new Handler();
 
     @Override
@@ -409,6 +410,7 @@ public class HomeFragment extends BaseFragment {
             public void onSuccess(String result) {
                 LogUtil.e("getRecommendData == " + result);
                 final RecommedRespBean respon = new Gson().fromJson(result, RecommedRespBean.class);
+                recommedDatas = respon.getResult();
                 bindRecommendData(respon);
                 AppOperator.runOnThread(new Runnable() {
                     @Override
@@ -453,6 +455,7 @@ public class HomeFragment extends BaseFragment {
     private void bindRecommendData(RecommedRespBean respon) {
         if (PARAM_Y.equals(respon.getMsg()) && respon.getResult() != null) {
             HRecyclerViewAdapter hRecyclerViewAdapter = new HRecyclerViewAdapter(getActivity(), respon.getResult(), imageOptions);
+            hRecyclerViewAdapter.setOnItemClickListener(this);
             LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
             layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
             hRecyclerView.setLayoutManager(layoutManager);
@@ -638,5 +641,12 @@ public class HomeFragment extends BaseFragment {
                 llContainer.addView(ll);
             }
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Bundle b = new Bundle();
+        b.putString(PARAM_UID, String.valueOf(recommedDatas.get(position).getUid()));
+        gotoActivityWithBundle(getActivity(), AnchorDetailActivity.class, b);
     }
 }

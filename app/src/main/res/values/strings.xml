@@ -61,4 +61,36 @@
     <string name="qianming">个性签名</string>
     <string name="my_labels">我的标签</string>
 
+    <string-array name="sex_arr">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <string name="constellation_aries">白羊座</string>
+    <string name="constellation_taurus">金牛座</string>
+    <string name="constellation_gemini">双子座</string>
+    <string name="constellation_cancer">巨蟹座</string>
+    <string name="constellation_leo">狮子座</string>
+    <string name="constellation_virgo">处女座</string>
+    <string name="constellation_libra">天秤座</string>
+    <string name="constellation_scorpio">天蝎座</string>
+    <string name="constellation_sagittarius">射手座</string>
+    <string name="constellation_capricorn">摩羯座</string>
+    <string name="constellation_aquarius">水瓶座</string>
+    <string name="constellation_pisces">双鱼座</string>
+
+    <string-array name="constell_arr">
+        <item>@string/constellation_aries</item>
+        <item>@string/constellation_taurus</item>
+        <item>@string/constellation_gemini</item>
+        <item>@string/constellation_cancer</item>
+        <item>@string/constellation_leo</item>
+        <item>@string/constellation_virgo</item>
+        <item>@string/constellation_libra</item>
+        <item>@string/constellation_scorpio</item>
+        <item>@string/constellation_sagittarius</item>
+        <item>@string/constellation_capricorn</item>
+        <item>@string/constellation_aquarius</item>
+        <item>@string/constellation_pisces</item>
+    </string-array>
+
 </resources>

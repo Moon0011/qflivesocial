@@ -1,9 +1,8 @@
 package com.qingfeng.livesocial.ui.fragment;
 
-import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.bean.GiftRespBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
+import com.qingfeng.livesocial.widget.MSwipeRefreshLayout;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -22,7 +22,6 @@ import org.xutils.x;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_GIFT_SEND_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_TYPE;
@@ -36,6 +35,8 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 public class SendGiftFragment extends BaseFragment {
     @Bind(R.id.ll_container)
     LinearLayout llMaxContainer;
+    @Bind(R.id.swiperefreshlayout)
+    MSwipeRefreshLayout mSwipeRefreshLayout;
     private LayoutInflater mInflater;
 
     @Override
@@ -46,6 +47,15 @@ public class SendGiftFragment extends BaseFragment {
     @Override
     protected void initWidget(View root) {
         mInflater = LayoutInflater.from(getActivity());
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light, android.R.color.holo_orange_light, android.R.color.holo_red_light);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                llMaxContainer.removeAllViews();
+                sendGift();
+            }
+        });
     }
 
     @Override
@@ -89,13 +99,17 @@ public class SendGiftFragment extends BaseFragment {
                             }
                             llMaxContainer.addView(llParentContainer);
                         }
+                    } else {
+                        showToast("暂时无数据");
                     }
                 }
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -108,17 +122,4 @@ public class SendGiftFragment extends BaseFragment {
         });
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

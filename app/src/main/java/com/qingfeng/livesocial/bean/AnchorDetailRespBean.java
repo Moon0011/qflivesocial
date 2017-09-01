@@ -8,9 +8,10 @@ import java.util.List;
 
 public class AnchorDetailRespBean {
 
+
     /**
      * msg : y
-     * result : {"video":"http://video.520cai.cn/upload/zhibo/20170824/1cb7d22ee9704cccfc3b78f3c476c119.png","voice":"未设置","nickname":"干妹妹还是干妹妹","sex":"女","age":"0","onlinestatus":0,"constellation":"未设置","address":"未设置","photo":[],"listen_setting":"未设置","video_setting":"未设置","voice_setting":"未设置","signature":"中华文字博大精深~","labels":"未设置","commentnum":"0","rating":"100%","attentionnum":null,"totaltime":0}
+     * result : {"video":"http://video.520cai.cn/upload/ios/20170824/a5072309945e04f51f15ea5f4d543f94.png","voice":"未设置","nickname":"老蔡","sex":"男","age":23,"onlinestatus":1,"constellation":"处女座","address":"黑龙江哈尔滨市市辖区","photo":["http://video.520cai.cn/upload/ios/20170824/a612c36ef52104a18218b5eb4eb29041.png","http://video.520cai.cn/upload/ios/20170824/6d37a820737e895460a2fb300535187d.png","http://video.520cai.cn/upload/ios/20170824/385438af421204448fd311ea8294b6b7.png"],"listen_setting":"未设置","video_setting":"未设置","voice_setting":"未设置","signature":"Hello world","labels":"可爱甜心,清新怡人,资深腐宅","commentnum":"0","rating":"100%","attentionnum":1,"totaltime":21}
      */
 
     private String msg;
@@ -34,31 +35,31 @@ public class AnchorDetailRespBean {
 
     public static class AnchorDetailBean {
         /**
-         * video : http://video.520cai.cn/upload/zhibo/20170824/1cb7d22ee9704cccfc3b78f3c476c119.png
+         * video : http://video.520cai.cn/upload/ios/20170824/a5072309945e04f51f15ea5f4d543f94.png
          * voice : 未设置
-         * nickname : 干妹妹还是干妹妹
-         * sex : 女
-         * age : 0
-         * onlinestatus : 0
-         * constellation : 未设置
-         * address : 未设置
-         * photo : []
+         * nickname : 老蔡
+         * sex : 男
+         * age : 23
+         * onlinestatus : 1
+         * constellation : 处女座
+         * address : 黑龙江哈尔滨市市辖区
+         * photo : ["http://video.520cai.cn/upload/ios/20170824/a612c36ef52104a18218b5eb4eb29041.png","http://video.520cai.cn/upload/ios/20170824/6d37a820737e895460a2fb300535187d.png","http://video.520cai.cn/upload/ios/20170824/385438af421204448fd311ea8294b6b7.png"]
          * listen_setting : 未设置
          * video_setting : 未设置
          * voice_setting : 未设置
-         * signature : 中华文字博大精深~
-         * labels : 未设置
+         * signature : Hello world
+         * labels : 可爱甜心,清新怡人,资深腐宅
          * commentnum : 0
          * rating : 100%
-         * attentionnum : null
-         * totaltime : 0
+         * attentionnum : 1
+         * totaltime : 21
          */
 
         private String video;
         private String voice;
         private String nickname;
         private String sex;
-        private String age;
+        private int age;
         private int onlinestatus;
         private String constellation;
         private String address;
@@ -69,9 +70,9 @@ public class AnchorDetailRespBean {
         private String labels;
         private String commentnum;
         private String rating;
-        private String attentionnum;
+        private int attentionnum;
         private int totaltime;
-        private List<?> photo;
+        private List<String> photo;
 
         public String getVideo() {
             return video;
@@ -105,11 +106,11 @@ public class AnchorDetailRespBean {
             this.sex = sex;
         }
 
-        public String getAge() {
+        public int getAge() {
             return age;
         }
 
-        public void setAge(String age) {
+        public void setAge(int age) {
             this.age = age;
         }
 
@@ -193,11 +194,11 @@ public class AnchorDetailRespBean {
             this.rating = rating;
         }
 
-        public String getAttentionnum() {
+        public int getAttentionnum() {
             return attentionnum;
         }
 
-        public void setAttentionnum(String attentionnum) {
+        public void setAttentionnum(int attentionnum) {
             this.attentionnum = attentionnum;
         }
 
@@ -209,11 +210,11 @@ public class AnchorDetailRespBean {
             this.totaltime = totaltime;
         }
 
-        public List<?> getPhoto() {
+        public List<String> getPhoto() {
             return photo;
         }
 
-        public void setPhoto(List<?> photo) {
+        public void setPhoto(List<String> photo) {
             this.photo = photo;
         }
     }

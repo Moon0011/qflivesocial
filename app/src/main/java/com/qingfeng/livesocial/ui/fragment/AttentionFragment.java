@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.AttentionAdapter;
 import com.qingfeng.livesocial.bean.AttentionRespBean;
-import com.qingfeng.livesocial.common.QFApplication;
+import com.qingfeng.livesocial.bean.AttentionRespBean.AttentionBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseFragment;
 
@@ -60,7 +60,7 @@ public class AttentionFragment extends BaseFragment {
 
     private void getAtentionList() {
         RequestParams params = new RequestParams(Urls.ATTENTION);
-        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_UID, "1");
         params.addParameter(PARAM_TYPE, PARAM_ATTENTION_TYPE);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
@@ -69,7 +69,7 @@ public class AttentionFragment extends BaseFragment {
                 Gson gson = new Gson();
                 AttentionRespBean respBean = gson.fromJson(result, AttentionRespBean.class);
                 if (respBean.getResult() != null && respBean.getResult().size() > 0) {
-                    List<AttentionRespBean.AttentionBean> datas = (List<AttentionRespBean.AttentionBean>) respBean.getResult();
+                    List<AttentionBean> datas = respBean.getResult();
                     AttentionAdapter adapter = new AttentionAdapter(getActivity(), datas, imageOptions);
                     recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerview.setHasFixedSize(true);

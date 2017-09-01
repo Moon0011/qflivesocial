@@ -138,29 +138,32 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="90.3dp"
-                android:paddingTop="9dp">
+                android:paddingTop="9dp"
+                android:scrollbars="none">
 
-                <ImageView
-                    android:layout_width="62.7dp"
-                    android:layout_height="62.7dp"
-                    android:layout_marginLeft="8dp"
-                    android:src="@mipmap/f_head" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="8dp">
 
-                <ImageView
-                    android:layout_width="62.7dp"
-                    android:layout_height="62.7dp"
-                    android:layout_marginLeft="8dp"
-                    android:src="@mipmap/f_head" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclelistview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="62.7dp"
+                        android:layout_marginLeft="4dp" />
 
-                <ImageView
-                    android:layout_width="62.7dp"
-                    android:layout_height="62.7dp"
-                    android:layout_marginLeft="8dp"
-                    android:src="@mipmap/add_photo_img" />
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/img_addphoto"
+                        android:layout_width="62.7dp"
+                        android:layout_height="62.7dp"
+                        android:layout_marginLeft="8dp"
+                        android:src="@mipmap/add_photo_img" />
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <View
                 android:layout_width="match_parent"
@@ -217,8 +220,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignTop="@+id/textView2"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16.3dp"
                     android:src="@mipmap/gift" />
 
                 <TextView

@@ -1,14 +1,17 @@
 package com.qingfeng.livesocial.bean;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/8/30.
  */
 
 public class PersonalCenterRespBean {
 
+
     /**
      * msg : y
-     * result : {"anchorpic":"http://video.520cai.cn","roompic":"http://video.520cai.cn","nickname":null,"curroomnum":1588439941,"signature":"未设置","age":"未设置","sex":null,"photo":"未设置"}
+     * result : {"anchorpic":"http://video.520cai.cn/upload/ios/20170831/074a05d10cd3ff57960bd0c15940903f.png","roompic":"http://video.520cai.cn/upload/ios/20170831/074a05d10cd3ff57960bd0c15940903f.png","nickname":"马卿","curroomnum":1077789306,"signature":"世上无难事 ，只怕有心人。","age":3,"sex":"男","photo":[{"picurl":"http://video.520cai.cn/upload/ios/20170823/755697057348e5da0e8ae7e2854dc535.png","id":3},{"picurl":"http://video.520cai.cn/upload/ios/20170823/bd6fc6daf626173562be5816d581d948.png","id":4},{"picurl":"http://video.520cai.cn/upload/ios/20170823/6bfd9de1619339b881aa1dbb4e70ff8f.png","id":5},{"picurl":"http://video.520cai.cn/upload/ios/20170823/491f753a9e094a56541935fbe87f7283.png","id":6},{"picurl":"http://video.520cai.cn/upload/ios/20170823/491f753a9e094a56541935fbe87f7283.png","id":7}]}
      */
 
     private String msg;
@@ -32,14 +35,14 @@ public class PersonalCenterRespBean {
 
     public static class PersonalCenterBean {
         /**
-         * anchorpic : http://video.520cai.cn
-         * roompic : http://video.520cai.cn
-         * nickname : null
-         * curroomnum : 1588439941
-         * signature : 未设置
-         * age : 未设置
-         * sex : null
-         * photo : 未设置
+         * anchorpic : http://video.520cai.cn/upload/ios/20170831/074a05d10cd3ff57960bd0c15940903f.png
+         * roompic : http://video.520cai.cn/upload/ios/20170831/074a05d10cd3ff57960bd0c15940903f.png
+         * nickname : 马卿
+         * curroomnum : 1077789306
+         * signature : 世上无难事 ，只怕有心人。
+         * age : 3
+         * sex : 男
+         * photo : [{"picurl":"http://video.520cai.cn/upload/ios/20170823/755697057348e5da0e8ae7e2854dc535.png","id":3},{"picurl":"http://video.520cai.cn/upload/ios/20170823/bd6fc6daf626173562be5816d581d948.png","id":4},{"picurl":"http://video.520cai.cn/upload/ios/20170823/6bfd9de1619339b881aa1dbb4e70ff8f.png","id":5},{"picurl":"http://video.520cai.cn/upload/ios/20170823/491f753a9e094a56541935fbe87f7283.png","id":6},{"picurl":"http://video.520cai.cn/upload/ios/20170823/491f753a9e094a56541935fbe87f7283.png","id":7}]
          */
 
         private String anchorpic;
@@ -49,7 +52,7 @@ public class PersonalCenterRespBean {
         private String signature;
         private String age;
         private String sex;
-        private String photo;
+        private List<PhotoBean> photo;
 
         public String getAnchorpic() {
             return anchorpic;
@@ -107,12 +110,38 @@ public class PersonalCenterRespBean {
             this.sex = sex;
         }
 
-        public String getPhoto() {
+        public List<PhotoBean> getPhoto() {
             return photo;
         }
 
-        public void setPhoto(String photo) {
+        public void setPhoto(List<PhotoBean> photo) {
             this.photo = photo;
+        }
+
+        public static class PhotoBean {
+            /**
+             * picurl : http://video.520cai.cn/upload/ios/20170823/755697057348e5da0e8ae7e2854dc535.png
+             * id : 3
+             */
+
+            private String picurl;
+            private int id;
+
+            public String getPicurl() {
+                return picurl;
+            }
+
+            public void setPicurl(String picurl) {
+                this.picurl = picurl;
+            }
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
         }
     }
 }

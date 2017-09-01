@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.adapter.PhotoAdapter2;
 import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
@@ -42,7 +43,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
  * Created by Administrator on 2017/8/28.
  */
 
-public class AnchorDetailActivity extends BaseActivity {
+public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener {
 
     @Bind(R.id.video_bg_img)
     ImageView videoImg;
@@ -78,7 +79,11 @@ public class AnchorDetailActivity extends BaseActivity {
     TextView tvTotalTalktime;
     @Bind(R.id.tv_fans)
     TextView tv_fans;
+    @Bind(R.id.recyclelistview)
+    RecyclerView recyclelistview;
     private String uid;
+    private List<String> photoDatas;
+    private PhotoAdapter2 photoAdapter;
 
     @Override
     protected int getLayoutById() {
@@ -130,6 +135,17 @@ public class AnchorDetailActivity extends BaseActivity {
                             btnContainer.get(k).setText(labelArr[k]);
                         }
                     }
+
+                    photoDatas = bean.getPhoto();
+                    if (null != photoDatas && photoDatas.size() > 0) {
+                        photoAdapter = new PhotoAdapter2(mContext, photoDatas);
+                        photoAdapter.setOnItemClickListener(AnchorDetailActivity.this);
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                        layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+                        recyclelistview.setLayoutManager(layoutManager);
+                        recyclelistview.setHasFixedSize(true);
+                        recyclelistview.setAdapter(photoAdapter);
+                    }
                 }
             }
 
@@ -170,6 +186,11 @@ public class AnchorDetailActivity extends BaseActivity {
             case R.id.ll_tab_video:
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 
     class SendGiftFragment extends DialogFragment {

@@ -177,26 +177,4 @@ public class PerfectInfoActivity extends BaseActivity {
         String encodeString = new String(encode);
         return encodeString;
     }
-
-//    public void onDecodeClicked(String code) {
-//        byte[] decode = Base64.decode(code, Base64.DEFAULT);
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-//        //save to image on sdcard
-//        saveBitmap(bitmap);
-//    }
-//
-//    private void saveBitmap(Bitmap bitmap) {
-//        try {
-//            String path = Environment.getExternalStorageDirectory().getPath()
-//                    + "/decodeImage.jpg";
-//            Log.d("linc", "path is " + path);
-//            OutputStream stream = new FileOutputStream(path);
-//            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream);
-//            stream.close();
-//            Log.e("linc", "jpg okay!");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Log.e("linc", "failed: " + e.getMessage());
-//        }
-//    }
 }

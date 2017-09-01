@@ -14,6 +14,7 @@ public class Constants {
     public static final String VERIFY_CODE_TEST = "6666";
 
     public static final String PARAM_UID = "uid";
+    public static final String PARAM_PHOTO_ID= "id";
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_ANCHORPIC = "anchorpic";
     public static final String PARAM_NICKNAME = "nickname";
@@ -23,6 +24,7 @@ public class Constants {
     public static final String PARAM_BIRTHDAY = "birthday";
     public static final String PARAM_SEX = "sex";
     public static final String PARAM_HEADPIC = "headpic";
+    public static final String PARAM_PHOTO= "photo";
 
     public static final String PARAM_ANCHORPIC_INFO_EDIT_TYPE_VALUE = "1";
     public static final String PARAM_NICKNAME_INFO_EDIT_TYPE_VALUE = "2";
@@ -32,6 +34,7 @@ public class Constants {
     public static final String PARAM_BIRTHDAY_INFO_EDIT_TYPE_VALUE = "6";
     public static final String PARAM_SEX_INFO_EDIT_TYPE_VALUE = "7";
     public static final String PARAM_HEADPIC_INFO_EDIT_TYPE_VALUE = "8";
+    public static final String PARAM_PHOTO_INFO_EDIT_TYPE_VALUE = "9";
     public static final String PARAM_LABEL_FOR_PERSONAL_TYPE = "1";
     public static final String PARAM_LABEL_FOR_USER_TYPE = "2";
 
