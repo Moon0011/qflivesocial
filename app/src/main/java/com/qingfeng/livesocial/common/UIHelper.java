@@ -57,4 +57,13 @@ public class UIHelper {
         return "";
     }
 
+    public static boolean getAttention(int attstatus) {
+        if (attstatus == 1) {
+            return true;
+        } else if (attstatus == 0) {
+            return false;
+        }
+        return false;
+    }
+
 }

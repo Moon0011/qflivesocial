@@ -172,6 +172,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/rl_attention"
                         android:layout_width="76.3dp"
                         android:layout_height="30.3dp"
                         android:layout_marginLeft="@dimen/anchor_detail_indroduce_anchor_detail_img_rl_margin_left">

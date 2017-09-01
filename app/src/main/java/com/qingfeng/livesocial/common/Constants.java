@@ -15,6 +15,7 @@ public class Constants {
 
     public static final String PARAM_UID = "uid";
     public static final String PARAM_AUID = "attuid";
+    public static final String PARAM_ATTENSTATUS = "attstatus";
     public static final String PARAM_PHOTO_ID= "id";
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_ANCHORPIC = "anchorpic";

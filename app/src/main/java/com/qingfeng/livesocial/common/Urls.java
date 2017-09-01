@@ -14,6 +14,7 @@ public class Urls {
     public static final String SLIDE = String.format("http://%s/index.php/api/user/slide", DOMAIN_NAME);
     public static final String RANKLIST = String.format("http://%s/index.php/api/user/ranklist", DOMAIN_NAME);
     public static final String WEBSITE = String.format("http://%s/index.php/api/user/website", DOMAIN_NAME);
+    public static final String ATTENTION2 = String.format("http://%s/index.php/api/user/attention", DOMAIN_NAME);
     public static final String CALL_EVALUATION = String.format("http://%s/index.php/api/user/callevaluation", DOMAIN_NAME);
     public static final String PERSONAL_CENTER = String.format("http://%s/index.php/api/user/usercenter", DOMAIN_NAME);//个人中心
     public static final String PERSONAL_CENTER_EDIT_INFO = String.format("http://%s/index.php/api/user/editinfo", DOMAIN_NAME);//个人中心-编辑资料

@@ -19,6 +19,7 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PhotoAdapter2;
 import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
+import com.qingfeng.livesocial.bean.RespBean;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.UIHelper;
@@ -37,6 +38,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.qingfeng.livesocial.common.Constants.PARAM_ATTENSTATUS;
 import static com.qingfeng.livesocial.common.Constants.PARAM_AUID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
@@ -88,6 +90,8 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     private String uid;
     private List<String> photoDatas;
     private PhotoAdapter2 photoAdapter;
+    private int attenStatus = 0;
+    private boolean isAttention = false;
 
     @Override
     protected int getLayoutById() {
@@ -129,6 +133,7 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                     tvSignature.setText(bean.getSignature());
                     tv_fans.setText(String.valueOf(bean.getAttentionnum()));
                     tvAttention.setText(UIHelper.setAttention(bean.getAttstatus()));
+                    isAttention = UIHelper.getAttention(bean.getAttstatus());
                     List<Button> btnContainer = new ArrayList<Button>();
                     btnContainer.add(btnLabel1);
                     btnContainer.add(btnLabel2);
@@ -170,7 +175,7 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
         });
     }
 
-    @OnClick({R.id.img_arrow_left, R.id.ll_call_evaluation, R.id.ll_tab_sendgift, R.id.ll_tab_msgself, R.id.ll_tab_phone, R.id.ll_tab_video})
+    @OnClick({R.id.img_arrow_left, R.id.ll_call_evaluation, R.id.ll_tab_sendgift, R.id.ll_tab_msgself, R.id.ll_tab_phone, R.id.ll_tab_video, R.id.rl_attention})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_arrow_left:
@@ -191,12 +196,57 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                 break;
             case R.id.ll_tab_video:
                 break;
+            case R.id.rl_attention:
+                if (!isAttention) {
+                    attenStatus = 1;
+                } else {
+                    attenStatus = 0;
+                }
+                updateAttionStatus(attenStatus, isAttention);
+                isAttention = !isAttention;
+                break;
         }
     }
 
     @Override
     public void onItemClick(int position) {
 
+    }
+
+    private void updateAttionStatus(int status, final boolean isAttention) {
+        RequestParams params = new RequestParams(Urls.ATTENTION2);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_AUID, uid);
+        params.addParameter(PARAM_ATTENSTATUS, status);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("updateAttionStatus == " + result);
+                RespBean respBean = new Gson().fromJson(result, RespBean.class);
+                if (PARAM_Y.equals(respBean.getMsg())) {
+                    if (!isAttention) {
+                        showToast("关注成功");
+                        tvAttention.setText("已关注");
+                    } else {
+                        showToast("取消关注");
+                        tvAttention.setText("未关注");
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
     }
 
     class SendGiftFragment extends DialogFragment {
