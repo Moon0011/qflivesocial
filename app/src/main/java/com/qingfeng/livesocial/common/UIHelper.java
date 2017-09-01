@@ -38,5 +38,13 @@ public class UIHelper {
         }
         return "";
     }
+    public static String setSex2(String sex) {
+        if ("女".equals(sex)) {
+            return "f";
+        } else if ("男".equals(sex)) {
+            return "m";
+        }
+        return "";
+    }
 
 }

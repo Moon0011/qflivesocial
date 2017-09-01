@@ -48,8 +48,14 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_A;
+import static com.qingfeng.livesocial.common.Constants.PARAM_ADDRESS;
+import static com.qingfeng.livesocial.common.Constants.PARAM_ADDRESS_INFO_EDIT_TYPE_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_ANCHORPIC;
 import static com.qingfeng.livesocial.common.Constants.PARAM_ANCHORPIC_INFO_EDIT_TYPE_VALUE;
+import static com.qingfeng.livesocial.common.Constants.PARAM_BIRTHDAY;
+import static com.qingfeng.livesocial.common.Constants.PARAM_BIRTHDAY_INFO_EDIT_TYPE_VALUE;
+import static com.qingfeng.livesocial.common.Constants.PARAM_SEX;
+import static com.qingfeng.livesocial.common.Constants.PARAM_SEX_INFO_EDIT_TYPE_VALUE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_TYPE;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
@@ -145,7 +151,7 @@ public class AnchorInfoActivity extends BaseActivity {
         initTimePicker();
     }
 
-    @OnClick({R.id.rl_nickname, R.id.rl_qianming, R.id.rl_labels, R.id.img_arrow_left, R.id.img_head, R.id.rl_address, R.id.rl_sex, R.id.rl_birthday, R.id.rl_constell})
+    @OnClick({R.id.rl_nickname, R.id.rl_qianming, R.id.rl_labels, R.id.img_arrow_left, R.id.img_head, R.id.rl_address, R.id.rl_sex, R.id.rl_birthday})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.rl_nickname:
@@ -174,6 +180,7 @@ public class AnchorInfoActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 final String[] aryShop = getResources().getStringArray(R.array.sex_arr);
                                 tvSex.setText(aryShop[which]);
+                                updateSex(UIHelper.setSex2(aryShop[which]));
                             }
                         })
                         .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -188,25 +195,6 @@ public class AnchorInfoActivity extends BaseActivity {
             case R.id.rl_birthday:
                 pvTime.show();
                 break;
-            case R.id.rl_constell:
-                new AlertDialog.Builder(this)
-                        .setTitle("选择您的星座")
-                        .setItems(R.array.constell_arr, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                final String[] aryShop = getResources().getStringArray(R.array.constell_arr);
-                                tvConstell.setText(aryShop[which]);
-                            }
-                        })
-                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
-                break;
         }
     }
 
@@ -217,6 +205,7 @@ public class AnchorInfoActivity extends BaseActivity {
             public void onTimeSelect(Date date, View v) {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 tvBirthday.setText(format.format(date));
+                updateBirthday(format.format(date));
             }
         })//年月日时分秒 的显示与否，不设置则默认全部显示
                 .setType(new boolean[]{true, true, true, false, false, false})
@@ -273,6 +262,8 @@ public class AnchorInfoActivity extends BaseActivity {
                         options2Items.get(options1).get(options2) + " " +
                         options3Items.get(options1).get(options2).get(options3);
                 tvAddress.setText(tx);
+                updateAddress(tx);
+
             }
         })
                 .setTitleText("城市选择")
@@ -369,6 +360,105 @@ public class AnchorInfoActivity extends BaseActivity {
         params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
         params.addParameter(PARAM_TYPE, PARAM_ANCHORPIC_INFO_EDIT_TYPE_VALUE);
         params.addParameter(PARAM_ANCHORPIC, encode(filePath));
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("updateHeadPic == " + result);
+                RespBean respBean = new Gson().fromJson(result, RespBean.class);
+                if (PARAM_Y.equals(respBean.getMsg())) {
+                    showToast("修改成功");
+                    mHandler.sendEmptyMessage(MSG_REFRESH);
+                } else if (PARAM_A.equals(respBean.getMsg())) {
+                    showToast("不能为空");
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void updateSex(String sex) {
+        RequestParams params = new RequestParams(Urls.PERSONAL_CENTER_EDIT_INFO);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_TYPE, PARAM_SEX_INFO_EDIT_TYPE_VALUE);
+        params.addParameter(PARAM_SEX, sex);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("updateHeadPic == " + result);
+                RespBean respBean = new Gson().fromJson(result, RespBean.class);
+                if (PARAM_Y.equals(respBean.getMsg())) {
+                    showToast("修改成功");
+                    mHandler.sendEmptyMessage(MSG_REFRESH);
+                } else if (PARAM_A.equals(respBean.getMsg())) {
+                    showToast("不能为空");
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void updateAddress(String address) {
+        RequestParams params = new RequestParams(Urls.PERSONAL_CENTER_EDIT_INFO);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_TYPE, PARAM_ADDRESS_INFO_EDIT_TYPE_VALUE);
+        params.addParameter(PARAM_ADDRESS, address);
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("updateHeadPic == " + result);
+                RespBean respBean = new Gson().fromJson(result, RespBean.class);
+                if (PARAM_Y.equals(respBean.getMsg())) {
+                    showToast("修改成功");
+                    mHandler.sendEmptyMessage(MSG_REFRESH);
+                } else if (PARAM_A.equals(respBean.getMsg())) {
+                    showToast("不能为空");
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    private void updateBirthday(String birthday) {
+        RequestParams params = new RequestParams(Urls.PERSONAL_CENTER_EDIT_INFO);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_TYPE, PARAM_BIRTHDAY_INFO_EDIT_TYPE_VALUE);
+        params.addParameter(PARAM_BIRTHDAY, birthday);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
