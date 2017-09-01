@@ -172,13 +172,13 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="76.3dp"
+                        android:layout_height="30.3dp"
                         android:layout_marginLeft="@dimen/anchor_detail_indroduce_anchor_detail_img_rl_margin_left">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center|right"
                             android:scaleType="fitXY"
                             android:src="@mipmap/home_top_button_bg2" />
@@ -198,6 +198,7 @@
                                 android:src="@mipmap/attention_star" />
 
                             <TextView
+                                android:id="@+id/tv_attention"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentRight="true"
@@ -241,8 +242,8 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclelistview"
                         android:layout_width="wrap_content"
-                        android:layout_alignParentLeft="true"
                         android:layout_height="62.7dp"
+                        android:layout_alignParentLeft="true"
                         android:layout_marginLeft="12dp"
                         android:layout_toLeftOf="@+id/img_arrow" />
 

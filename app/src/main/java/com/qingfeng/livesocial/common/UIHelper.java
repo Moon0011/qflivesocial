@@ -38,11 +38,21 @@ public class UIHelper {
         }
         return "";
     }
+
     public static String setSex2(String sex) {
         if ("女".equals(sex)) {
             return "f";
         } else if ("男".equals(sex)) {
             return "m";
+        }
+        return "";
+    }
+
+    public static String setAttention(int attstatus) {
+        if (attstatus == 1) {
+            return "已关注";
+        } else if (attstatus == 0) {
+            return "未关注";
         }
         return "";
     }

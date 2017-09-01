@@ -70,9 +70,18 @@ public class AnchorDetailRespBean {
         private String labels;
         private String commentnum;
         private String rating;
+        private int attstatus;
         private int attentionnum;
         private int totaltime;
         private List<String> photo;
+
+        public int getAttstatus() {
+            return attstatus;
+        }
+
+        public void setAttstatus(int attstatus) {
+            this.attstatus = attstatus;
+        }
 
         public String getVideo() {
             return video;

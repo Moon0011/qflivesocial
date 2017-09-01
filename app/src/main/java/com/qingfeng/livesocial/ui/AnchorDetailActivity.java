@@ -21,6 +21,7 @@ import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
 import com.qingfeng.livesocial.common.QFApplication;
+import com.qingfeng.livesocial.common.UIHelper;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.util.StringUtils;
@@ -36,6 +37,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.qingfeng.livesocial.common.Constants.PARAM_AUID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
@@ -81,6 +83,8 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     TextView tv_fans;
     @Bind(R.id.recyclelistview)
     RecyclerView recyclelistview;
+    @Bind(R.id.tv_attention)
+    TextView tvAttention;
     private String uid;
     private List<String> photoDatas;
     private PhotoAdapter2 photoAdapter;
@@ -103,7 +107,8 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
 
     private void getAnchorDetail(String uid) {
         RequestParams params = new RequestParams(Urls.WEBSITE);
-        params.addParameter(PARAM_UID, uid);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        params.addParameter(PARAM_AUID, uid);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -116,13 +121,14 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                             bean.getVideo(),
                             imageOptions,
                             null);
-                    tvIntroduce.setText(bean.getSex() + "  " + bean.getAge() + "  " + bean.getConstellation() + "  " + bean.getAddress());
+                    tvIntroduce.setText(UIHelper.setSex(bean.getSex()) + "  " + bean.getAge() + "  " + bean.getConstellation() + "  " + bean.getAddress());
                     tvVoiceTime.setText(bean.getVoice());
                     tvCommentRating.setText("好评度" + bean.getRating());
                     tvCommentNum.setText(bean.getCommentnum() + "条评论");
                     tvTotalTalktime.setText(bean.getTotaltime() + "分钟");
                     tvSignature.setText(bean.getSignature());
                     tv_fans.setText(String.valueOf(bean.getAttentionnum()));
+                    tvAttention.setText(UIHelper.setAttention(bean.getAttstatus()));
                     List<Button> btnContainer = new ArrayList<Button>();
                     btnContainer.add(btnLabel1);
                     btnContainer.add(btnLabel2);
