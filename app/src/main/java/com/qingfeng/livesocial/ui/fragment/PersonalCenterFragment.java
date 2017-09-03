@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.AnchorAnthenActivity;
 import com.qingfeng.livesocial.ui.AnchorInfoActivity;
 import com.qingfeng.livesocial.ui.AttentionActivity;
+import com.qingfeng.livesocial.ui.BigPicActivity;
 import com.qingfeng.livesocial.ui.CallSettingActivity;
 import com.qingfeng.livesocial.ui.GiftActivity;
 import com.qingfeng.livesocial.ui.MyWalletActivity;
@@ -39,6 +41,7 @@ import com.qingfeng.livesocial.ui.base.BaseFragment;
 import com.qingfeng.livesocial.util.GlideImageLoader;
 import com.qingfeng.livesocial.util.StringUtils;
 import com.qingfeng.livesocial.widget.RoundedImageView;
+import com.squareup.picasso.Picasso;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -63,6 +66,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
  * Created by Administrator on 2017/8/29.
+ * 个人中心
  */
 
 public class PersonalCenterFragment extends BaseFragment implements PhotoAdapter.OnItemClickListener {
@@ -298,10 +302,10 @@ public class PersonalCenterFragment extends BaseFragment implements PhotoAdapter
                                 bean.getAnchorpic(),
                                 imageOptions,
                                 null);
-                        x.image().bind(imgRoomBg,
-                                bean.getRoompic(),
-                                imageOptions,
-                                null);
+                        Picasso.with(getActivity()).load(bean.getRoompic())
+                                .placeholder(R.mipmap.ic_launcher)
+                                .error(R.mipmap.ic_launcher).into(imgRoomBg);
+
                         photoDatas = bean.getPhoto();
                         if (null != photoDatas && photoDatas.size() > 0) {
                             photoAdapter = new PhotoAdapter(getActivity(), photoDatas);
@@ -359,8 +363,11 @@ public class PersonalCenterFragment extends BaseFragment implements PhotoAdapter
         btSeePic.setOnClickListener(new View.OnClickListener() {//查看大图
             @Override
             public void onClick(View v) {
-                BigPicFragment bigPicFragment = new BigPicFragment(photoDatas.get(pos).getPicurl(), imageOptions);
-                bigPicFragment.show(getFragmentManager(), "show");
+                Bundle b = new Bundle();
+                b.putString("picurl", photoDatas.get(pos).getPicurl());
+                gotoActivityWithBundle(getActivity(), BigPicActivity.class, b);
+//                BigPicFragment bigPicFragment = new BigPicFragment(photoDatas.get(pos).getPicurl(), imageOptions);
+//                bigPicFragment.show(getFragmentManager(), "show");
                 popupWindow.dismiss();
             }
         });

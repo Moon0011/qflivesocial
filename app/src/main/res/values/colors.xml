@@ -16,4 +16,5 @@
     <color name="roundProgressColor_svprogresshuddefault">@android:color/black</color>
 
     <color name="label_selected_color">#13b5b1</color>
+    <color name="blue_dark">#001425</color>
 </resources>

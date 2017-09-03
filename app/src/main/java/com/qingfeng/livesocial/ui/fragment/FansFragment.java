@@ -60,7 +60,7 @@ public class FansFragment extends BaseFragment {
     }
 
     private void getFansList() {
-        RequestParams params = new RequestParams(Urls.ATTENTION);
+        RequestParams params = new RequestParams(Urls.ATTPAGE);
         params.addParameter(PARAM_UID, "4");
         params.addParameter(PARAM_TYPE, PARAM_FANS_TYPE);
         x.http().post(params, new Callback.CommonCallback<String>() {

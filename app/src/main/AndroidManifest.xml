@@ -54,6 +54,7 @@
         <activity android:name=".ui.QianmingActivity" />
         <activity android:name=".ui.AnswerIntervalActivity" />
         <activity android:name=".ui.AnchorVideoAnthenActivity" />
+        <activity android:name=".ui.BigPicActivity" />
         <activity android:name=".ui.TestActivity" />
     </application>
 

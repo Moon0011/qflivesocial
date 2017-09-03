@@ -214,7 +214,7 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     }
 
     private void updateAttionStatus(int status, final boolean isAttention) {
-        RequestParams params = new RequestParams(Urls.ATTENTION2);
+        RequestParams params = new RequestParams(Urls.ATTENTION);
         params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
         params.addParameter(PARAM_AUID, uid);
         params.addParameter(PARAM_ATTENSTATUS, status);

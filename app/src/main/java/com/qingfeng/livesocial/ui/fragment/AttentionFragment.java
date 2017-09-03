@@ -59,7 +59,7 @@ public class AttentionFragment extends BaseFragment {
     }
 
     private void getAtentionList() {
-        RequestParams params = new RequestParams(Urls.ATTENTION);
+        RequestParams params = new RequestParams(Urls.ATTPAGE);
         params.addParameter(PARAM_UID, "1");
         params.addParameter(PARAM_TYPE, PARAM_ATTENTION_TYPE);
         x.http().post(params, new Callback.CommonCallback<String>() {
