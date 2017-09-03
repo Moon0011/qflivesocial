@@ -303,8 +303,8 @@ public class PersonalCenterFragment extends BaseFragment implements PhotoAdapter
                                 imageOptions,
                                 null);
                         Picasso.with(getActivity()).load(bean.getRoompic())
-                                .placeholder(R.mipmap.ic_launcher)
-                                .error(R.mipmap.ic_launcher).into(imgRoomBg);
+                                .placeholder(R.mipmap.error_pic)
+                                .error(R.mipmap.error_pic).into(imgRoomBg);
 
                         photoDatas = bean.getPhoto();
                         if (null != photoDatas && photoDatas.size() > 0) {

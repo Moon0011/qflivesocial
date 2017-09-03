@@ -28,8 +28,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/call_evaluation_anchor_introduce_rl_height"
-        android:background="@mipmap/timg">
+        android:layout_height="@dimen/call_evaluation_anchor_introduce_rl_height">
+
+        <ImageView
+            android:id="@+id/img_roompic"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@mipmap/timg" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -41,6 +47,7 @@
             android:orientation="horizontal">
 
             <com.qingfeng.livesocial.widget.RoundedImageView
+                android:id="@+id/tv_anchorpic"
                 android:layout_width="@dimen/call_evaluation_anchor_introduce_head_img_width_height"
                 android:layout_height="@dimen/call_evaluation_anchor_introduce_head_img_width_height"
                 android:layout_gravity="center"
@@ -53,6 +60,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="小薇"
@@ -69,7 +77,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="萌ID: 1454445"
+                        android:text="萌ID: "
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/call_evaluation_anchor_introduce_mengId_txt_size" />
+
+                    <TextView
+                        android:id="@+id/tv_curr_roomnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1454445"
                         android:textColor="@color/white"
                         android:textSize="@dimen/call_evaluation_anchor_introduce_mengId_txt_size" />
 
@@ -79,14 +95,13 @@
                         android:layout_marginLeft="@dimen/call_evaluation_anchor_introduce_sex_rl_margin_left">
 
                         <ImageView
-                            android:id="@+id/imghead2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:scaleType="fitXY"
                             android:src="@mipmap/recommend_sex_bg" />
 
                         <TextView
-                            android:id="@+id/tv_age2"
+                            android:id="@+id/tv_age"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -240,104 +255,108 @@
         android:layout_height="@dimen/call_evaluation_anchor_divider_height0"
         android:background="#eeeeee" />
 
-    <LinearLayout
-        android:id="@+id/ll_evaluation_detail"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/call_evaluation_anchor_bottom_ll_heigth"
-        android:orientation="vertical">
+        android:layout_height="match_parent" />
+    <!--<LinearLayout-->
+    <!--android:id="@+id/ll_evaluation_detail"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/call_evaluation_anchor_bottom_ll_heigth"-->
+    <!--android:orientation="vertical">-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll2_margin_left"
-            android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll2_margin_top"
-            android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll2_margin_left"-->
+    <!--android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll2_margin_top"-->
+    <!--android:orientation="horizontal">-->
 
-            <com.qingfeng.livesocial.widget.RoundedImageView
-                android:layout_width="@dimen/call_evaluation_anchor_bottom_ll2_head_img_width_height"
-                android:layout_height="@dimen/call_evaluation_anchor_bottom_ll2_head_img_width_height"
-                android:layout_gravity="center"
-                android:src="@mipmap/f_head" />
+    <!--<com.qingfeng.livesocial.widget.RoundedImageView-->
+    <!--android:layout_width="@dimen/call_evaluation_anchor_bottom_ll2_head_img_width_height"-->
+    <!--android:layout_height="@dimen/call_evaluation_anchor_bottom_ll2_head_img_width_height"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:src="@mipmap/f_head" />-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_margin_left"
-                android:orientation="vertical">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_margin_left"-->
+    <!--android:orientation="vertical">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="小薇"
-                    android:textColor="#172434"
-                    android:textSize="@dimen/call_evaluation_anchor_bottom_ll3_nickname_txt_size" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="小薇"-->
+    <!--android:textColor="#172434"-->
+    <!--android:textSize="@dimen/call_evaluation_anchor_bottom_ll3_nickname_txt_size" />-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_top"
-                    android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_top"-->
+    <!--android:orientation="horizontal">-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/rating_star_1" />
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@mipmap/rating_star_1" />-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
-                        android:src="@mipmap/rating_star_1" />
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"-->
+    <!--android:src="@mipmap/rating_star_1" />-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
-                        android:src="@mipmap/rating_star_1" />
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"-->
+    <!--android:src="@mipmap/rating_star_1" />-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
-                        android:src="@mipmap/rating_star_2" />
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"-->
+    <!--android:src="@mipmap/rating_star_2" />-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"
-                        android:src="@mipmap/rating_star_3" />
-                </LinearLayout>
-            </LinearLayout>
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_star_margin_left"-->
+    <!--android:src="@mipmap/rating_star_3" />-->
+    <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 
-            <Button
-                android:layout_width="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_width"
-                android:layout_height="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_height"
-                android:layout_gravity="center"
-                android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_margin_left"
-                android:background="@mipmap/home_top_button_bg2"
-                android:text="知心"
-                android:textColor="@color/white" />
-        </LinearLayout>
+    <!--<Button-->
+    <!--android:layout_width="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_width"-->
+    <!--android:layout_height="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_height"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_btn_margin_left"-->
+    <!--android:background="@mipmap/home_top_button_bg2"-->
+    <!--android:text="知心"-->
+    <!--android:textColor="@color/white" />-->
+    <!--</LinearLayout>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_margin_left"
-            android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_margin_top"
-            android:text="小薇小薇小薇"
-            android:textColor="#172434" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginLeft="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_margin_left"-->
+    <!--android:layout_marginTop="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_margin_top"-->
+    <!--android:text="小薇小薇小薇"-->
+    <!--android:textColor="#172434" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_time_margin_rigth"
-            android:text="2017/8/8 00:00:00"
-            android:textColor="#8e9091"
-            android:textSize="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_time_size" />
-    </LinearLayout>
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="right"-->
+    <!--android:layout_marginRight="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_time_margin_rigth"-->
+    <!--android:text="2017/8/8 00:00:00"-->
+    <!--android:textColor="#8e9091"-->
+    <!--android:textSize="@dimen/call_evaluation_anchor_bottom_ll3_recommend_txt_time_size" />-->
+    <!--</LinearLayout>-->
 
     <View
         android:layout_width="match_parent"

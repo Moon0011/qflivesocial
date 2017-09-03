@@ -8,13 +8,14 @@ import java.util.List;
 
 public class CallEvaluationRespBean {
 
+
     /**
      * msg : y
-     * result : {"video":"http://video.520cai.cn/upload/zhibo/20170817/48352dc33a246b55e97db528e3c67dd1.jpg","voice":"未设置","nickname":"cai","sex":"男","age":"0","onlinestatus":0,"constellation":"未设置","address":"未设置","photo":[],"listen_setting":"未设置","video_setting":"未设置","voice_setting":"未设置","signature":"這是一個測試","labels":"未设置","commentnum":"0","rating":"100%","attentionnum":null,"totaltime":0}
+     * result : {"commentinfo":[{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299109,"label":"2,3"},{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299113,"label":"2,3"}],"labelinfo":[{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299109,"label":"2,3"},{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299113,"label":"2,3"}],"userinfo":{"anchorpic":"http://video.520cai.cn/upload/ios/20170901/50458754c45969429ac2f6220c3405b4.png","roompic":"/upload/ios/20170823/755697057348e5da0e8ae7e2854dc535.png","nickname":"马卿","curroomnum":1077789306,"sex":"男","age":3,"signature":"世上无难事 ，只怕有心人。"}}
      */
 
     private String msg;
-    private CallEvaluBean result;
+    private ResultBean result;
 
     public String getMsg() {
         return msg;
@@ -24,197 +25,255 @@ public class CallEvaluationRespBean {
         this.msg = msg;
     }
 
-    public CallEvaluBean getResult() {
+    public ResultBean getResult() {
         return result;
     }
 
-    public void setResult(CallEvaluBean result) {
+    public void setResult(ResultBean result) {
         this.result = result;
     }
 
-    public static class CallEvaluBean {
+    public static class ResultBean {
         /**
-         * video : http://video.520cai.cn/upload/zhibo/20170817/48352dc33a246b55e97db528e3c67dd1.jpg
-         * voice : 未设置
-         * nickname : cai
-         * sex : 男
-         * age : 0
-         * onlinestatus : 0
-         * constellation : 未设置
-         * address : 未设置
-         * photo : []
-         * listen_setting : 未设置
-         * video_setting : 未设置
-         * voice_setting : 未设置
-         * signature : 這是一個測試
-         * labels : 未设置
-         * commentnum : 0
-         * rating : 100%
-         * attentionnum : null
-         * totaltime : 0
+         * commentinfo : [{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299109,"label":"2,3"},{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299113,"label":"2,3"}]
+         * labelinfo : [{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299109,"label":"2,3"},{"anchorpic":"http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png","nickname":"11","content":"111111","starnum":4,"creattime":1503299113,"label":"2,3"}]
+         * userinfo : {"anchorpic":"http://video.520cai.cn/upload/ios/20170901/50458754c45969429ac2f6220c3405b4.png","roompic":"/upload/ios/20170823/755697057348e5da0e8ae7e2854dc535.png","nickname":"马卿","curroomnum":1077789306,"sex":"男","age":3,"signature":"世上无难事 ，只怕有心人。"}
          */
 
-        private String video;
-        private String voice;
-        private String nickname;
-        private String sex;
-        private String age;
-        private int onlinestatus;
-        private String constellation;
-        private String address;
-        private String listen_setting;
-        private String video_setting;
-        private String voice_setting;
-        private String signature;
-        private String labels;
-        private String commentnum;
-        private String rating;
-        private Object attentionnum;
-        private int totaltime;
-        private List<?> photo;
+        private UserinfoBean userinfo;
+        private List<CommentinfoBean> commentinfo;
+        private List<LabelinfoBean> labelinfo;
 
-        public String getVideo() {
-            return video;
+        public UserinfoBean getUserinfo() {
+            return userinfo;
         }
 
-        public void setVideo(String video) {
-            this.video = video;
+        public void setUserinfo(UserinfoBean userinfo) {
+            this.userinfo = userinfo;
         }
 
-        public String getVoice() {
-            return voice;
+        public List<CommentinfoBean> getCommentinfo() {
+            return commentinfo;
         }
 
-        public void setVoice(String voice) {
-            this.voice = voice;
+        public void setCommentinfo(List<CommentinfoBean> commentinfo) {
+            this.commentinfo = commentinfo;
         }
 
-        public String getNickname() {
-            return nickname;
+        public List<LabelinfoBean> getLabelinfo() {
+            return labelinfo;
         }
 
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
+        public void setLabelinfo(List<LabelinfoBean> labelinfo) {
+            this.labelinfo = labelinfo;
         }
 
-        public String getSex() {
-            return sex;
+        public static class UserinfoBean {
+            /**
+             * anchorpic : http://video.520cai.cn/upload/ios/20170901/50458754c45969429ac2f6220c3405b4.png
+             * roompic : /upload/ios/20170823/755697057348e5da0e8ae7e2854dc535.png
+             * nickname : 马卿
+             * curroomnum : 1077789306
+             * sex : 男
+             * age : 3
+             * signature : 世上无难事 ，只怕有心人。
+             */
+
+            private String anchorpic;
+            private String roompic;
+            private String nickname;
+            private int curroomnum;
+            private String sex;
+            private int age;
+            private String signature;
+
+            public String getAnchorpic() {
+                return anchorpic;
+            }
+
+            public void setAnchorpic(String anchorpic) {
+                this.anchorpic = anchorpic;
+            }
+
+            public String getRoompic() {
+                return roompic;
+            }
+
+            public void setRoompic(String roompic) {
+                this.roompic = roompic;
+            }
+
+            public String getNickname() {
+                return nickname;
+            }
+
+            public void setNickname(String nickname) {
+                this.nickname = nickname;
+            }
+
+            public int getCurroomnum() {
+                return curroomnum;
+            }
+
+            public void setCurroomnum(int curroomnum) {
+                this.curroomnum = curroomnum;
+            }
+
+            public String getSex() {
+                return sex;
+            }
+
+            public void setSex(String sex) {
+                this.sex = sex;
+            }
+
+            public int getAge() {
+                return age;
+            }
+
+            public void setAge(int age) {
+                this.age = age;
+            }
+
+            public String getSignature() {
+                return signature;
+            }
+
+            public void setSignature(String signature) {
+                this.signature = signature;
+            }
         }
 
-        public void setSex(String sex) {
-            this.sex = sex;
+        public static class CommentinfoBean {
+            /**
+             * anchorpic : http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png
+             * nickname : 11
+             * content : 111111
+             * starnum : 4
+             * creattime : 1503299109
+             * label : 2,3
+             */
+
+            private String anchorpic;
+            private String nickname;
+            private String content;
+            private int starnum;
+            private long creattime;
+            private String label;
+
+            public String getAnchorpic() {
+                return anchorpic;
+            }
+
+            public void setAnchorpic(String anchorpic) {
+                this.anchorpic = anchorpic;
+            }
+
+            public String getNickname() {
+                return nickname;
+            }
+
+            public void setNickname(String nickname) {
+                this.nickname = nickname;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public int getStarnum() {
+                return starnum;
+            }
+
+            public void setStarnum(int starnum) {
+                this.starnum = starnum;
+            }
+
+            public long getCreattime() {
+                return creattime;
+            }
+
+            public void setCreattime(long creattime) {
+                this.creattime = creattime;
+            }
+
+            public String getLabel() {
+                return label;
+            }
+
+            public void setLabel(String label) {
+                this.label = label;
+            }
         }
 
-        public String getAge() {
-            return age;
-        }
+        public static class LabelinfoBean {
+            /**
+             * anchorpic : http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png
+             * nickname : 11
+             * content : 111111
+             * starnum : 4
+             * creattime : 1503299109
+             * label : 2,3
+             */
 
-        public void setAge(String age) {
-            this.age = age;
-        }
+            private String anchorpic;
+            private String nickname;
+            private String content;
+            private int starnum;
+            private int creattime;
+            private String label;
 
-        public int getOnlinestatus() {
-            return onlinestatus;
-        }
+            public String getAnchorpic() {
+                return anchorpic;
+            }
 
-        public void setOnlinestatus(int onlinestatus) {
-            this.onlinestatus = onlinestatus;
-        }
+            public void setAnchorpic(String anchorpic) {
+                this.anchorpic = anchorpic;
+            }
 
-        public String getConstellation() {
-            return constellation;
-        }
+            public String getNickname() {
+                return nickname;
+            }
 
-        public void setConstellation(String constellation) {
-            this.constellation = constellation;
-        }
+            public void setNickname(String nickname) {
+                this.nickname = nickname;
+            }
 
-        public String getAddress() {
-            return address;
-        }
+            public String getContent() {
+                return content;
+            }
 
-        public void setAddress(String address) {
-            this.address = address;
-        }
+            public void setContent(String content) {
+                this.content = content;
+            }
 
-        public String getListen_setting() {
-            return listen_setting;
-        }
+            public int getStarnum() {
+                return starnum;
+            }
 
-        public void setListen_setting(String listen_setting) {
-            this.listen_setting = listen_setting;
-        }
+            public void setStarnum(int starnum) {
+                this.starnum = starnum;
+            }
 
-        public String getVideo_setting() {
-            return video_setting;
-        }
+            public int getCreattime() {
+                return creattime;
+            }
 
-        public void setVideo_setting(String video_setting) {
-            this.video_setting = video_setting;
-        }
+            public void setCreattime(int creattime) {
+                this.creattime = creattime;
+            }
 
-        public String getVoice_setting() {
-            return voice_setting;
-        }
+            public String getLabel() {
+                return label;
+            }
 
-        public void setVoice_setting(String voice_setting) {
-            this.voice_setting = voice_setting;
-        }
-
-        public String getSignature() {
-            return signature;
-        }
-
-        public void setSignature(String signature) {
-            this.signature = signature;
-        }
-
-        public String getLabels() {
-            return labels;
-        }
-
-        public void setLabels(String labels) {
-            this.labels = labels;
-        }
-
-        public String getCommentnum() {
-            return commentnum;
-        }
-
-        public void setCommentnum(String commentnum) {
-            this.commentnum = commentnum;
-        }
-
-        public String getRating() {
-            return rating;
-        }
-
-        public void setRating(String rating) {
-            this.rating = rating;
-        }
-
-        public Object getAttentionnum() {
-            return attentionnum;
-        }
-
-        public void setAttentionnum(Object attentionnum) {
-            this.attentionnum = attentionnum;
-        }
-
-        public int getTotaltime() {
-            return totaltime;
-        }
-
-        public void setTotaltime(int totaltime) {
-            this.totaltime = totaltime;
-        }
-
-        public List<?> getPhoto() {
-            return photo;
-        }
-
-        public void setPhoto(List<?> photo) {
-            this.photo = photo;
+            public void setLabel(String label) {
+                this.label = label;
+            }
         }
     }
 }

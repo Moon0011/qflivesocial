@@ -102,8 +102,8 @@ public class SlideShowView extends FrameLayout {
         imageOptions = new ImageOptions.Builder()
                 .setPlaceholderScaleType(ImageView.ScaleType.FIT_XY)
                 .setImageScaleType(ImageView.ScaleType.FIT_XY)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
-                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .setLoadingDrawableId(R.mipmap.error_pic)
+                .setFailureDrawableId(R.mipmap.error_pic)
                 .build();
     }
 
@@ -146,7 +146,7 @@ public class SlideShowView extends FrameLayout {
             ImageView view = new ImageView(context);
             view.setTag(imageUrls[i]);
             if (i == 0) {//给一个默认图
-                view.setBackgroundResource(R.mipmap.ic_launcher);
+                view.setBackgroundResource(R.mipmap.error_pic);
             }
             view.setScaleType(ImageView.ScaleType.FIT_XY);
             imageViewsList.add(view);

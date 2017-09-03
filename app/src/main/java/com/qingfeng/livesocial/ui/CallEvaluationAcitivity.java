@@ -1,13 +1,18 @@
 package com.qingfeng.livesocial.ui;
 
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.adapter.CommendAdapter;
+import com.qingfeng.livesocial.bean.CallEvaluationRespBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.widget.RoundedImageView;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -18,6 +23,7 @@ import butterknife.Bind;
 import butterknife.OnClick;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
+import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
 /**
  * Created by Administrator on 2017/8/29.
@@ -26,8 +32,18 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 public class CallEvaluationAcitivity extends BaseActivity {
     @Bind(R.id.img_arrow_left)
     ImageView imgArrowLeft;
-    @Bind(R.id.ll_evaluation_detail)
-    LinearLayout llEvaluationDetail;
+    @Bind(R.id.img_roompic)
+    ImageView imgRoompic;
+    @Bind(R.id.tv_anchorpic)
+    RoundedImageView tvAnchorpic;
+    @Bind(R.id.tv_nickname)
+    TextView tvNickname;
+    @Bind(R.id.tv_curr_roomnum)
+    TextView tvCurrRoomnum;
+    @Bind(R.id.tv_age)
+    TextView tvAge;
+    @Bind(R.id.recyclerview)
+    RecyclerView mRecyclerView;
     private String uid;
 
     @Override
@@ -48,15 +64,31 @@ public class CallEvaluationAcitivity extends BaseActivity {
 
     private void getCallEvaluation(String uid) {
         RequestParams params = new RequestParams(Urls.CALL_EVALUATION);
-        params.addParameter(PARAM_UID, uid);
+        params.addParameter(PARAM_UID, 23);
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 LogUtil.e("getCallEvaluation == " + result);
-//                CallEvaluationRespBean respBean = new Gson().fromJson(result, CallEvaluationRespBean.class);
-//                if (PARAM_Y.equals(respBean.getMsg()) && respBean != null) {
-//
-//                }
+                CallEvaluationRespBean respBean = new Gson().fromJson(result, CallEvaluationRespBean.class);
+                if (PARAM_Y.equals(respBean.getMsg()) && respBean != null) {
+                    if (null != respBean.getResult()) {
+                        x.image().bind(imgRoompic,
+                                respBean.getResult().getUserinfo().getRoompic(),
+                                imageOptions,
+                                null);
+                        x.image().bind(tvAnchorpic,
+                                respBean.getResult().getUserinfo().getAnchorpic(),
+                                imageOptions,
+                                null);
+                        tvNickname.setText(respBean.getResult().getUserinfo().getNickname());
+                        tvCurrRoomnum.setText(String.valueOf(respBean.getResult().getUserinfo().getCurroomnum()));
+                        tvAge.setText(String.valueOf(respBean.getResult().getUserinfo().getAge()));
+                        CommendAdapter adapter = new CommendAdapter(mContext, respBean.getResult().getCommentinfo(), imageOptions);
+                        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+                        mRecyclerView.setHasFixedSize(true);
+                        mRecyclerView.setAdapter(adapter);
+                    }
+                }
             }
 
             @Override
@@ -74,17 +106,17 @@ public class CallEvaluationAcitivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.img_arrow_left, R.id.ll_evaluation_detail})
+    @OnClick({R.id.img_arrow_left})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_arrow_left:
                 finish();
                 break;
-            case R.id.ll_evaluation_detail:
-                Bundle b = new Bundle();
-                b.putString(PARAM_UID, uid);
-                gotoActivityWithBundle(CallEvaluationAcitivity.this, EvaluationDetailAcitivity.class, b);
-                break;
+//            case R.id.ll_evaluation_detail:
+//                Bundle b = new Bundle();
+//                b.putString(PARAM_UID, uid);
+//                gotoActivityWithBundle(CallEvaluationAcitivity.this, EvaluationDetailAcitivity.class, b);
+//                break;
         }
     }
 }

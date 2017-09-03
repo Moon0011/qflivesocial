@@ -28,8 +28,8 @@ public class PhotoAdapter2 extends RecyclerView.Adapter<PhotoAdapter2.PhotoHolde
         this.context = context;
         this.mDatas = datas;
         mImageOptions = new ImageOptions.Builder()
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
-                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .setLoadingDrawableId(R.mipmap.error_pic)
+                .setFailureDrawableId(R.mipmap.error_pic)
                 .build();
     }
 

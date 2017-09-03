@@ -65,8 +65,8 @@ public abstract class BaseFragment extends Fragment {
         imageOptions = new ImageOptions.Builder()
                 .setPlaceholderScaleType(ImageView.ScaleType.FIT_XY)
                 .setImageScaleType(ImageView.ScaleType.FIT_XY)
-                .setLoadingDrawableId(R.mipmap.ic_launcher)
-                .setFailureDrawableId(R.mipmap.ic_launcher)
+                .setLoadingDrawableId(R.mipmap.error_pic)
+                .setFailureDrawableId(R.mipmap.error_pic)
                 .build();
     }
 
