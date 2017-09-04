@@ -249,14 +249,12 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                         }
                     }
                 });
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
@@ -292,14 +290,18 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                         }
                     }
                 });
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (null != mSwipeRefreshLayout) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
+                if (null != mSwipeRefreshLayout) {
+                    mSwipeRefreshLayout.setRefreshing(false);
+                }
                 isFirst = false;
             }
 
@@ -336,14 +338,12 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                         }
                     }
                 });
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
@@ -379,14 +379,12 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                         }
                     }
                 });
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
@@ -420,14 +418,12 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                         }
                     }
                 });
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
-                mSwipeRefreshLayout.setRefreshing(false);
                 isFirst = false;
             }
 

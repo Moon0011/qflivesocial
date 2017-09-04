@@ -25,6 +25,7 @@ public class CommendAdapter extends RecyclerView.Adapter<CommendAdapter.CommendV
     private final Context mContext;
     private List<CallEvaluationRespBean.ResultBean.CommentinfoBean> mDatas;
     private ImageOptions mImageOptions;
+    private OnItemClickListener onItemClickListener;
 
     public CommendAdapter(Context context, List<CallEvaluationRespBean.ResultBean.CommentinfoBean> datas, ImageOptions imageOptions) {
         this.mContext = context;
@@ -40,7 +41,16 @@ public class CommendAdapter extends RecyclerView.Adapter<CommendAdapter.CommendV
     }
 
     @Override
-    public void onBindViewHolder(CommendViewHolder holder, int position) {
+    public void onBindViewHolder(final CommendViewHolder holder, int position) {
+        if (onItemClickListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClickListener.onItemClick(holder.getLayoutPosition());
+                }
+            });
+        }
+
         CommendViewHolder commendViewHolder = (CommendViewHolder) holder;
         commendViewHolder.name.setText(mDatas.get(position).getNickname());
         commendViewHolder.createTime.setText(TimeUtils.getStrTime(mDatas.get(position).getCreattime(), "yyyy/MM/dd hh:mm:ss"));
@@ -73,14 +83,11 @@ public class CommendAdapter extends RecyclerView.Adapter<CommendAdapter.CommendV
         }
     }
 
-//    private String msToDate(long ms) {
-//        Date date = new Date(ms);
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-//        return format.format(date);
-//    }
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
-//    public static String msToDate(long timeStamp) {
-//        SimpleDateFormat sdr = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-//        return sdr.format(new Date(timeStamp));
-//    }
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
 }

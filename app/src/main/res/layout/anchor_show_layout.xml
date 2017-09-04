@@ -66,12 +66,12 @@
 
                 <RelativeLayout
                     android:layout_width="@dimen/anchor_show_discribe_sex_ll_width"
-                    android:layout_height="@dimen/anchor_show_discribe_sex_ll_height">
+                    android:layout_height="@dimen/anchor_show_discribe_sex_ll_height"
+                    android:layout_marginLeft="@dimen/anchor_show_discribe_sex_img_margin_left">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/anchor_show_discribe_sex_img_margin_left"
                         android:scaleType="fitXY"
                         android:src="@mipmap/sex_count_f" />
 
@@ -116,8 +116,7 @@
                     android:background="@mipmap/label_btn_bg"
                     android:text="同城面基"
                     android:textColor="#ff5491"
-                    android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
-                    android:visibility="gone" />
+                    android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size" />
 
                 <Button
                     android:id="@+id/btn_label12"
@@ -127,8 +126,7 @@
                     android:background="@mipmap/label_btn_bg"
                     android:text="旅游达人"
                     android:textColor="#ff5491"
-                    android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
-                    android:visibility="gone" />
+                    android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size" />
 
                 <Button
                     android:id="@+id/btn_label13"
@@ -138,8 +136,7 @@
                     android:background="@mipmap/label_btn_bg"
                     android:text="旅游达人"
                     android:textColor="#ff5491"
-                    android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size"
-                    android:visibility="gone" />
+                    android:textSize="@dimen/anchor_show_discribe_bottom_label_txt_size" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -205,12 +202,12 @@
 
                 <RelativeLayout
                     android:layout_width="@dimen/anchor_show_discribe_sex_ll_width"
-                    android:layout_height="@dimen/anchor_show_discribe_sex_ll_height">
+                    android:layout_height="@dimen/anchor_show_discribe_sex_ll_height"
+                    android:layout_marginLeft="@dimen/anchor_show_discribe_sex_img_margin_left">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/anchor_show_discribe_sex_img_margin_left"
                         android:scaleType="fitXY"
                         android:src="@mipmap/sex_count_f" />
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9.3dp"
+        android:layout_marginTop="11.3dp"
+        android:text="充值数量 1萌点=0.1元"
+        android:textColor="#7a7a7a"
+        android:textSize="13.8sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleView"
+        android:layout_width="match_parent"
+        android:layout_height="301.7dp"
+        android:layout_marginTop="8.7dp"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp" />
+
+    <Button
+        android:id="@+id/btn_pay"
+        android:layout_width="336.3dp"
+        android:layout_height="47.7dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="28.3dp"
+        android:background="@mipmap/submit_bg"
+        android:text="立即支付: 98.0元"
+        android:textColor="@color/white" />
+</LinearLayout>

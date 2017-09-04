@@ -5,12 +5,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.bean.CallEvaluationRespBean.ResultBean.CommentinfoBean;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.qingfeng.livesocial.util.TimeUtils;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
-import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
+import static com.qingfeng.livesocial.R.id.tv_signature;
 
 /**
  * Created by Administrator on 2017/8/29.
@@ -21,9 +23,11 @@ public class EvaluationDetailAcitivity extends BaseActivity {
     ImageView imgArrowLeft;
     @Bind(R.id.tv_nickname)
     TextView tvNickname;
-    @Bind(R.id.tv_signature)
+    @Bind(tv_signature)
     TextView tvSignature;
-    private String uid;
+    @Bind(R.id.tv_createtime)
+    TextView tvCreatetime;
+    private CommentinfoBean commentinfoBean;
 
     @Override
     protected int getLayoutById() {
@@ -32,12 +36,16 @@ public class EvaluationDetailAcitivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
     }
 
     @Override
     protected void initData() {
-        uid = getIntent().getExtras().getString(PARAM_UID);
+        commentinfoBean = (CommentinfoBean) getIntent().getExtras().getSerializable("commedbean");
+        if (null != commentinfoBean) {
+            tvNickname.setText(commentinfoBean.getNickname());
+            tvSignature.setText(commentinfoBean.getContent());
+            tvCreatetime.setText(TimeUtils.getStrTime(commentinfoBean.getCreattime(), "yyyy/MM/dd hh:mm:ss"));
+        }
     }
 
     @OnClick({R.id.img_arrow_left})
@@ -46,6 +54,7 @@ public class EvaluationDetailAcitivity extends BaseActivity {
             case R.id.img_arrow_left:
                 finish();
                 break;
+
         }
     }
 }

@@ -8,7 +8,7 @@
 
     <TextView
         android:layout_width="@dimen/splash_mengyu_txt_width"
-        android:layout_height="@dimen/splash_mengyu_txt_height"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/splash_mengyu_margin_top"
         android:gravity="center"
         android:text="@string/splash_app_name"
@@ -41,8 +41,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/splash_choice_login_height"
-        android:layout_marginBottom="@dimen/splash_choice_login_margin_bottom"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/splash_choice_login_margin_top"
         android:gravity="center"
         android:orientation="horizontal">
@@ -55,7 +54,7 @@
 
         <TextView
             android:layout_width="@dimen/splash_choice_login_txt_width"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/splash_choince_login"
             android:textColor="@android:color/white"
@@ -72,6 +71,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/splash_login_height"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -107,14 +107,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/splash_statement_height"
-        android:layout_marginBottom="@dimen/splash_statement_margin_bottom"
-        android:layout_marginTop="@dimen/splash_statement_margin_top"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="top"
             android:text="@string/splash_bottom_txt"
             android:textColor="@android:color/white"
@@ -122,7 +122,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="top"
             android:text="@string/splash_bottom_txt2"
             android:textColor="#ff5491"

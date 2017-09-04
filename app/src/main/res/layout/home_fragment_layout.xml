@@ -11,7 +11,7 @@
 
         <RelativeLayout
             android:layout_width="148.7dp"
-            android:layout_height="wrap_content"
+            android:layout_height="28.7dp"
             android:layout_centerInParent="true"
             android:background="@mipmap/home_top_button_bg">
 
@@ -21,7 +21,7 @@
 
                 <ImageView
                     android:layout_width="74dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="28.7dp"
                     android:scaleType="fitXY"
                     android:src="@mipmap/home_top_button_bg2" />
 
@@ -30,7 +30,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="发现"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="13.7sp" />
             </RelativeLayout>
 
             <TextView
@@ -41,7 +42,8 @@
                 android:layout_centerInParent="true"
                 android:layout_marginRight="16dp"
                 android:text="排行榜"
-                android:textColor="#ff5497" />
+                android:textColor="#ff5497"
+                android:textSize="13.7sp" />
 
         </RelativeLayout>
 
@@ -74,7 +76,7 @@
                 <com.qingfeng.livesocial.widget.SlideShowView
                     android:id="@+id/slideshowview"
                     android:layout_width="match_parent"
-                    android:layout_height="136dp" />
+                    android:layout_height="136.3dp" />
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab"

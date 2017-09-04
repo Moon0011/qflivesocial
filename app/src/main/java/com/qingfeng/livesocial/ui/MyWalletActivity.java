@@ -35,6 +35,8 @@ public class MyWalletActivity extends BaseActivity {
     TextView tvBalance;
     @Bind(R.id.tv_monthcoins)
     TextView tvMonthcoins;
+    @Bind(R.id.img_withdraw_cash)
+    ImageView imgWithdrawCash;
 
     @Override
     protected int getLayoutById() {
@@ -84,12 +86,22 @@ public class MyWalletActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.img_arrow_left})
+    @OnClick({R.id.img_arrow_left, R.id.img_withdraw_cash, R.id.img_recharge, R.id.img_bill})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_arrow_left:
                 finish();
                 break;
+            case R.id.img_withdraw_cash:
+                gotoActivity(this, WithDrawCashActivity.class);
+                break;
+            case R.id.img_recharge:
+                gotoActivity(this, RechargeActivity.class);
+                break;
+            case R.id.img_bill:
+                gotoActivity(this, BillActivity.class);
+                break;
         }
     }
+
 }

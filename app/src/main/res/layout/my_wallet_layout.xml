@@ -155,17 +155,20 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/img_withdraw_cash"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@mipmap/btn_tixian" />
 
         <ImageView
+            android:id="@+id/img_recharge"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginLeft="35dp"
             android:src="@mipmap/btn_chongzhi" />
 
         <ImageView
+            android:id="@+id/img_bill"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginLeft="35dp"

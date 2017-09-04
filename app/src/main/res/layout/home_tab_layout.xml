@@ -27,6 +27,6 @@
             android:layout_marginTop="4dp"
             android:text="@string/home"
             android:textColor="@drawable/bg_tab_text"
-            android:textSize="8.4sp" />
+            android:textSize="11.3dp" />
     </LinearLayout>
 </RelativeLayout>

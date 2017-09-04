@@ -1,5 +1,6 @@
 package com.qingfeng.livesocial.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -144,7 +145,7 @@ public class CallEvaluationRespBean {
             }
         }
 
-        public static class CommentinfoBean {
+        public static class CommentinfoBean implements Serializable {
             /**
              * anchorpic : http://video.520cai.cn/upload/zhibo/20170808/39330d2f5c6dfc7f342cbfd0a5d2e3d1.png
              * nickname : 11

@@ -1,5 +1,6 @@
 package com.qingfeng.livesocial.ui;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.CommendAdapter;
 import com.qingfeng.livesocial.bean.CallEvaluationRespBean;
+import com.qingfeng.livesocial.bean.CallEvaluationRespBean.ResultBean.CommentinfoBean;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.widget.RoundedImageView;
@@ -18,6 +20,8 @@ import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -29,7 +33,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
  * Created by Administrator on 2017/8/29.
  */
 
-public class CallEvaluationAcitivity extends BaseActivity {
+public class CallEvaluationAcitivity extends BaseActivity implements CommendAdapter.OnItemClickListener {
     @Bind(R.id.img_arrow_left)
     ImageView imgArrowLeft;
     @Bind(R.id.img_roompic)
@@ -45,6 +49,7 @@ public class CallEvaluationAcitivity extends BaseActivity {
     @Bind(R.id.recyclerview)
     RecyclerView mRecyclerView;
     private String uid;
+    private List<CommentinfoBean> commentList;
 
     @Override
     protected int getLayoutById() {
@@ -64,7 +69,7 @@ public class CallEvaluationAcitivity extends BaseActivity {
 
     private void getCallEvaluation(String uid) {
         RequestParams params = new RequestParams(Urls.CALL_EVALUATION);
-        params.addParameter(PARAM_UID, 23);
+        params.addParameter(PARAM_UID, "29");
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -83,7 +88,9 @@ public class CallEvaluationAcitivity extends BaseActivity {
                         tvNickname.setText(respBean.getResult().getUserinfo().getNickname());
                         tvCurrRoomnum.setText(String.valueOf(respBean.getResult().getUserinfo().getCurroomnum()));
                         tvAge.setText(String.valueOf(respBean.getResult().getUserinfo().getAge()));
-                        CommendAdapter adapter = new CommendAdapter(mContext, respBean.getResult().getCommentinfo(), imageOptions);
+                        commentList = respBean.getResult().getCommentinfo();
+                        CommendAdapter adapter = new CommendAdapter(mContext, commentList, imageOptions);
+                        adapter.setOnItemClickListener(CallEvaluationAcitivity.this);
                         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
                         mRecyclerView.setHasFixedSize(true);
                         mRecyclerView.setAdapter(adapter);
@@ -118,5 +125,12 @@ public class CallEvaluationAcitivity extends BaseActivity {
 //                gotoActivityWithBundle(CallEvaluationAcitivity.this, EvaluationDetailAcitivity.class, b);
 //                break;
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Bundle b = new Bundle();
+        b.putSerializable("commedbean", commentList.get(position));
+        gotoActivityWithBundle(CallEvaluationAcitivity.this, EvaluationDetailAcitivity.class, b);
     }
 }

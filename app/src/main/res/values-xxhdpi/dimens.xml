@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--splash-->
-    <dimen name="splash_mengyu_margin_top">78dp</dimen>
-    <dimen name="splash_mengyu_txt_size">34sp</dimen>
+    <dimen name="splash_mengyu_margin_top">50dp</dimen>
+    <dimen name="splash_mengyu_txt_size">31sp</dimen>
     <dimen name="splash_mengyu_txt_height">33.7dp</dimen>
     <dimen name="splash_mengyu_txt_width">75dp</dimen>
     <dimen name="splash_xiangyu_txt_margin_top">29.7dp</dimen>
@@ -10,10 +10,10 @@
     <dimen name="splash_houhui_txt_margin_top">20.3dp</dimen>
     <dimen name="splash_meizhi_margin_left_right">38dp</dimen>
     <dimen name="splash_meizhi_height">101dp</dimen>
-    <dimen name="splash_meizhi_margin_top">33dp</dimen>
+    <dimen name="splash_meizhi_margin_top">30dp</dimen>
     <dimen name="splash_choice_login_height">14dp</dimen>
     <dimen name="splash_choice_login_margin_bottom">33dp</dimen>
-    <dimen name="splash_choice_login_margin_top">37.3dp</dimen>
+    <dimen name="splash_choice_login_margin_top">30dp</dimen>
     <dimen name="splash_choice_login_txt_size">12.5sp</dimen>
     <dimen name="splash_choice_login_line_width">80dp</dimen>
     <dimen name="splash_choice_login_line_height">2.3dp</dimen>
@@ -58,7 +58,7 @@
     <dimen name="login_arrow_left_margin_left">24.3dp</dimen>
     <dimen name="login_arrow_left_margin_right">25.7dp</dimen>
     <dimen name="login_mengyu_txt_margin_top">78dp</dimen>
-    <dimen name="login_mengyu_txt_size">33sp</dimen>
+    <dimen name="login_mengyu_txt_size">31sp</dimen>
     <dimen name="login_hello_txt_size">22.6sp</dimen>
     <dimen name="login_hello_txt_margin_left">48.3dp</dimen>
     <dimen name="login_hello_txt_margin_top">147.7dp</dimen>
@@ -132,10 +132,10 @@
     <dimen name="anchor_today_recommend_item_img_status_txt_size">7.5sp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_ll_margin_bottom">9.7dp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_ll_margin_left">9dp</dimen>
-    <dimen name="anchor_today_recommend_item_img_discribe_nickname_txt_size">11.3sp</dimen>
+    <dimen name="anchor_today_recommend_item_img_discribe_nickname_txt_size">11.3dp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_sex_img_margin_left">6.7dp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_sex_img_ll_width">24dp</dimen>
-    <dimen name="anchor_today_recommend_item_img_discribe_sex_img_age_txt_size">7.5sp</dimen>
+    <dimen name="anchor_today_recommend_item_img_discribe_sex_img_age_txt_size">7.5dp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_sex_img_age_txt_margin_right">3dp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_total_talktime_txt_size">7.5sp</dimen>
     <dimen name="anchor_today_recommend_item_img_discribe_total_talktime_margin_top">3dp</dimen>
@@ -163,19 +163,19 @@
     <dimen name="anchor_show_status_txt_size">7.5sp</dimen>
     <dimen name="anchor_show_discribe_margin_bottom">9dp</dimen>
     <dimen name="anchor_show_discribe_margin_left">6.3dp</dimen>
-    <dimen name="anchor_show_discribe_nickname_txt_size">11.3sp</dimen>
+    <dimen name="anchor_show_discribe_nickname_txt_size">11.3dp</dimen>
     <dimen name="anchor_show_discribe_sex_ll_width">24dp</dimen>
     <dimen name="anchor_show_discribe_sex_ll_height">11dp</dimen>
     <dimen name="anchor_show_discribe_sex_img_margin_left">5.7dp</dimen>
     <dimen name="anchor_show_discribe_sex_txt_margin_right">3dp</dimen>
-    <dimen name="anchor_show_discribe_sex_txt_size">7.5sp</dimen>
-    <dimen name="anchor_show_discribe_bottom_ll_height">36.7dp</dimen>
-    <dimen name="anchor_show_discribe_bottom_txt_margin_top">7.7dp</dimen>
-    <dimen name="anchor_show_discribe_bottom_txt_size">9sp</dimen>
-    <dimen name="anchor_show_discribe_bottom_label_margin_top">5dp</dimen>
+    <dimen name="anchor_show_discribe_sex_txt_size">7.5dp</dimen>
+    <dimen name="anchor_show_discribe_bottom_ll_height">45.3dp</dimen>
+    <dimen name="anchor_show_discribe_bottom_txt_margin_top">5dp</dimen>
+    <dimen name="anchor_show_discribe_bottom_txt_size">11dp</dimen>
+    <dimen name="anchor_show_discribe_bottom_label_margin_top">3dp</dimen>
     <dimen name="anchor_show_discribe_bottom_label_width">39.7dp</dimen>
     <dimen name="anchor_show_discribe_bottom_label_heigth">13.7dp</dimen>
-    <dimen name="anchor_show_discribe_bottom_label_txt_size">7.5sp</dimen>
+    <dimen name="anchor_show_discribe_bottom_label_txt_size">9dp</dimen>
     <dimen name="anchor_show_discribe_bottom_label_margin_left">5dp</dimen>
     <!--anchor detail-->
     <dimen name="anchor_detail_fl_video_height">270.7dp</dimen>

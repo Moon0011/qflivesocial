@@ -66,12 +66,12 @@
 
                 <RelativeLayout
                     android:layout_width="@dimen/anchor_today_recommend_item_img_discribe_sex_img_ll_width"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/anchor_today_recommend_item_img_discribe_sex_img_margin_left">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/anchor_today_recommend_item_img_discribe_sex_img_margin_left"
                         android:scaleType="fitXY"
                         android:src="@mipmap/sex_count_f" />
 
@@ -79,9 +79,9 @@
                         android:id="@+id/tv_age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/anchor_today_recommend_item_img_discribe_sex_img_age_txt_margin_right"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
+                        android:layout_marginRight="@dimen/anchor_today_recommend_item_img_discribe_sex_img_age_txt_margin_right"
                         android:text="12"
                         android:textColor="@color/white"
                         android:textSize="@dimen/anchor_today_recommend_item_img_discribe_sex_img_age_txt_size" />

@@ -17,4 +17,6 @@
 
     <color name="label_selected_color">#13b5b1</color>
     <color name="blue_dark">#001425</color>
+    <color name="txt_selected_color">#ff5491</color>
+    <color name="txt_normal_color">#363636</color>
 </resources>
