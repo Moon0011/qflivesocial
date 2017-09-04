@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -34,6 +35,7 @@ public class AddCashTypeActivity extends BaseActivity {
     ImageView imgRoundWechat;
     @Bind(R.id.img_round_alipay)
     ImageView imgRoundAlipay;
+
     private LayoutInflater mInflater;
     private View view1, view2;
     private PagerAdapter mAdpater;
@@ -49,6 +51,20 @@ public class AddCashTypeActivity extends BaseActivity {
         mInflater = LayoutInflater.from(mContext);
         view1 = mInflater.inflate(R.layout.add_cash_wechat_layout, null);
         view2 = mInflater.inflate(R.layout.add_cash_alipay_layout, null);
+        Button btnSumbit1 = (Button) view1.findViewById(R.id.btn_sumbit);
+        Button btnSumbit2 = (Button) view2.findViewById(R.id.btn_sumbit);
+        btnSumbit1.findViewById(R.id.btn_sumbit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(AddCashTypeActivity.this, CashActivity.class);
+            }
+        });
+        btnSumbit2.findViewById(R.id.btn_sumbit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(AddCashTypeActivity.this, CashActivity.class);
+            }
+        });
         mTabs.add(view1);
         mTabs.add(view2);
 

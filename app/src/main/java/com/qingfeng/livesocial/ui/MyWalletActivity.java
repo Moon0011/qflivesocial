@@ -93,7 +93,7 @@ public class MyWalletActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.img_withdraw_cash:
-                gotoActivity(this, WithDrawCashActivity.class);
+                gotoActivity(this, ChoiceCashActivity.class);
                 break;
             case R.id.img_recharge:
                 gotoActivity(this, RechargeActivity.class);

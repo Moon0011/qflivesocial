@@ -11,7 +11,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/9/4.
  */
 
-public class WithDrawCashActivity extends BaseActivity {
+public class ChoiceCashActivity extends BaseActivity {
 
     @Override
     protected int getLayoutById() {

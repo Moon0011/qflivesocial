@@ -55,10 +55,11 @@
         <activity android:name=".ui.AnswerIntervalActivity" />
         <activity android:name=".ui.AnchorVideoAnthenActivity" />
         <activity android:name=".ui.BigPicActivity" />
-        <activity android:name=".ui.WithDrawCashActivity" />
+        <activity android:name=".ui.ChoiceCashActivity" />
         <activity android:name=".ui.AddCashTypeActivity" />
         <activity android:name=".ui.RechargeActivity" />
         <activity android:name=".ui.BillActivity" />
+        <activity android:name=".ui.CashActivity" />
         <activity android:name=".ui.TestActivity" />
     </application>
 
