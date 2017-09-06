@@ -1,14 +1,17 @@
 package com.qingfeng.livesocial.common;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.widget.Toast;
 
 import com.qingfeng.livesocial.bean.UserInfoBean;
+import com.qingfeng.livesocial.live.InitBusinessHelper;
 import com.qingfeng.livesocial.util.StringUtils;
 
 import org.xutils.x;
 
+import java.util.List;
 import java.util.Properties;
 
 
@@ -32,6 +35,7 @@ public class QFApplication extends Application {
         instance = this;
         init_xUtil();
         initLogin();
+        initLiveSdk();
     }
 
     public static synchronized QFApplication context() {
@@ -54,6 +58,26 @@ public class QFApplication extends Application {
         } else {
             this.cleanLoginInfo();
         }
+    }
+
+    private void initLiveSdk() {
+        if (shouldInit()) {
+            InitBusinessHelper.initApp(_context);
+        }
+    }
+
+    private boolean shouldInit() {
+        ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
+        List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
+        String mainProcessName = getPackageName();
+        int myPid = android.os.Process.myPid();
+
+        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
+            if (info.pid == myPid && mainProcessName.equals(info.processName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

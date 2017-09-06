@@ -303,7 +303,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/anchor_detail_about_chat_txt_margin_top"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -430,7 +431,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/anchor_detail_about_chat_txt_margin_top"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -728,15 +730,11 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingBottom="@dimen/call_evaluation_anchor_tab_ll_padding_bottom_top"
-        android:paddingLeft="@dimen/call_evaluation_anchor_tab_ll_padding_left_right"
-        android:paddingRight="@dimen/call_evaluation_anchor_tab_ll_padding_left_right"
-        android:paddingTop="@dimen/call_evaluation_anchor_tab_ll_padding_bottom_top">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/ll_tab_sendgift"
-            android:layout_width="wrap_content"
+            android:layout_width="88.3dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
@@ -757,70 +755,30 @@
                 android:textSize="@dimen/call_evaluation_anchor_tab_ll_txt_size" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_tab_msgself"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/call_evaluation_anchor_tab_ll_txt_margin_left"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/call_evaluation_anchor_tab_ll_icon_heigth_width"
-                android:layout_height="@dimen/call_evaluation_anchor_tab_ll_icon_heigth_width"
-                android:src="@drawable/chat_selected" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/call_evaluation_anchor_tab_ll_txt_margin_top"
-                android:text="@string/msg_self"
-                android:textColor="@color/tab_txt_selected"
-                android:textSize="@dimen/call_evaluation_anchor_tab_ll_txt_size" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_tab_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/call_evaluation_anchor_tab_ll_txt_margin_left"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/call_evaluation_anchor_tab_ll_icon_heigth_width"
-                android:layout_height="@dimen/call_evaluation_anchor_tab_ll_icon_heigth_width"
-                android:src="@drawable/phone_selected" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/call_evaluation_anchor_tab_ll_txt_margin_top"
-                android:text="@string/audio_chat"
-                android:textColor="@color/tab_txt_selected"
-                android:textSize="@dimen/call_evaluation_anchor_tab_ll_txt_size" />
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/ll_tab_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/call_evaluation_anchor_tab_ll_txt_margin_left"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff5491">
 
             <ImageView
-                android:layout_width="@dimen/call_evaluation_anchor_tab_ll_icon_heigth_width"
-                android:layout_height="@dimen/call_evaluation_anchor_tab_ll_icon_heigth_width"
-                android:src="@drawable/video_selected" />
+                android:id="@+id/img_video"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="81dp"
+                android:src="@drawable/video_normal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/call_evaluation_anchor_tab_ll_txt_margin_top"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="18.7dp"
+                android:layout_toRightOf="@+id/img_video"
                 android:text="@string/video_chat"
-                android:textColor="@color/tab_txt_selected"
-                android:textSize="@dimen/call_evaluation_anchor_tab_ll_txt_size" />
-        </LinearLayout>
+                android:textColor="@color/white"
+                android:textSize="18.3sp" />
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

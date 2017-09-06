@@ -166,7 +166,8 @@
     <RelativeLayout
         android:id="@+id/rl_labels"
         android:layout_width="match_parent"
-        android:layout_height="40.3dp">
+        android:layout_height="40.3dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -239,11 +240,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="16dp"
-        android:background="#eeeeee" />
+        android:background="#eeeeee"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40.3dp">
+        android:layout_height="40.3dp"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"

@@ -12,7 +12,10 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.common.AppManager;
 import com.qingfeng.livesocial.util.StringUtils;
 import com.qingfeng.livesocial.widget.progressbar.SVProgressHUD;
+import com.tencent.ilivesdk.ILiveConstants;
+import com.tencent.ilivesdk.core.ILiveLoginManager;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.image.ImageOptions;
 
 import butterknife.ButterKnife;
@@ -58,6 +61,20 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .setLoadingDrawableId(R.mipmap.error_pic)
                 .setFailureDrawableId(R.mipmap.error_pic)
                 .build();
+
+        ILiveLoginManager.getInstance().setUserStatusListener(new ILiveLoginManager.TILVBStatusListener() {
+            @Override
+            public void onForceOffline(int error, String message) {
+                switch (error) {
+                    case ILiveConstants.ERR_KICK_OUT:
+                        LogUtil.e("onForceOffline->entered!");
+                        break;
+                    case ILiveConstants.ERR_EXPIRE:
+                        LogUtil.e("onUserSigExpired->entered!");
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -76,6 +93,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
         }
     }
+
 
     protected void showProgress() {
         SVProgressHUD.show(mContext);

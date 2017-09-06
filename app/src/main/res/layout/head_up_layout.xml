@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="28.8dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="18.8dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="86.3dp"
+        android:layout_height="25.5dp"
+        android:layout_gravity="right|center"
+        android:background="@mipmap/calling_bg"
+        android:orientation="vertical"
+        android:paddingLeft="25dp">
+
+        <TextView
+            android:id="@+id/host_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小明"
+            android:textColor="@color/white"
+            android:textSize="8.2sp" />
+
+        <TextView
+            android:id="@+id/broadcasting_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4.5dp"
+            android:text="00:00:00"
+            android:textColor="@color/white"
+            android:textSize="8.2sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/head_icon"
+        android:layout_width="28.8dp"
+        android:layout_height="28.8dp"
+        android:src="@mipmap/f_head" />
+
+</FrameLayout>
+

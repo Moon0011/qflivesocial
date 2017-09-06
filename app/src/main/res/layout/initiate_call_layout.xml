@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_initiate_call"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/call_holding_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="85.3dp"
+        android:layout_height="85.3dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="51.3dp"
+        android:src="@mipmap/f_head" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:text="小明"
+        android:textColor="@android:color/white"
+        android:textSize="13.3sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="17dp"
+        android:text="等待对方接听..."
+        android:textColor="@android:color/white"
+        android:textSize="16.7sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="216.3dp"
+        android:layout_height="113.7dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="18.3dp"
+        android:background="@mipmap/initiate_call_statement_bg"
+        android:paddingLeft="10.7dp"
+        android:paddingRight="10.7dp"
+        android:paddingTop="21dp"
+        android:text="视频过程中严禁出现任何涉及色情、淫\n秽、政治、赌博、暴力等违反国家法律\n法规的内容,一经发现我们将立即对账号进行停封处理。"
+        android:textColor="@android:color/white"
+        android:textSize="11.7sp" />
+
+    <ImageView
+        android:id="@+id/img_cancel"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="145.7dp"
+        android:src="@mipmap/cancle_phone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="13.3dp"
+        android:text="取消"
+        android:textColor="@android:color/white"
+        android:textSize="16.7sp" />
+</LinearLayout>

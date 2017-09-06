@@ -1,5 +1,6 @@
 package com.qingfeng.livesocial.ui;
 
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -10,9 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.bean.MySelfInfo;
 import com.qingfeng.livesocial.common.AppManager;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
-import com.qingfeng.livesocial.ui.fragment.DiscoverFragment;
 import com.qingfeng.livesocial.ui.fragment.HomeFragment;
 import com.qingfeng.livesocial.ui.fragment.PersonalCenterFragment;
 import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
@@ -24,12 +25,11 @@ import com.qingfeng.livesocial.ui.fragment.TestRankFragment;
 public class HomeActivity extends BaseActivity {
     private LayoutInflater layoutInflater;
     private FragmentTabHost mTabHost;
-    private final Class fragmentArray[] = {HomeFragment.class, DiscoverFragment.class, TestRankFragment.class, PersonalCenterFragment.class};
-    private int mTitleArray[] = {R.string.home, R.string.discover, R.string.message, R.string.personal};
-    private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_discover, R.drawable.tab_message, R.drawable.tab_personal};
-    private String mTextviewArray[] = {"home", "discover", "message", "personnal"};
-    private long mBackPressedTime;
-    private static final String TAG_EXIT = "exit";
+    private final Class fragmentArray[] = {HomeFragment.class, TestRankFragment.class, PersonalCenterFragment.class};
+    private int mTitleArray[] = {R.string.home, R.string.message, R.string.personal};
+    private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_message, R.drawable.tab_personal};
+    private String mTextviewArray[] = {"home", "message", "personnal"};
+    private long exitTime = 0;
 
     @Override
     protected int getLayoutById() {
@@ -62,15 +62,6 @@ public class HomeActivity extends BaseActivity {
         return view;
     }
 
-    private long exitTime = 0;
-
-    /**
-     * 双击手机的后退键，退出程序！
-     *
-     * @param keyCode
-     * @param event
-     * @return
-     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -79,6 +70,10 @@ public class HomeActivity extends BaseActivity {
                 exitTime = System.currentTimeMillis();
             } else {
                 AppManager.getAppManager().AppExit();
+                SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+                editor.putBoolean("living", false);
+                editor.apply();
+                MySelfInfo.getInstance().clearCache(getBaseContext());
 //                System.exit(0);
             }
             return true;

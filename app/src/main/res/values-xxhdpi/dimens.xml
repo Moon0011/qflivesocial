@@ -217,7 +217,7 @@
     <dimen name="anchor_detail_indroduce_anchor_detail_photo_img_arrow_height">13.7dp</dimen>
     <dimen name="anchor_detail_indroduce_anchor_detail_photo_img_arrow_margin_left">11dp</dimen>
     <dimen name="anchor_detail_indroduce_anchor_detail_photo_img_arrow_margin_right">9.3dp</dimen>
-    <dimen name="anchor_detail_about_chat_ll_height">140dp</dimen>
+    <dimen name="anchor_detail_about_chat_ll_height">90dp</dimen>
     <dimen name="anchor_detail_about_chat_ll_margin_bottom">8.7dp</dimen>
     <dimen name="anchor_detail_about_chat_ll_margin_left">11dp</dimen>
     <dimen name="anchor_detail_about_chat_answer_interval_txt_margin_left">5.3dp</dimen>
@@ -306,4 +306,11 @@
     <dimen name="call_evaluation_anchor_tab_ll_txt_margin_top">5dp</dimen>
     <dimen name="call_evaluation_anchor_tab_ll_txt_margin_left">55.3dp</dimen>
     <dimen name="call_evaluation_anchor_tab_ll_txt_size">12.5sp</dimen>
+    <!--互动直播-->
+    <dimen name="small_area_margin_bottom">110dp</dimen>
+    <dimen name="small_area_margin_top">130dp</dimen>
+    <dimen name="small_area_height">110dp</dimen>
+    <dimen name="small_area_width">60dp</dimen>
+    <dimen name="small_area_marginright">10dp</dimen>
+    <dimen name="small_area_marginbetween">10dp</dimen>
 </resources>

@@ -1,6 +1,10 @@
 package com.qingfeng.livesocial.ui;
 
+import android.Manifest;
 import android.app.DialogFragment;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -19,11 +23,16 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PhotoAdapter2;
 import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
+import com.qingfeng.livesocial.bean.CurLiveInfo;
+import com.qingfeng.livesocial.bean.MySelfInfo;
 import com.qingfeng.livesocial.bean.RespBean;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
+import com.qingfeng.livesocial.common.Constants;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.UIHelper;
 import com.qingfeng.livesocial.common.Urls;
+import com.qingfeng.livesocial.live.LoginHelper;
+import com.qingfeng.livesocial.live.viewinface.LoginView;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.util.StringUtils;
 
@@ -47,7 +56,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
  * Created by Administrator on 2017/8/28.
  */
 
-public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener {
+public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener, LoginView {
 
     @Bind(R.id.video_bg_img)
     ImageView videoImg;
@@ -92,6 +101,8 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     private PhotoAdapter2 photoAdapter;
     private int attenStatus = 0;
     private boolean isAttention = false;
+    private LoginHelper mLoginHeloper;
+    private final int REQUEST_PHONE_PERMISSIONS = 0;
 
     @Override
     protected int getLayoutById() {
@@ -107,6 +118,28 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     protected void initData() {
         uid = getIntent().getExtras().getString(PARAM_UID);
         getAnchorDetail(uid);
+
+        checkPermission();
+        mLoginHeloper = new LoginHelper(this, this);
+        mLoginHeloper.standardLogin("qf001", "88888888");
+    }
+
+    private void checkPermission() {
+        final List<String> permissionsList = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if ((checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.CAMERA);
+            if ((checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.RECORD_AUDIO);
+            if ((checkSelfPermission(Manifest.permission.WAKE_LOCK) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.WAKE_LOCK);
+            if ((checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.MODIFY_AUDIO_SETTINGS);
+            if (permissionsList.size() != 0) {
+                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                        REQUEST_PHONE_PERMISSIONS);
+            }
+        }
     }
 
     private void getAnchorDetail(String uid) {
@@ -175,7 +208,7 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
         });
     }
 
-    @OnClick({R.id.img_arrow_left, R.id.ll_call_evaluation, R.id.ll_tab_sendgift, R.id.ll_tab_msgself, R.id.ll_tab_phone, R.id.ll_tab_video, R.id.rl_attention})
+    @OnClick({R.id.img_arrow_left, R.id.ll_call_evaluation, R.id.ll_tab_sendgift, R.id.ll_tab_video, R.id.rl_attention})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_arrow_left:
@@ -190,11 +223,14 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                 SendGiftFragment dialog = new SendGiftFragment();
                 dialog.show(getFragmentManager(), "sendgift");
                 break;
-            case R.id.ll_tab_msgself:
-                break;
-            case R.id.ll_tab_phone:
-                break;
             case R.id.ll_tab_video:
+                Intent intent = new Intent(this, LiveActivity.class);
+                MySelfInfo.getInstance().setIdStatus(Constants.HOST);
+                MySelfInfo.getInstance().setJoinRoomWay(true);
+                CurLiveInfo.setTitle("直播间");
+                CurLiveInfo.setHostID(MySelfInfo.getInstance().getId());
+                CurLiveInfo.setRoomNum(MySelfInfo.getInstance().getMyRoomNum());
+                startActivity(intent);
                 break;
             case R.id.rl_attention:
                 if (!isAttention) {
@@ -311,5 +347,15 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                 }
             });
         }
+    }
+
+    @Override
+    public void loginSucc() {
+        showToast("loginSucc");
+    }
+
+    @Override
+    public void loginFail(String module, int errCode, String errMsg) {
+        showToast("loginFail = " + errMsg);
     }
 }
