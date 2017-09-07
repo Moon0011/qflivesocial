@@ -46,4 +46,6 @@ public interface LiveView extends MvpView {
     void forceQuitRoom(String strMessage);
 
     void refuseLink(String msg);//拒绝连麦邀请
+
+    void unlinkroom();//挂断连接
 }

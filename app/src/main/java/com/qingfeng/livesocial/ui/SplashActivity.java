@@ -1,11 +1,17 @@
 package com.qingfeng.livesocial.ui;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -17,6 +23,7 @@ public class SplashActivity extends BaseActivity {
 
     @Bind(R.id.img_phone)
     ImageView imgPhone;
+    private final int REQUEST_PHONE_PERMISSIONS = 0;
 
     @Override
     protected int getLayoutById() {
@@ -31,9 +38,26 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        checkPermission();
     }
 
+    private void checkPermission() {
+        final List<String> permissionsList = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if ((checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.CAMERA);
+            if ((checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.RECORD_AUDIO);
+            if ((checkSelfPermission(Manifest.permission.WAKE_LOCK) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.WAKE_LOCK);
+            if ((checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS) != PackageManager.PERMISSION_GRANTED))
+                permissionsList.add(Manifest.permission.MODIFY_AUDIO_SETTINGS);
+            if (permissionsList.size() != 0) {
+                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
+                        REQUEST_PHONE_PERMISSIONS);
+            }
+        }
+    }
 
     @OnClick({R.id.img_phone, R.id.img_weibo, R.id.img_wechat, R.id.img_qq})
     public void onViewClicked(View view) {

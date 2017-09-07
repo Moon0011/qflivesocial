@@ -1,10 +1,7 @@
 package com.qingfeng.livesocial.ui;
 
-import android.Manifest;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -102,7 +99,6 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     private int attenStatus = 0;
     private boolean isAttention = false;
     private LoginHelper mLoginHeloper;
-    private final int REQUEST_PHONE_PERMISSIONS = 0;
 
     @Override
     protected int getLayoutById() {
@@ -119,27 +115,8 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
         uid = getIntent().getExtras().getString(PARAM_UID);
         getAnchorDetail(uid);
 
-        checkPermission();
         mLoginHeloper = new LoginHelper(this, this);
         mLoginHeloper.standardLogin("qf001", "88888888");
-    }
-
-    private void checkPermission() {
-        final List<String> permissionsList = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if ((checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED))
-                permissionsList.add(Manifest.permission.CAMERA);
-            if ((checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED))
-                permissionsList.add(Manifest.permission.RECORD_AUDIO);
-            if ((checkSelfPermission(Manifest.permission.WAKE_LOCK) != PackageManager.PERMISSION_GRANTED))
-                permissionsList.add(Manifest.permission.WAKE_LOCK);
-            if ((checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS) != PackageManager.PERMISSION_GRANTED))
-                permissionsList.add(Manifest.permission.MODIFY_AUDIO_SETTINGS);
-            if (permissionsList.size() != 0) {
-                requestPermissions(permissionsList.toArray(new String[permissionsList.size()]),
-                        REQUEST_PHONE_PERMISSIONS);
-            }
-        }
     }
 
     private void getAnchorDetail(String uid) {

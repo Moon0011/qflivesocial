@@ -656,6 +656,9 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             case ILVLiveConstants.ILVLIVE_CMD_LINKROOM_LIMIT:   // 达到上限
                 showUserToast(identifier, R.string.str_link_limit);
                 break;
+            case ILVLiveConstants.ILVLIVE_CMD_UNLINKROOM:
+                mLiveView.unlinkroom();
+                break;
             case Constants.AVIMCMD_HOST_BACK:
                 mLiveView.hostBack(identifier, nickname);
             default:

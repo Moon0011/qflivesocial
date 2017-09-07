@@ -329,6 +329,12 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
         finish();
     }
 
+    @Override
+    public void unlinkroom() {
+        quiteLiveByPurpose();
+        finish();
+    }
+
     private void quiteLiveByPurpose() {
         if (MySelfInfo.getInstance().getIdStatus() == Constants.HOST) {
             ILVCustomCmd cmd = new ILVCustomCmd();
