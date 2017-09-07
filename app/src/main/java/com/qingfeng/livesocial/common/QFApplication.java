@@ -47,7 +47,7 @@ public class QFApplication extends Application {
     }
 
     private void init_xUtil() {
-        x.Ext.init(this);
+        x.Ext.init(this);//继承MultiDexApplication解决部分机型xUtil初始化问题
         x.Ext.setDebug(true);
     }
 
