@@ -25,7 +25,6 @@ public class HomeActivity extends BaseActivity {
     private int mTitleArray[] = {R.string.home, R.string.message, R.string.personal};
     private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_message, R.drawable.tab_personal};
     private String mTextviewArray[] = {"home", "message", "personnal"};
-    private long exitTime = 0;
     private long time = 0;
 
     @Override
