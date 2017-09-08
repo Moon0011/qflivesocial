@@ -107,7 +107,6 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
 
     @Override
     protected void initView() {
-
     }
 
     @Override

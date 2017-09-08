@@ -17,13 +17,6 @@
             android:layout_width="@dimen/anchor_show_fl_width"
             android:layout_height="@dimen/anchor_show_fl_height">
 
-            <ImageView
-                android:id="@+id/img_head1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@mipmap/f_head" />
-
             <RelativeLayout
                 android:layout_width="@dimen/anchor_show_status_width"
                 android:layout_height="@dimen/anchor_show_status_height"
@@ -87,6 +80,13 @@
                         android:textSize="@dimen/anchor_show_discribe_sex_txt_size" />
                 </RelativeLayout>
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_head1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@mipmap/f_head" />
         </FrameLayout>
 
         <LinearLayout

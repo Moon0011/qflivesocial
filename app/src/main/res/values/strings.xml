@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">QFLiveSocialApp</string>
     <string name="tip_double_click_exit">再按一次退出程序</string>
+    <string name="key_pic_url">picurl</string>
     <!--splash-->
     <string name="splash_app_name">萌遇</string>
     <string name="splash_bottom_txt">如果您使用本软件将默认同意</string>
@@ -73,4 +74,5 @@
     <string name="str_link_refuse">已拒绝接听</string>
     <string name="str_tips_force_exit">管理员已将房间解散或将您踢出房间!</string>
     <string name="text_live_default_title">我的直播我做主</string>
+
 </resources>

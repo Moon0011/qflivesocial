@@ -1,5 +1,7 @@
 package com.qingfeng.livesocial.common;
 
+import android.app.Activity;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 
 import com.qingfeng.livesocial.R;
@@ -64,6 +66,13 @@ public class UIHelper {
             return false;
         }
         return false;
+    }
+
+    //获取屏幕宽度
+    public static int getScreenWidth(Activity activity) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getRealMetrics(displayMetrics);
+        return displayMetrics.widthPixels;
     }
 
 }

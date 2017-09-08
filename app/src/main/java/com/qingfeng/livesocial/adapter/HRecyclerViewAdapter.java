@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.bean.RecommedRespBean;
 
 import org.xutils.image.ImageOptions;
-import org.xutils.x;
 
 import java.util.List;
 
@@ -52,11 +52,15 @@ public class HRecyclerViewAdapter extends RecyclerView.Adapter<HRecyclerViewAdap
         holder.name.setText(mDatas.get(position).getNickname());
         holder.age.setText(mDatas.get(position).getAge());
         holder.totaltalktime.setText(mDatas.get(position).getTotaltime() + " 分钟");
-        x.image().bind(holder.imgHead,
-                mDatas.get(position).getAnchorpic(),
-                mImageOptions,
-                null);
-
+//        x.image().bind(holder.imgHead,
+//                mDatas.get(position).getAnchorpic(),
+//                mImageOptions,
+//                null);
+        Glide.with(context)
+                .load(mDatas.get(position).getAnchorpic())
+                .placeholder(R.mipmap.error_pic)
+                .error(R.mipmap.error_pic)
+                .into(holder.imgHead);
     }
 
     @Override

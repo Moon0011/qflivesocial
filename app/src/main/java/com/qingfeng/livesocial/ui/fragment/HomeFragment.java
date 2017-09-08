@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.HRecyclerViewAdapter;
@@ -510,10 +511,15 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                                 btnContainer1.get(k).setText(labelArr[k]);
                             }
                         }
-                        x.image().bind(imageHead1,
-                                datas.get(p).getAnchorpic(),
-                                imageOptions,
-                                null);
+//                        x.image().bind(imageHead1,
+//                                datas.get(p).getAnchorpic(),
+//                                imageOptions,
+//                                null);
+                        Glide.with(getActivity())
+                                .load(datas.get(p).getAnchorpic())
+                                .placeholder(R.mipmap.error_pic)
+                                .error(R.mipmap.error_pic)
+                                .into(imageHead1);
                         final int pos1 = p;
                         anchor1.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -537,10 +543,15 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                                 btnContainer1.get(k).setText(labelArr[k]);
                             }
                         }
-                        x.image().bind(imageHead1,
-                                datas.get(m).getAnchorpic(),
-                                imageOptions,
-                                null);
+//                        x.image().bind(imageHead1,
+//                                datas.get(m).getAnchorpic(),
+//                                imageOptions,
+//                                null);
+                        Glide.with(getActivity())
+                                .load(datas.get(m).getAnchorpic())
+                                .placeholder(R.mipmap.error_pic)
+                                .error(R.mipmap.error_pic)
+                                .into(imageHead1);
                         final int pos1 = m;
                         anchor1.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -563,10 +574,15 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                                 btnContainer2.get(k).setText(labelArr[k]);
                             }
                         }
-                        x.image().bind(imageHead2,
-                                datas.get(m + 1).getAnchorpic(),
-                                imageOptions,
-                                null);
+//                        x.image().bind(imageHead2,
+//                                datas.get(m + 1).getAnchorpic(),
+//                                imageOptions,
+//                                null);
+                        Glide.with(getActivity())
+                                .load(datas.get(m + 1).getAnchorpic())
+                                .placeholder(R.mipmap.error_pic)
+                                .error(R.mipmap.error_pic)
+                                .into(imageHead2);
                         final int pos2 = m + 1;
                         anchor2.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -592,10 +608,15 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                             btnContainer1.get(k).setText(labelArr[k]);
                         }
                     }
-                    x.image().bind(imageHead1,
-                            datas.get(i).getAnchorpic(),
-                            imageOptions,
-                            null);
+//                    x.image().bind(imageHead1,
+//                            datas.get(i).getAnchorpic(),
+//                            imageOptions,
+//                            null);
+                    Glide.with(getActivity())
+                            .load(datas.get(i).getAnchorpic())
+                            .placeholder(R.mipmap.error_pic)
+                            .error(R.mipmap.error_pic)
+                            .into(imageHead1);
                     final int pos1 = i;
                     anchor1.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -618,10 +639,15 @@ public class HomeFragment extends BaseFragment implements HRecyclerViewAdapter.O
                             btnContainer2.get(k).setText(labelArr[k]);
                         }
                     }
-                    x.image().bind(imageHead2,
-                            datas.get(i + 1).getAnchorpic(),
-                            imageOptions,
-                            null);
+//                    x.image().bind(imageHead2,
+//                            datas.get(i + 1).getAnchorpic(),
+//                            imageOptions,
+//                            null);
+                    Glide.with(getActivity())
+                            .load(datas.get(i + 1).getAnchorpic())
+                            .placeholder(R.mipmap.error_pic)
+                            .error(R.mipmap.error_pic)
+                            .into(imageHead2);
                     final int pos2 = i + 1;
                     anchor2.setOnClickListener(new View.OnClickListener() {
                         @Override

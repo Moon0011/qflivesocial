@@ -16,7 +16,7 @@ public class Constants {
     public static final String PARAM_UID = "uid";
     public static final String PARAM_AUID = "attuid";
     public static final String PARAM_ATTENSTATUS = "attstatus";
-    public static final String PARAM_PHOTO_ID= "id";
+    public static final String PARAM_PHOTO_ID = "id";
     public static final String PARAM_TYPE = "type";
     public static final String PARAM_ANCHORPIC = "anchorpic";
     public static final String PARAM_NICKNAME = "nickname";
@@ -26,7 +26,7 @@ public class Constants {
     public static final String PARAM_BIRTHDAY = "birthday";
     public static final String PARAM_SEX = "sex";
     public static final String PARAM_HEADPIC = "headpic";
-    public static final String PARAM_PHOTO= "photo";
+    public static final String PARAM_PHOTO = "photo";
 
     public static final String PARAM_ANCHORPIC_INFO_EDIT_TYPE_VALUE = "1";
     public static final String PARAM_NICKNAME_INFO_EDIT_TYPE_VALUE = "2";
@@ -114,7 +114,7 @@ public class Constants {
     public static final int AVIMCMD_MULTI_HOST_CANCELINVITE = AVIMCMD_MULTI_HOST_DISABLEINTERACTCAMERA + 1; //主播让某个互动者下麦
     public static final int AVIMCMD_MULTI_HOST_CONTROLL_CAMERA = AVIMCMD_MULTI_HOST_CANCELINVITE + 1; //主播控制某个上麦成员摄像头
     public static final int AVIMCMD_MULTI_HOST_CONTROLL_MIC = AVIMCMD_MULTI_HOST_CONTROLL_CAMERA + 1; //主播控制某个上麦成员MIC
-    public static final int AVIMCMD_MULTI_HOST_SWITCH_CAMERA = AVIMCMD_MULTI_HOST_CONTROLL_MIC+1; ////主播切换某个上麦成员MIC
+    public static final int AVIMCMD_MULTI_HOST_SWITCH_CAMERA = AVIMCMD_MULTI_HOST_CONTROLL_MIC + 1; ////主播切换某个上麦成员MIC
     public static final String VIDEO_MEMBER_ROLE = "LiveGuest";
     public static final String NORMAL_MEMBER_ROLE = "Guest";
 

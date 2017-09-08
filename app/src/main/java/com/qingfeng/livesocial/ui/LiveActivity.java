@@ -11,8 +11,12 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,12 +27,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
+import com.qingfeng.livesocial.adapter.SendGiftAdapter2;
 import com.qingfeng.livesocial.bean.CurLiveInfo;
 import com.qingfeng.livesocial.bean.LiveInfoJson;
 import com.qingfeng.livesocial.bean.MemberID;
 import com.qingfeng.livesocial.bean.MySelfInfo;
+import com.qingfeng.livesocial.bean.SendGiftListRespBean;
 import com.qingfeng.livesocial.common.Constants;
+import com.qingfeng.livesocial.common.QFApplication;
+import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.live.GetLinkSignHelper;
 import com.qingfeng.livesocial.live.LiveHelper;
 import com.qingfeng.livesocial.live.UserServerHelper;
@@ -36,7 +46,7 @@ import com.qingfeng.livesocial.live.viewinface.GetLinkSigView;
 import com.qingfeng.livesocial.live.viewinface.LiveView;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.util.SxbLog;
-import com.squareup.picasso.Picasso;
+import com.qingfeng.livesocial.widget.pagescroll.PagingScrollHelper;
 import com.tencent.TIMMessage;
 import com.tencent.av.extra.effect.AVVideoEffect;
 import com.tencent.av.opengl.ui.GLView;
@@ -51,6 +61,11 @@ import com.tencent.livesdk.ILVCustomCmd;
 import com.tencent.livesdk.ILVLiveManager;
 import com.tencent.livesdk.ILVText;
 
+import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -59,15 +74,14 @@ import java.util.TimerTask;
 import butterknife.Bind;
 import butterknife.OnClick;
 
-import static com.tencent.qalsdk.service.QalService.context;
+import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 
 
 /**
- * Live直播类
+ * Live直播
  */
-public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigView {
+public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigView, PagingScrollHelper.onPageChangeListener {
     private static final String TAG = LiveActivity.class.getSimpleName();
-    private static final int GETPROFILE_JOIN = 0x200;
     @Bind(R.id.av_root_view)
     AVRootView mRootView;
     @Bind(R.id.head_icon)
@@ -76,8 +90,6 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     TextView mVideoTime;
     @Bind(R.id.host_name)
     TextView mHostNameTv;
-    @Bind(R.id.room_id)
-    TextView roomId;
     @Bind(R.id.controll_ui)
     FrameLayout mFullControllerUi;
     @Bind(R.id.ll_initiate_call)
@@ -86,6 +98,12 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     LinearLayout llAnswerCall;
     @Bind(R.id.et_hostid)
     EditText etHostid;
+    @Bind(R.id.recyclerview)
+    RecyclerView recyclerview;
+    @Bind(R.id.ll_gift)
+    LinearLayout llGift;
+    @Bind(R.id.dotLayout)
+    LinearLayout dotLayout;
 
     private LiveHelper mLiveHelper;
     private GetLinkSignHelper mLinkHelper;
@@ -96,7 +114,8 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     private VideoTimerTask mVideoTimerTask;//计时器
     private boolean bInAvRoom = false;
     private String receiveID;
-
+    private PagingScrollHelper scrollHelper = new PagingScrollHelper();
+    private List<View> dotViewsList = new ArrayList<View>();
 
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
@@ -110,104 +129,6 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
         }
     });
 
-    @OnClick({R.id.link_btn, R.id.img_refuse, R.id.img_answer, R.id.img_cancel, R.id.img_camera, R.id.img_calling_cancel, R.id.img_gift})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.link_btn:
-                llInitiateCall.setVisibility(View.VISIBLE);
-                List<String> curLinkedList = ILVLiveManager.getInstance().getCurrentLinkedUserArray();
-                if (null != curLinkedList && curLinkedList.size() >= 1) {
-                    Toast.makeText(LiveActivity.this, getString(R.string.str_tips_link_limit), Toast.LENGTH_SHORT).show();
-                } else {
-                    mLiveHelper.sendLinkReq(etHostid.getText().toString().trim());
-                }
-                break;
-            case R.id.img_refuse:
-                mLiveHelper.refuseLink(receiveID);
-                llAnswerCall.setVisibility(View.GONE);
-                finish();
-                break;
-            case R.id.img_answer:
-                mLiveHelper.acceptLink(receiveID);
-                llAnswerCall.setVisibility(View.GONE);
-                break;
-            case R.id.img_cancel:
-                finish();
-                break;
-            case R.id.img_camera:
-                break;
-            case R.id.img_calling_cancel:
-                if (bInAvRoom) {
-                    quiteLiveByPurpose();
-                    finish();
-                }
-                break;
-            case R.id.img_gift:
-                break;
-        }
-    }
-
-    private void updateWallTime() {
-        String hs, ms, ss;
-        long h, m, s;
-        h = mSecond / 3600;
-        m = (mSecond % 3600) / 60;
-        s = (mSecond % 3600) % 60;
-        if (h < 10) {
-            hs = "0" + h;
-        } else {
-            hs = "" + h;
-        }
-        if (m < 10) {
-            ms = "0" + m;
-        } else {
-            ms = "" + m;
-        }
-        if (s < 10) {
-            ss = "0" + s;
-        } else {
-            ss = "" + s;
-        }
-        if (hs.equals("00")) {
-            formatTime = ms + ":" + ss;
-        } else {
-            formatTime = hs + ":" + ms + ":" + ss;
-        }
-        if (Constants.HOST == MySelfInfo.getInstance().getIdStatus() && null != mVideoTime) {
-            SxbLog.i(TAG, " refresh time ");
-            mVideoTime.setText(formatTime);
-        }
-    }
-
-    private void showHeadIcon(ImageView view, String avatar) {
-        if (TextUtils.isEmpty(avatar)) {
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.f_head);
-            Bitmap cirBitMap = createCircleImage(bitmap, 0);
-            view.setImageBitmap(cirBitMap);
-        } else {
-            Picasso.with(context)
-                    .load(avatar)
-                    .into(view);
-        }
-    }
-
-    private static Bitmap createCircleImage(Bitmap source, int min) {
-        final Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        if (0 == min) {
-            min = source.getHeight() > source.getWidth() ? source.getWidth() : source.getHeight();
-        }
-        Bitmap target = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
-        // 创建画布
-        Canvas canvas = new Canvas(target);
-        // 绘圆
-        canvas.drawCircle(min / 2, min / 2, min / 2, paint);
-        // 设置交叉模式
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        // 绘制图片
-        canvas.drawBitmap(source, 0, 0, paint);
-        return target;
-    }
 
     @Override
     protected int getLayoutById() {
@@ -257,6 +178,109 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     protected void initData() {
         //进入房间流程
         mLiveHelper.startEnterRoom();
+    }
+
+
+    @OnClick({R.id.link_btn, R.id.img_refuse, R.id.img_answer, R.id.img_cancel, R.id.img_camera, R.id.img_calling_cancel, R.id.img_gift, R.id.btn_sendgift})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.link_btn:
+                llInitiateCall.setVisibility(View.VISIBLE);
+                List<String> curLinkedList = ILVLiveManager.getInstance().getCurrentLinkedUserArray();
+                if (null != curLinkedList && curLinkedList.size() >= 1) {
+                    Toast.makeText(LiveActivity.this, getString(R.string.str_tips_link_limit), Toast.LENGTH_SHORT).show();
+                } else {
+                    mLiveHelper.sendLinkReq(etHostid.getText().toString().trim());
+                }
+                break;
+            case R.id.img_refuse:
+                mLiveHelper.refuseLink(receiveID);
+                llAnswerCall.setVisibility(View.GONE);
+                finish();
+                break;
+            case R.id.img_answer:
+                mLiveHelper.acceptLink(receiveID);
+                llAnswerCall.setVisibility(View.GONE);
+                break;
+            case R.id.img_cancel:
+                finish();
+                break;
+            case R.id.img_camera:
+                ILiveRoomManager.getInstance().switchCamera(1 - ILiveRoomManager.getInstance().getCurCameraId());
+                break;
+            case R.id.img_calling_cancel:
+                if (bInAvRoom) {
+                    quiteLiveByPurpose();
+                    finish();
+                }
+                break;
+            case R.id.img_gift:
+                sendGiftList();
+                break;
+            case R.id.btn_sendgift:
+                llGift.setVisibility(View.GONE);
+                break;
+        }
+    }
+
+    private void updateWallTime() {
+        String hs, ms, ss;
+        long h, m, s;
+        h = mSecond / 3600;
+        m = (mSecond % 3600) / 60;
+        s = (mSecond % 3600) % 60;
+        if (h < 10) {
+            hs = "0" + h;
+        } else {
+            hs = "" + h;
+        }
+        if (m < 10) {
+            ms = "0" + m;
+        } else {
+            ms = "" + m;
+        }
+        if (s < 10) {
+            ss = "0" + s;
+        } else {
+            ss = "" + s;
+        }
+        if (hs.equals("00")) {
+            formatTime = ms + ":" + ss;
+        } else {
+            formatTime = hs + ":" + ms + ":" + ss;
+        }
+        if (Constants.HOST == MySelfInfo.getInstance().getIdStatus() && null != mVideoTime) {
+            SxbLog.i(TAG, " refresh time ");
+            mVideoTime.setText(formatTime);
+        }
+    }
+
+    private void showHeadIcon(ImageView view, String avatar) {
+        if (TextUtils.isEmpty(avatar)) {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.f_head);
+            Bitmap cirBitMap = createCircleImage(bitmap, 0);
+            view.setImageBitmap(cirBitMap);
+        } else {
+            Glide.with(mContext).load(avatar).error(R.mipmap.error_pic).into(view);
+        }
+    }
+
+    private static Bitmap createCircleImage(Bitmap source, int min) {
+        final Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        if (0 == min) {
+            min = source.getHeight() > source.getWidth() ? source.getWidth() : source.getHeight();
+        }
+        Bitmap target = Bitmap.createBitmap(min, min, Bitmap.Config.ARGB_8888);
+        // 创建画布
+        Canvas canvas = new Canvas(target);
+        // 绘圆
+        canvas.drawCircle(min / 2, min / 2, min / 2, paint);
+        // 设置交叉模式
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        // 绘制图片
+        canvas.drawBitmap(source, 0, 0, paint);
+        return target;
     }
 
 
@@ -377,7 +401,7 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     public void enterRoomComplete(int id_status, boolean isSucc) {
         mRootView.getViewByIndex(0).setVisibility(GLView.VISIBLE);
         bInAvRoom = true;
-        roomId.setText("" + CurLiveInfo.getRoomNum());
+//        roomId.setText("" + CurLiveInfo.getRoomNum());
         if (isSucc == true) {
             //直播时间
             mVideoTimer = new Timer(true);
@@ -445,9 +469,73 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
 
     @Override
     public void onBackPressed() {
-        if (bInAvRoom) {
+        if (llGift.getVisibility() == View.VISIBLE) {
+            llGift.setVisibility(View.GONE);
+        } else if (bInAvRoom) {
             quiteLiveByPurpose();
             finish();
+        } else {
+            finish();
+        }
+    }
+
+    private void sendGiftList() {
+        RequestParams params = new RequestParams(Urls.SEND_GIFT_LIST);
+        params.addParameter(PARAM_UID, QFApplication.getInstance().getLoginUser().getUid());
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("sendGiftList == " + result);
+                Gson gson = new Gson();
+                final SendGiftListRespBean bean = gson.fromJson(result, SendGiftListRespBean.class);
+
+                int giftCount = bean.getResult().getGiftinfo().size();
+                int totalPager = giftCount % 8 == 0 ? giftCount / 8 : giftCount / 8 + 1;
+                dotLayout.removeAllViews();
+                dotViewsList.clear();
+                for (int i = 0; i < totalPager; i++) {
+                    ImageView dotView = new ImageView(mContext);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(20, 20);
+                    params.leftMargin = 4;
+                    params.rightMargin = 4;
+                    params.gravity = Gravity.CENTER;
+                    dotLayout.addView(dotView, params);
+                    dotViewsList.add(dotView);
+                }
+                SendGiftAdapter2 adapter = new SendGiftAdapter2(mContext, bean.getResult().getGiftinfo(), imageOptions);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+                layoutManager.setOrientation(OrientationHelper.HORIZONTAL);
+                recyclerview.setLayoutManager(layoutManager);
+                recyclerview.setHasFixedSize(true);
+                recyclerview.setAdapter(adapter);
+                scrollHelper.setUpRecycleView(recyclerview);
+                scrollHelper.setOnPageChangeListener(LiveActivity.this);
+                llGift.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e(ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+            }
+
+            @Override
+            public void onFinished() {
+            }
+        });
+    }
+
+    @Override
+    public void onPageChange(int index) {
+        for (int i = 0; i < dotViewsList.size(); i++) {
+            if (i == index) {
+                ((ImageView) dotViewsList.get(index)).setBackgroundResource(R.mipmap.dot_view_selected);
+            } else {
+                ((ImageView) dotViewsList.get(i)).setBackgroundResource(R.mipmap.dot_view_normal);
+            }
         }
     }
 

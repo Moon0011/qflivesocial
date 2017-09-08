@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
@@ -41,7 +42,6 @@ import com.qingfeng.livesocial.ui.base.BaseFragment;
 import com.qingfeng.livesocial.util.GlideImageLoader;
 import com.qingfeng.livesocial.util.StringUtils;
 import com.qingfeng.livesocial.widget.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -302,10 +302,7 @@ public class PersonalCenterFragment extends BaseFragment implements PhotoAdapter
                                 bean.getAnchorpic(),
                                 imageOptions,
                                 null);
-                        Picasso.with(getActivity()).load(bean.getRoompic())
-                                .placeholder(R.mipmap.error_pic)
-                                .error(R.mipmap.error_pic).into(imgRoomBg);
-
+                        Glide.with(getActivity()).load(bean.getRoompic()).placeholder(R.mipmap.error_pic).error(R.mipmap.error_pic).into(imgRoomBg);
                         photoDatas = bean.getPhoto();
                         if (null != photoDatas && photoDatas.size() > 0) {
                             photoAdapter = new PhotoAdapter(getActivity(), photoDatas);

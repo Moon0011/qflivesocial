@@ -271,9 +271,9 @@ public class SlideShowView extends FrameLayout {
             position = position % imageViewsList.size();
             for (int i = 0; i < dotViewsList.size(); i++) {
                 if (i == position) {
-                    ((View) dotViewsList.get(position)).setBackgroundResource(R.drawable.message_tab_selected);
+                    ((View) dotViewsList.get(position)).setBackgroundResource(R.mipmap.dot_view_selected);
                 } else {
-                    ((View) dotViewsList.get(i)).setBackgroundResource(R.drawable.message_tab_normal);
+                    ((View) dotViewsList.get(i)).setBackgroundResource(R.mipmap.dot_view_normal);
                 }
             }
             currentItem = position;

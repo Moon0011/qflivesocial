@@ -34,16 +34,6 @@
             android:id="@+id/head_up_layout"
             layout="@layout/head_up_layout" />
 
-        <TextView
-            android:id="@+id/room_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|left"
-            android:layout_marginLeft="200dp"
-            android:layout_marginTop="10dp"
-            android:text=""
-            android:textColor="@color/white" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginTop="19dp"
+            android:gravity="right"
             android:orientation="vertical">
 
             <TextView
@@ -87,7 +78,7 @@
                 android:layout_marginRight="6.3dp"
                 android:text="计费倒计时: 100萌点/分钟"
                 android:textColor="@android:color/white"
-                android:textSize="7.5sp" />
+                android:textSize="11dp" />
 
             <Button
                 android:layout_width="49.5dp"
@@ -105,7 +96,7 @@
                 android:layout_marginTop="5dp"
                 android:text="已话费萌点20"
                 android:textColor="@android:color/white"
-                android:textSize="7.5sp" />
+                android:textSize="11dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -146,4 +137,74 @@
     <include
         layout="@layout/answer_phone_layout"
         android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_gift"
+        android:layout_width="match_parent"
+        android:layout_height="257.3dp"
+        android:layout_alignParentBottom="true"
+        android:background="@mipmap/send_gift_bg"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="197dp"
+            android:paddingTop="6.7dp" />
+
+        <LinearLayout
+            android:id="@+id/dotLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14.3dp"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="24.7dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="我的萌点: 88"
+                    android:textColor="@color/white"
+                    android:textSize="12.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="去充值"
+                    android:textColor="#ff5491"
+                    android:textSize="12.5sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_sendgift"
+                android:layout_width="82.7dp"
+                android:layout_height="26.7dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/gift_send_bg"
+                android:text="赠送"
+                android:textColor="@color/white"
+                android:textSize="12.5sp" />
+        </RelativeLayout>
+
+    </LinearLayout>
 </RelativeLayout>

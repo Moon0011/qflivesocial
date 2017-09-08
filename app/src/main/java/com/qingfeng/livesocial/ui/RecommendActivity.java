@@ -102,6 +102,7 @@ public class RecommendActivity extends BaseActivity {
                         }
                         ll_container.addView(ll);
                     }
+                    btnJump.setVisibility(View.VISIBLE);
                 }
             }
 

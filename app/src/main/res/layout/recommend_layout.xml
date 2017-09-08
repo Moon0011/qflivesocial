@@ -63,6 +63,7 @@
         android:background="@mipmap/jump"
         android:text="跳过"
         android:textColor="#959595"
-        android:textSize="12.5sp" />
+        android:textSize="12.5sp"
+        android:visibility="gone" />
 
 </LinearLayout>
