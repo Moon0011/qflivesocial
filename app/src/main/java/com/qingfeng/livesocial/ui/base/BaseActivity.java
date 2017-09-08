@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.qingfeng.livesocial.R;
-import com.qingfeng.livesocial.common.AppManager;
+import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.util.StringUtils;
 import com.qingfeng.livesocial.widget.progressbar.SVProgressHUD;
 import com.tencent.ilivesdk.ILiveConstants;
@@ -27,6 +27,9 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
     protected ImageOptions imageOptions;
+    private QFApplication application;
+    private BaseActivity oContext;
+
 
     protected abstract int getLayoutById();
 
@@ -48,11 +51,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+        oContext = this;
+        if (application == null) {
+            application = (QFApplication) getApplication();
+        }
+        addActivity();
         if (getLayoutById() != 0) {
             setContentView(getLayoutById());
         }
         ButterKnife.bind(this);
-        AppManager.getAppManager().addActivity(this);
         initView();
         initData();
         imageOptions = new ImageOptions.Builder()
@@ -85,7 +92,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        AppManager.getAppManager().finishActivity(this);
     }
 
     protected void showToast(String msg) {
@@ -94,6 +100,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    // 添加Activity方法
+    public void addActivity() {
+        application.addActivity_(oContext);
+    }
+
+    //销毁当个Activity方法
+    public void removeActivity() {
+        application.removeActivity_(oContext);
+    }
+
+    //销毁所有Activity方法
+    public void removeALLActivity() {
+        application.removeALLActivity_();
+    }
 
     protected void showProgress() {
         SVProgressHUD.show(mContext);

@@ -1,6 +1,5 @@
 package com.qingfeng.livesocial.ui;
 
-import android.content.SharedPreferences;
 import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -8,11 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.qingfeng.livesocial.R;
-import com.qingfeng.livesocial.bean.MySelfInfo;
-import com.qingfeng.livesocial.common.AppManager;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.ui.fragment.HomeFragment;
 import com.qingfeng.livesocial.ui.fragment.PersonalCenterFragment;
@@ -30,6 +26,7 @@ public class HomeActivity extends BaseActivity {
     private int mImageViewArray[] = {R.drawable.tab_home, R.drawable.tab_message, R.drawable.tab_personal};
     private String mTextviewArray[] = {"home", "message", "personnal"};
     private long exitTime = 0;
+    private long time = 0;
 
     @Override
     protected int getLayoutById() {
@@ -64,20 +61,18 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(getApplicationContext(), R.string.tip_double_click_exit, Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                AppManager.getAppManager().AppExit();
-                SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
-                editor.putBoolean("living", false);
-                editor.apply();
-                MySelfInfo.getInstance().clearCache(getBaseContext());
-//                System.exit(0);
-            }
-            return true;
+        if (keyCode == event.KEYCODE_BACK) {
+            exit();
         }
-        return super.onKeyDown(keyCode, event);
+        return true;
+    }
+
+    private void exit() {
+        if (System.currentTimeMillis() - time > 2000) {
+            time = System.currentTimeMillis();
+            showToast("再点击一次退出应用程序");
+        } else {
+            removeALLActivity();
+        }
     }
 }

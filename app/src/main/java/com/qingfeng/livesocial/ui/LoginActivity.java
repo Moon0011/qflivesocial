@@ -69,7 +69,6 @@ public class LoginActivity extends BaseActivity {
             case R.id.btn_phone_login://登陆
                 showProgress();
                 login(etPhoneNum.getText().toString().trim(), VERIFY_CODE_TEST);
-//                gotoActivity(LoginActivity.this, RecommendActivity.class);
                 break;
             case R.id.tv_getVerifyCode://获取验证码
                 showProgress();

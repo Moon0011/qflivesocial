@@ -1,5 +1,6 @@
 package com.qingfeng.livesocial.common;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
@@ -11,6 +12,7 @@ import com.qingfeng.livesocial.util.StringUtils;
 
 import org.xutils.x;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -23,6 +25,7 @@ public class QFApplication extends Application {
     private static QFApplication instance;
     public boolean login = false;
     static Context _context;
+    private List<Activity> oList;
 
     public static QFApplication getInstance() {
         return instance;
@@ -33,6 +36,7 @@ public class QFApplication extends Application {
         super.onCreate();
         _context = getApplicationContext();
         instance = this;
+        oList = new ArrayList<Activity>();
         init_xUtil();
         initLogin();
         initLiveSdk();
@@ -154,5 +158,33 @@ public class QFApplication extends Application {
         this.login = false;
         removeProperty("user.uid", "user.account", "user.face", "user.pwd",
                 "user.isLogin");
+    }
+
+    /**
+     * 添加Activity
+     */
+    public void addActivity_(Activity activity) {
+        if (!oList.contains(activity)) {
+            oList.add(activity);//把当前Activity添加到集合中
+        }
+    }
+
+    /**
+     * 销毁单个Activity
+     */
+    public void removeActivity_(Activity activity) {
+        if (oList.contains(activity)) {
+            oList.remove(activity);
+            activity.finish();
+        }
+    }
+
+    /**
+     * 销毁所有的Activity
+     */
+    public void removeALLActivity_() {
+        for (Activity activity : oList) {
+            activity.finish();
+        }
     }
 }

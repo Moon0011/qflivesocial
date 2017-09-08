@@ -56,9 +56,12 @@ public class RecommendActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.btn_jump:
                 gotoActivity(RecommendActivity.this, HomeActivity.class);
-                finish();
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 
     /**
@@ -69,7 +72,7 @@ public class RecommendActivity extends BaseActivity {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("perfectInfoSucc == " + result);
+                LogUtil.e("getRecommendData == " + result);
                 RecommedRespBean respon = new Gson().fromJson(result, RecommedRespBean.class);
                 if ("y".equals(respon.getMsg())) {
                     datas = respon.getResult();
