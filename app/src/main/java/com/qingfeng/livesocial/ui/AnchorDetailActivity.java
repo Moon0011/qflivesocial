@@ -1,7 +1,6 @@
 package com.qingfeng.livesocial.ui;
 
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -20,16 +19,11 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PhotoAdapter2;
 import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
-import com.qingfeng.livesocial.bean.CurLiveInfo;
-import com.qingfeng.livesocial.bean.MySelfInfo;
 import com.qingfeng.livesocial.bean.RespBean;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
-import com.qingfeng.livesocial.common.Constants;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.UIHelper;
 import com.qingfeng.livesocial.common.Urls;
-import com.qingfeng.livesocial.live.LoginHelper;
-import com.qingfeng.livesocial.live.viewinface.LoginView;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
 import com.qingfeng.livesocial.util.StringUtils;
 
@@ -53,7 +47,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
  * Created by Administrator on 2017/8/28.
  */
 
-public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener, LoginView {
+public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener  {
 
     @Bind(R.id.video_bg_img)
     ImageView videoImg;
@@ -98,7 +92,6 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     private PhotoAdapter2 photoAdapter;
     private int attenStatus = 0;
     private boolean isAttention = false;
-    private LoginHelper mLoginHeloper;
 
     @Override
     protected int getLayoutById() {
@@ -113,9 +106,6 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     protected void initData() {
         uid = getIntent().getExtras().getString(PARAM_UID);
         getAnchorDetail(uid);
-
-        mLoginHeloper = new LoginHelper(this, this);
-        mLoginHeloper.standardLogin("qf001", "88888888");
     }
 
     private void getAnchorDetail(String uid) {
@@ -200,13 +190,7 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                 dialog.show(getFragmentManager(), "sendgift");
                 break;
             case R.id.ll_tab_video:
-                Intent intent = new Intent(this, LiveActivity.class);
-                MySelfInfo.getInstance().setIdStatus(Constants.HOST);
-                MySelfInfo.getInstance().setJoinRoomWay(true);
-                CurLiveInfo.setTitle("直播间");
-                CurLiveInfo.setHostID(MySelfInfo.getInstance().getId());
-                CurLiveInfo.setRoomNum(MySelfInfo.getInstance().getMyRoomNum());
-                startActivity(intent);
+                gotoActivity(this, LiveActivity.class);
                 break;
             case R.id.rl_attention:
                 if (!isAttention) {
@@ -323,15 +307,5 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                 }
             });
         }
-    }
-
-    @Override
-    public void loginSucc() {
-        showToast("loginSucc");
-    }
-
-    @Override
-    public void loginFail(String module, int errCode, String errMsg) {
-        showToast("loginFail = " + errMsg);
     }
 }

@@ -89,8 +89,8 @@ public class Constants {
     public static final String BEAUTY_TYPE = "beauty_type";
     public static final String VIDEO_QULITY = "video_qulity";
     public static final String HD_ROLE = "HD";
-    public static final int SDK_APPID = 1400027849;
-    public static final int ACCOUNT_TYPE = 11656;
+    public static final int SDK_APPID = 1400037547;
+    public static final int ACCOUNT_TYPE = 14604;
     public static final int HOST = 1;
     public static final int MEMBER = 0;
     public static final int VIDEO_MEMBER = 2;

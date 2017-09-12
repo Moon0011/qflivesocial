@@ -1,10 +1,7 @@
 package com.qingfeng.livesocial.ui;
 
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.qingfeng.livesocial.R;
@@ -14,6 +11,8 @@ import com.qingfeng.livesocial.bean.UserInfoBean;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
+import com.tencent.ilivesdk.ILiveCallBack;
+import com.tencent.ilivesdk.core.ILiveLoginManager;
 
 import org.xutils.common.Callback;
 import org.xutils.common.util.LogUtil;
@@ -33,17 +32,8 @@ import static com.qingfeng.livesocial.common.UIHelper.verifyPhone;
  */
 
 public class LoginActivity extends BaseActivity {
-    @Bind(R.id.img_arrow_left)
-    ImageView imgArrowLeft;
-    @Bind(R.id.textView)
-    TextView textView;
-    @Bind(R.id.btn_phone_login)
-    Button btnPhoneLogin;
-    @Bind(R.id.tv_getVerifyCode)
-    TextView tvGetVerifyCode;
     @Bind(R.id.et_phone_num)
     EditText etPhoneNum;
-
 
     @Override
     protected int getLayoutById() {
@@ -97,23 +87,29 @@ public class LoginActivity extends BaseActivity {
                 }
                 int uid = loginRespBean.getResult().getUid();
                 String username = loginRespBean.getResult().getUsername();
+                String token = loginRespBean.getResult().getToken();
                 String sign = loginRespBean.getResult().getSign();
                 int islogin = loginRespBean.getResult().getIslogin();
-                UserInfoBean userInfoBean = new UserInfoBean(uid, username, sign, islogin);
+                int curroomnum = loginRespBean.getResult().getCurroomnum();
+                LogUtil.e("login: " + "uid = " + uid + " , username =" + username +
+                        " , sign =" + sign + " , islogin =" + islogin +
+                        " , curroomnum =" + curroomnum + " , token =" + token);
+                UserInfoBean userInfoBean = new UserInfoBean(uid, username, sign, islogin, curroomnum, token);
                 QFApplication.getInstance().saveUserInfo(userInfoBean);
                 if (islogin == 0) {
                     gotoActivity(LoginActivity.this, PerfectInfoActivity.class);
                 } else {
                     gotoActivity(LoginActivity.this, RecommendActivity.class);
                 }
+                qfLiveSdkLogin();
                 showToast("登陆成功");
                 dismissProgress();
-                LogUtil.e("login: " + "uid = " + uid + " , username =" + username + " , sign =" + sign);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 LogUtil.e(ex.getMessage());
+                showToast("登陆失败");
                 dismissProgress();
             }
 
@@ -158,6 +154,34 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onFinished() {
                 dismissProgress();
+            }
+        });
+    }
+
+    private void qfLiveSdkLogin() {
+        ILiveLoginManager.getInstance().iLiveLogin(QFApplication.getInstance().getLoginUser().getUsername(),
+                QFApplication.getInstance().getLoginUser().getSign(), new ILiveCallBack() {
+                    @Override
+                    public void onSuccess(Object data) {
+                        LogUtil.e("initSdkLogin succ");
+                    }
+
+                    @Override
+                    public void onError(String module, int errCode, String errMsg) {
+                        LogUtil.e("initSdkLogin error");
+                    }
+                });
+    }
+
+    private void qfLiveSdkLogout() {
+        ILiveLoginManager.getInstance().iLiveLogout(new ILiveCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+
             }
         });
     }

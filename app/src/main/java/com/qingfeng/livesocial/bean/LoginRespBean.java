@@ -5,13 +5,10 @@ package com.qingfeng.livesocial.bean;
  */
 
 public class LoginRespBean {
-
-
     /**
      * msg : yy
      * result : {"uid":29,"username":"18371458526","sign":"eJxNjV9PgzAUR79LXzXSUgrEZA91YoIZMZsjboSkIVDk4sYaKH*m8buLSNxez7nnd7-QdvV6l6Tpqa200Gcl0T3C6HbCkMlKQw6yHiFxqUMs5jLTnnWiFGQi0YLW2VXVZB9iUr*RhTGmDrOcWcpBQS1Fkuu-UcaYOZ7MtpN1A6dqFCYmjJgU44vUcJRTgi3iuMz*-wfvIw689dJ-5GXTRkOX0yPfcvIUGwdq8q78XKWbUPax0UMQNp6ODR7ylgMvNpHLnr3dw45ayu-66DCw9g3sdXETLPflSwGBT8-7Ou37xQJ9-wC9L1ls","islogin":1}
      */
-
     private String msg;
     private LoginInfoBean result;
 
@@ -43,6 +40,8 @@ public class LoginRespBean {
         private String username;
         private String sign;
         private int islogin;
+        private int curroomnum;
+        private String token;
 
         public int getUid() {
             return uid;
@@ -74,6 +73,22 @@ public class LoginRespBean {
 
         public void setIslogin(int islogin) {
             this.islogin = islogin;
+        }
+
+        public int getCurroomnum() {
+            return curroomnum;
+        }
+
+        public void setCurroomnum(int curroomnum) {
+            this.curroomnum = curroomnum;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
         }
     }
 }

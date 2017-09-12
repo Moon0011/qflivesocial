@@ -9,17 +9,21 @@ import java.io.Serializable;
 public class UserInfoBean implements Serializable {
     private int uid;
     private String username;
+    private String token;
     private String sign;
     private int islogin;
+    private int curroomnum;
 
     public UserInfoBean() {
     }
 
-    public UserInfoBean(int uid, String username, String sign, int islogin) {
+    public UserInfoBean(int uid, String username, String sign, int islogin, int curroomnum, String token) {
         this.uid = uid;
         this.username = username;
         this.sign = sign;
         this.islogin = islogin;
+        this.curroomnum = curroomnum;
+        this.token = token;
     }
 
     public int getIslogin() {
@@ -52,5 +56,21 @@ public class UserInfoBean implements Serializable {
 
     public void setSign(String sign) {
         this.sign = sign;
+    }
+
+    public int getCurroomnum() {
+        return curroomnum;
+    }
+
+    public void setCurroomnum(int curroomnum) {
+        this.curroomnum = curroomnum;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

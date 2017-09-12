@@ -4,10 +4,6 @@ import android.os.AsyncTask;
 
 import com.qingfeng.livesocial.live.viewinface.GetLinkSigView;
 
-
-/**
- * Created by xkazerzhang on 2017/4/13.
- */
 public class GetLinkSignHelper {
     private static String TAG = "GetLinkSignHelper";
     private GetLinkSigView linkView;

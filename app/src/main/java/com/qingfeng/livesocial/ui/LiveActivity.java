@@ -21,7 +21,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,14 +33,12 @@ import com.qingfeng.livesocial.adapter.SendGiftAdapter2;
 import com.qingfeng.livesocial.bean.CurLiveInfo;
 import com.qingfeng.livesocial.bean.LiveInfoJson;
 import com.qingfeng.livesocial.bean.MemberID;
-import com.qingfeng.livesocial.bean.MySelfInfo;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
 import com.qingfeng.livesocial.common.Constants;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.Urls;
 import com.qingfeng.livesocial.live.GetLinkSignHelper;
 import com.qingfeng.livesocial.live.LiveHelper;
-import com.qingfeng.livesocial.live.UserServerHelper;
 import com.qingfeng.livesocial.live.viewinface.GetLinkSigView;
 import com.qingfeng.livesocial.live.viewinface.LiveView;
 import com.qingfeng.livesocial.ui.base.BaseActivity;
@@ -90,8 +87,6 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     TextView mVideoTime;
     @Bind(R.id.host_name)
     TextView mHostNameTv;
-    @Bind(R.id.controll_ui)
-    FrameLayout mFullControllerUi;
     @Bind(R.id.ll_initiate_call)
     LinearLayout llInitiateCall;
     @Bind(R.id.ll_answer_call)
@@ -140,11 +135,9 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mLiveHelper = new LiveHelper(this, this);
         mLinkHelper = new GetLinkSignHelper(this);
-        if (MySelfInfo.getInstance().getIdStatus() == Constants.HOST) {
-            View view = findViewById(R.id.link_btn);
-            view.setVisibility(View.VISIBLE);
-            showHeadIcon(mHeadIcon, MySelfInfo.getInstance().getAvatar());
-        }
+        View view = findViewById(R.id.link_btn);
+        view.setVisibility(View.VISIBLE);
+        showHeadIcon(mHeadIcon, "");
         ILVLiveManager.getInstance().setAvVideoView(mRootView);
         mRootView.setBackground(R.mipmap.renderback);
         mRootView.setGravity(AVRootView.LAYOUT_GRAVITY_RIGHT);
@@ -176,12 +169,12 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
 
     @Override
     protected void initData() {
-        //进入房间流程
         mLiveHelper.startEnterRoom();
     }
 
 
-    @OnClick({R.id.link_btn, R.id.img_refuse, R.id.img_answer, R.id.img_cancel, R.id.img_camera, R.id.img_calling_cancel, R.id.img_gift, R.id.btn_sendgift})
+    @OnClick({R.id.link_btn, R.id.img_refuse, R.id.img_answer, R.id.img_cancel, R.id.img_camera,
+            R.id.img_calling_cancel, R.id.img_gift, R.id.btn_sendgift})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.link_btn:
@@ -249,8 +242,8 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
         } else {
             formatTime = hs + ":" + ms + ":" + ss;
         }
-        if (Constants.HOST == MySelfInfo.getInstance().getIdStatus() && null != mVideoTime) {
-            SxbLog.i(TAG, " refresh time ");
+        if (null != mVideoTime) {
+            LogUtil.e(" refresh time ");
             mVideoTime.setText(formatTime);
         }
     }
@@ -298,10 +291,9 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
 
     private class VideoTimerTask extends TimerTask {
         public void run() {
-            SxbLog.i(TAG, "timeTask ");
+            LogUtil.e("timeTask ");
             ++mSecond;
-            if (MySelfInfo.getInstance().getIdStatus() == Constants.HOST)
-                mHandler.sendEmptyMessage(UPDAT_WALL_TIME_TIMER_TASK);
+            mHandler.sendEmptyMessage(UPDAT_WALL_TIME_TIMER_TASK);
         }
     }
 
@@ -360,27 +352,25 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     }
 
     private void quiteLiveByPurpose() {
-        if (MySelfInfo.getInstance().getIdStatus() == Constants.HOST) {
-            ILVCustomCmd cmd = new ILVCustomCmd();
-            cmd.setCmd(Constants.AVIMCMD_EXITLIVE);
-            cmd.setType(ILVText.ILVTextType.eGroupMsg);
-            ILVLiveManager.getInstance().sendCustomCmd(cmd, new ILiveCallBack<TIMMessage>() {
-                @Override
-                public void onSuccess(TIMMessage data) {
-                    //如果是直播，发消息
-                    if (null != mLiveHelper) {
-                        callExitRoom();
-                    }
+        ILVCustomCmd cmd = new ILVCustomCmd();
+        cmd.setCmd(Constants.AVIMCMD_EXITLIVE);
+        cmd.setType(ILVText.ILVTextType.eGroupMsg);
+        ILVLiveManager.getInstance().sendCustomCmd(cmd, new ILiveCallBack<TIMMessage>() {
+            @Override
+            public void onSuccess(TIMMessage data) {
+                //如果是直播，发消息
+                if (null != mLiveHelper) {
+                    callExitRoom();
                 }
+            }
 
-                @Override
-                public void onError(String module, int errCode, String errMsg) {
-                }
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+            }
 
-            });
-            // 取消跨房连麦
-            ILVLiveManager.getInstance().unlinkRoom(null);
-        }
+        });
+        // 取消跨房连麦
+        ILVLiveManager.getInstance().unlinkRoom(null);
     }
 
     private void callExitRoom() {
@@ -401,7 +391,6 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     public void enterRoomComplete(int id_status, boolean isSucc) {
         mRootView.getViewByIndex(0).setVisibility(GLView.VISIBLE);
         bInAvRoom = true;
-//        roomId.setText("" + CurLiveInfo.getRoomNum());
         if (isSucc == true) {
             //直播时间
             mVideoTimer = new Timer(true);
@@ -410,9 +399,9 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
             initPtuEnv();
             //IM初始化
             if (id_status == Constants.HOST) {//主播方式加入房间成功
-                mHostNameTv.setText(MySelfInfo.getInstance().getId());
+                mHostNameTv.setText(QFApplication.getInstance().getLoginUser().getUsername());
                 //开启摄像头渲染画面
-                SxbLog.i(TAG, "createlive enterRoomComplete isSucc" + isSucc);
+                LogUtil.e("createlive enterRoomComplete isSucc" + isSucc);
                 SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
                 editor.putBoolean("living", true);
                 editor.apply();
@@ -422,19 +411,10 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
 
     @Override
     public void quiteRoomComplete(int id_status, boolean succ, LiveInfoJson liveinfo) {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                UserServerHelper.getInstance().reportMe(MySelfInfo.getInstance().getIdStatus(), 1);//通知server 我下线了
-            }
-        }.start();
-        if (MySelfInfo.getInstance().getIdStatus() == Constants.HOST) {
-            if ((getBaseContext() != null)) {
-                SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
-                editor.putBoolean("living", false);
-                editor.apply();
-            }
+        if ((getBaseContext() != null)) {
+            SharedPreferences.Editor editor = getSharedPreferences("data", MODE_PRIVATE).edit();
+            editor.putBoolean("living", false);
+            editor.apply();
         }
         //发送
         bInAvRoom = false;
@@ -457,14 +437,6 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
     public void onGetSignRsp(String id, String roomid, String sign) {
         SxbLog.d(TAG, "onGetSignRsp->id:" + id + ", room:" + roomid + ", sign:" + sign);
         mLiveHelper.linkRoom(id, roomid, sign);
-    }
-
-    @Override
-    public void changeCtrlView(boolean videoMember) {
-        if (MySelfInfo.getInstance().getIdStatus() == Constants.HOST) {
-            // 主播不存在切换
-            return;
-        }
     }
 
     @Override
@@ -577,11 +549,14 @@ public class LiveActivity extends BaseActivity implements LiveView, GetLinkSigVi
 
     @Override
     public void memberJoin(String id, String name) {
-
     }
 
     @Override
     public boolean showInviteView(String id) {
         return false;
+    }
+
+    @Override
+    public void changeCtrlView(boolean videoMember) {
     }
 }

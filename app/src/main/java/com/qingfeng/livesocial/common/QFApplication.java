@@ -116,9 +116,12 @@ public class QFApplication extends Application {
             {
                 setProperty("user.uid", String.valueOf(userInfo.getUid()));
                 setProperty("user.username", userInfo.getUsername());
+                setProperty("user.token", userInfo.getToken());
                 setProperty("user.sign", userInfo.getSign());
                 setProperty("user.isLogin",
                         String.valueOf(userInfo.getIslogin()));
+                setProperty("user.curroomnum",
+                        String.valueOf(userInfo.getCurroomnum()));
             }
         });
     }
@@ -146,8 +149,10 @@ public class QFApplication extends Application {
         UserInfoBean userInfoBean = new UserInfoBean();
         userInfoBean.setUid(StringUtils.toInt(getProperty("user.uid"), 0));
         userInfoBean.setUsername(getProperty("user.username"));
+        userInfoBean.setToken(getProperty("user.token"));
         userInfoBean.setSign(getProperty("user.sign"));
         userInfoBean.setIslogin(StringUtils.toInt(getProperty("user.isLogin")));
+        userInfoBean.setCurroomnum(StringUtils.toInt(getProperty("user.curroomnum")));
         return userInfoBean;
     }
 
@@ -157,7 +162,7 @@ public class QFApplication extends Application {
     public void cleanLoginInfo() {
         this.login = false;
         removeProperty("user.uid", "user.account", "user.face", "user.pwd",
-                "user.isLogin");
+                "user.isLogin","user.curroomnum","user.token");
     }
 
     /**

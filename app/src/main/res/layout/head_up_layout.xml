@@ -7,29 +7,31 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="86.3dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_gravity="right|center"
+        android:paddingLeft="20dp"
         android:background="@mipmap/calling_bg"
-        android:orientation="vertical"
-        android:paddingLeft="25dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/host_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="小明"
             android:textColor="@color/white"
-            android:textSize="11sp" />
+            android:textSize="9.8sp" />
 
         <TextView
             android:id="@+id/broadcasting_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="2dp"
             android:text="00:00:00"
             android:textColor="@color/white"
-            android:textSize="10sp" />
+            android:textSize="9.8sp" />
 
     </LinearLayout>
 
