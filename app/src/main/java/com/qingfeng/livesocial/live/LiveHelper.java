@@ -1,11 +1,12 @@
 package com.qingfeng.livesocial.live;
 
 import android.content.Context;
+import android.hardware.Camera;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.qingfeng.livesocial.R;
-import com.qingfeng.livesocial.bean.CurLiveInfo;
 import com.qingfeng.livesocial.bean.MySelfInfo;
 import com.qingfeng.livesocial.common.Constants;
 import com.qingfeng.livesocial.common.QFApplication;
@@ -19,6 +20,7 @@ import com.tencent.TIMGroupSystemElem;
 import com.tencent.TIMGroupSystemElemType;
 import com.tencent.TIMMessage;
 import com.tencent.av.sdk.AVRoomMulti;
+import com.tencent.av.sdk.AVVideoCtrl;
 import com.tencent.av.sdk.AVView;
 import com.tencent.ilivesdk.ILiveCallBack;
 import com.tencent.ilivesdk.ILiveConstants;
@@ -35,7 +37,6 @@ import com.tencent.livesdk.ILVText;
 
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.xutils.common.util.LogUtil;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -48,6 +49,16 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
     private final String TAG = "LiveHelper";
     private LiveView mLiveView;
     public Context mContext;
+    private boolean bCameraOn = false;
+    private boolean bMicOn = false;
+    private boolean flashLgihtStatus = false;
+
+    /**
+     * 申请房间
+     */
+    private void startCreateRoom() {
+        createRoom();
+    }
 
     public LiveHelper(Context context, LiveView liveview) {
         mContext = context;
@@ -63,9 +74,44 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
         ILVLiveManager.getInstance().quitRoom(null);
     }
 
-    //进入房间
+    /**
+     * 进入房间
+     */
     public void startEnterRoom() {
-        createRoom();
+        if (MySelfInfo.getInstance().isCreateRoom() == true) {
+            startCreateRoom();
+        } else {
+            joinRoom();
+        }
+    }
+
+    public void switchRoom() {
+        ILVLiveRoomOption memberOption = new ILVLiveRoomOption(Constants.hostId)
+                .autoCamera(false)
+                .autoFocus(true)
+                .roomDisconnectListener(this)
+                .videoMode(ILiveConstants.VIDEOMODE_BSUPPORT)
+                .controlRole(Constants.NORMAL_MEMBER_ROLE)
+                .authBits(AVRoomMulti.AUTH_BITS_JOIN_ROOM | AVRoomMulti.AUTH_BITS_RECV_AUDIO | AVRoomMulti.AUTH_BITS_RECV_CAMERA_VIDEO | AVRoomMulti.AUTH_BITS_RECV_SCREEN_VIDEO)
+                .videoRecvMode(AVRoomMulti.VIDEO_RECV_MODE_SEMI_AUTO_RECV_CAMERA_VIDEO)
+                .autoMic(false);
+        ILVLiveManager.getInstance().switchRoom(Constants.roomNum, memberOption, new ILiveCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                ILiveLog.d(TAG, "ILVB-Suixinbo|switchRoom->join room sucess");
+                if (null != mLiveView) {
+                    mLiveView.enterRoomComplete(MySelfInfo.getInstance().getIdStatus(), true);
+                }
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+                ILiveLog.d(TAG, "ILVB-Suixinbo|switchRoom->join room failed:" + module + "|" + errCode + "|" + errMsg);
+                if (null != mLiveView) {
+                    mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
+                }
+            }
+        });
     }
 
     private void showToast(String strMsg) {
@@ -85,9 +131,8 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             @Override
             public void onSuccess(Object data) {
                 ILiveLog.d(TAG, "ILVB-SXB|quitRoom->success");
-                CurLiveInfo.setCurrentRequestCount(0);
                 if (null != mLiveView) {
-                    mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+                    mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
                 }
             }
 
@@ -95,7 +140,7 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             public void onError(String module, int errCode, String errMsg) {
                 ILiveLog.d(TAG, "ILVB-SXB|quitRoom->failed:" + module + "|" + errCode + "|" + errMsg);
                 if (null != mLiveView) {
-                    mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+                    mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
                 }
             }
         });
@@ -106,23 +151,97 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
         quitLiveRoom();
     }
 
+    /**
+     * 发送信令
+     */
+
+    public int sendGroupCmd(int cmd, String param) {
+        ILVCustomCmd customCmd = new ILVCustomCmd();
+        customCmd.setCmd(cmd);
+        customCmd.setParam(param);
+        customCmd.setType(ILVText.ILVTextType.eGroupMsg);
+        return sendCmd(customCmd);
+    }
+
+    public int sendC2CCmd(final int cmd, String param, String destId) {
+        ILVCustomCmd customCmd = new ILVCustomCmd();
+        customCmd.setDestId(destId);
+        customCmd.setCmd(cmd);
+        customCmd.setParam(param);
+        customCmd.setType(ILVText.ILVTextType.eC2CMsg);
+        return sendCmd(customCmd);
+    }
+
+    /**
+     * 打开闪光灯
+     */
+    public boolean toggleFlashLight() {
+        AVVideoCtrl videoCtrl = ILiveSDK.getInstance().getAvVideoCtrl();
+        if (null == videoCtrl) {
+            return false;
+        }
+
+        final Object cam = videoCtrl.getCamera();
+        if ((cam == null) || (!(cam instanceof Camera))) {
+            return false;
+        }
+        final Camera.Parameters camParam = ((Camera) cam).getParameters();
+        if (null == camParam) {
+            return false;
+        }
+
+        Object camHandler = videoCtrl.getCameraHandler();
+        if ((camHandler == null) || (!(camHandler instanceof Handler))) {
+            return false;
+        }
+
+        //对摄像头的操作放在摄像头线程
+        if (flashLgihtStatus == false) {
+            ((Handler) camHandler).post(new Runnable() {
+                public void run() {
+                    try {
+                        camParam.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                        ((Camera) cam).setParameters(camParam);
+                        flashLgihtStatus = true;
+                    } catch (RuntimeException e) {
+                        SxbLog.d("setParameters", "RuntimeException");
+                    }
+                }
+            });
+        } else {
+            ((Handler) camHandler).post(new Runnable() {
+                public void run() {
+                    try {
+                        camParam.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                        ((Camera) cam).setParameters(camParam);
+                        flashLgihtStatus = false;
+                    } catch (RuntimeException e) {
+                        SxbLog.d("setParameters", "RuntimeException");
+                    }
+
+                }
+            });
+        }
+        return true;
+    }
+
+
     @Override
     public void onRoomDisconnect(int errCode, String errMsg) {
         if (null != mLiveView) {
-            mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+            mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
         }
     }
 
     // 解析文本消息
     private void processTextMsg(MessageEvent.SxbMsgInfo info) {
         if (null == info.data || !(info.data instanceof ILVText)) {
-            LogUtil.e("processTextMsg->wrong object:" + info.data);
+            SxbLog.w(TAG, "processTextMsg->wrong object:" + info.data);
             return;
         }
         ILVText text = (ILVText) info.data;
         if (text.getType() == ILVText.ILVTextType.eGroupMsg
-                && !CurLiveInfo.getChatRoomId().equals(text.getDestId())) {
-            LogUtil.e("processTextMsg->ingore message from: " + text.getDestId() + "/" + CurLiveInfo.getChatRoomId());
+                && !Constants.getChatRoomId().equals(text.getDestId())) {
             return;
         }
 
@@ -143,8 +262,8 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
         }
         ILVCustomCmd cmd = (ILVCustomCmd) info.data;
         if (cmd.getType() == ILVText.ILVTextType.eGroupMsg
-                && !CurLiveInfo.getChatRoomId().equals(cmd.getDestId())) {
-            LogUtil.e("processCmdMsg->ingore message from: " + cmd.getDestId() + "/" + CurLiveInfo.getChatRoomId());
+                && !Constants.getChatRoomId().equals(cmd.getDestId())) {
+            SxbLog.d(TAG, "processCmdMsg->ingore message from: " + cmd.getDestId() + "/" + Constants.getChatRoomId());
             return;
         }
 
@@ -166,7 +285,7 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
         // 过滤非当前群组消息
         if (currMsg.getConversation() != null && currMsg.getConversation().getPeer() != null) {
             if (currMsg.getConversation().getType() == TIMConversationType.Group
-                    && !CurLiveInfo.getChatRoomId().equals(currMsg.getConversation().getPeer())) {
+                    && !Constants.getChatRoomId().equals(currMsg.getConversation().getPeer())) {
                 return;
             }
         }
@@ -177,7 +296,7 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             TIMElem elem = currMsg.getElement(j);
             TIMElemType type = elem.getType();
 
-            LogUtil.e("LiveHelper->otherMsg type:" + type);
+            SxbLog.d(TAG, "LiveHelper->otherMsg type:" + type);
 
             //系统消息
             if (type == TIMElemType.GroupSystem) {  // 群组解散消息
@@ -197,7 +316,7 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
                     if (action.equals("force_exit_room") || action.equals("force_disband_room")) {
                         JSONObject objData = json.getJSONObject("data");
                         String strRoomNum = objData.optString("room_num", "");
-                        LogUtil.e("processOtherMsg->action:" + action + ", room_num:" + strRoomNum);
+                        SxbLog.d(TAG, "processOtherMsg->action:" + action + ", room_num:" + strRoomNum);
                         if (strRoomNum.equals(String.valueOf(ILiveRoomManager.getInstance().getRoomId()))) {
                             if (null != mLiveView) {
                                 mLiveView.forceQuitRoom(mContext.getString(R.string.str_tips_force_exit));
@@ -226,6 +345,33 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
         }
     }
 
+    public void toggleCamera() {
+        bCameraOn = !bCameraOn;
+        SxbLog.d(TAG, "toggleCamera->change camera:" + bCameraOn);
+        ILiveRoomManager.getInstance().enableCamera(ILiveRoomManager.getInstance().getCurCameraId(), bCameraOn);
+    }
+
+    public void upMemberVideo() {
+        if (!ILiveRoomManager.getInstance().isEnterRoom()) {
+            SxbLog.e(TAG, "upMemberVideo->with not in room");
+        }
+        ILVLiveManager.getInstance().upToVideoMember(Constants.VIDEO_MEMBER_ROLE, true, true, new ILiveCallBack<ILVChangeRoleRes>() {
+            @Override
+            public void onSuccess(ILVChangeRoleRes data) {
+                SxbLog.d(TAG, "upToVideoMember->success");
+                MySelfInfo.getInstance().setIdStatus(Constants.VIDEO_MEMBER);
+                bMicOn = true;
+                bCameraOn = true;
+                mLiveView.agreeAnswer();
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+                SxbLog.e(TAG, "upToVideoMember->failed:" + module + "|" + errCode + "|" + errMsg);
+            }
+        });
+    }
+
     public void downMemberVideo() {
         if (!ILiveRoomManager.getInstance().isEnterRoom()) {
             SxbLog.e(TAG, "downMemberVideo->with not in room");
@@ -234,6 +380,8 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             @Override
             public void onSuccess(ILVChangeRoleRes data) {
                 MySelfInfo.getInstance().setIdStatus(Constants.MEMBER);
+                bMicOn = false;
+                bCameraOn = false;
                 SxbLog.e(TAG, "downMemberVideo->onSuccess");
             }
 
@@ -252,20 +400,20 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
                     @Override
                     public void onSuccess(Object data) {
                         if (null != mLiveView) {
-                            mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+                            mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
                         }
                     }
 
                     @Override
                     public void onError(String module, int errCode, String errMsg) {
                         if (null != mLiveView) {
-                            mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+                            mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
                         }
                     }
                 });
             } else {
                 if (null != mLiveView) {
-                    mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+                    mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
                 }
             }
         }
@@ -275,7 +423,7 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
         ILVLiveRoomOption hostOption = new ILVLiveRoomOption(QFApplication.getInstance().getLoginUser().getUsername())
                 .roomDisconnectListener(this)
                 .videoMode(ILiveConstants.VIDEOMODE_BSUPPORT)
-                .controlRole(CurLiveInfo.getCurRole())
+                .controlRole(Constants.curRole)
                 .autoFocus(true)
                 .authBits(AVRoomMulti.AUTH_BITS_DEFAULT)
                 .videoRecvMode(AVRoomMulti.VIDEO_RECV_MODE_SEMI_AUTO_RECV_CAMERA_VIDEO);
@@ -283,8 +431,10 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             @Override
             public void onSuccess(Object data) {
                 ILiveLog.d(TAG, "ILVB-SXB|startEnterRoom->create room sucess");
+                bCameraOn = true;
+                bMicOn = true;
                 if (null != mLiveView)
-                    mLiveView.enterRoomComplete(Constants.HOST, true);
+                    mLiveView.enterRoomComplete(MySelfInfo.getInstance().getIdStatus(), true);
             }
 
             @Override
@@ -292,15 +442,59 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
                 ILiveLog.d(TAG, "ILVB-SXB|createRoom->create room failed:" + module + "|" + errCode + "|" + errMsg);
                 showToast("sendCmd->failed:" + module + "|" + errCode + "|" + errMsg);
                 if (null != mLiveView) {
-                    mLiveView.quiteRoomComplete(Constants.HOST, true, null);
+                    mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
                 }
             }
         });
         checkEnterReturn(ret);
     }
 
+    private void joinRoom() {
+        ILVLiveRoomOption memberOption = new ILVLiveRoomOption(Constants.hostId)
+                .autoCamera(false)
+                .roomDisconnectListener(this)
+                .videoMode(ILiveConstants.VIDEOMODE_BSUPPORT)
+                .controlRole(MySelfInfo.getInstance().getGuestRole())
+                .authBits(AVRoomMulti.AUTH_BITS_JOIN_ROOM | AVRoomMulti.AUTH_BITS_RECV_AUDIO | AVRoomMulti.AUTH_BITS_RECV_CAMERA_VIDEO | AVRoomMulti.AUTH_BITS_RECV_SCREEN_VIDEO)
+                .videoRecvMode(AVRoomMulti.VIDEO_RECV_MODE_SEMI_AUTO_RECV_CAMERA_VIDEO)
+                .autoMic(false);
+        int ret = ILVLiveManager.getInstance().joinRoom(Constants.roomNum, memberOption, new ILiveCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                ILiveLog.d(TAG, "ILVB-Suixinbo|startEnterRoom->join room sucess");
+                if (null != mLiveView)
+                    mLiveView.enterRoomComplete(MySelfInfo.getInstance().getIdStatus(), true);
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+                ILiveLog.d(TAG, "ILVB-Suixinbo|startEnterRoom->join room failed:" + module + "|" + errCode + "|" + errMsg);
+                ILiveLog.d(TAG, "ILVB-SXB|createRoom->create room failed:" + module + "|" + errCode + "|" + errMsg);
+                if (null != mLiveView) {
+                    mLiveView.quiteRoomComplete(MySelfInfo.getInstance().getIdStatus(), true, null);
+                }
+            }
+        });
+        checkEnterReturn(ret);
+        SxbLog.i(TAG, "joinLiveRoom startEnterRoom ");
+    }
+
+    private int sendCmd(final ILVCustomCmd cmd) {
+        return ILVLiveManager.getInstance().sendCustomCmd(cmd, new ILiveCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                SxbLog.i(TAG, "sendCmd->success:" + cmd.getCmd() + "|" + cmd.getParam());
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+//                Toast.makeText(mContext, "sendCmd->failed:" + module + "|" + errCode + "|" + errMsg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void handleCustomMsg(int action, String param, String identifier, String nickname) {
-        LogUtil.e("handleCustomMsg->action: " + action);
+        SxbLog.d(TAG, "handleCustomMsg->action: " + action);
         if (null == mLiveView) {
             return;
         }
@@ -310,7 +504,8 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
                 break;
             case Constants.AVIMCMD_MUlTI_JOIN:
                 SxbLog.i(TAG, "handleCustomMsg " + identifier);
-                mLiveView.cancelInviteView(identifier);
+                mLiveView.succInviteView(identifier);
+                showToast(identifier + " agree !");
                 break;
             case Constants.AVIMCMD_MUlTI_REFUSE:
                 mLiveView.cancelInviteView(identifier);
@@ -325,13 +520,12 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
             case Constants.AVIMCMD_MULTI_CANCEL_INTERACT://主播关闭摄像头命令
                 //如果是自己关闭Camera和Mic
                 if (param.equals(MySelfInfo.getInstance().getId())) {//是自己
-                    //TODO 被动下麦 下麦 下麦
+                    //被动下麦 下麦 下麦
                     downMemberVideo();
                 }
                 //其他人关闭小窗口
                 ILiveRoomManager.getInstance().getRoomView().closeUserView(param, AVView.VIDEO_SRC_TYPE_CAMERA, true);
-                mLiveView.hideInviteDialog();
-                mLiveView.changeCtrlView(false);
+                mLiveView.callingHangup(param);
                 break;
             case Constants.AVIMCMD_MULTI_HOST_CANCELINVITE:
                 mLiveView.hideInviteDialog();
@@ -353,13 +547,27 @@ public class LiveHelper extends Presenter implements ILiveRoomOption.onRoomDisco
                 showUserToast(identifier, R.string.str_link_limit);
                 break;
             case ILVLiveConstants.ILVLIVE_CMD_UNLINKROOM:
-                mLiveView.unlinkroom();
+                mLiveView.unlinkRoom();
                 break;
             case Constants.AVIMCMD_HOST_BACK:
                 mLiveView.hostBack(identifier, nickname);
             default:
                 break;
         }
+    }
+
+    public void changeRole(final String role) {
+        ILiveRoomManager.getInstance().changeRole(role, new ILiveCallBack() {
+            @Override
+            public void onSuccess(Object data) {
+                showToast("change " + role + " succ !!");
+            }
+
+            @Override
+            public void onError(String module, int errCode, String errMsg) {
+                showToast("change " + role + "   failed  : " + errCode + " msg " + errMsg);
+            }
+        });
     }
 
     public void sendLinkReq(final String dstId) {

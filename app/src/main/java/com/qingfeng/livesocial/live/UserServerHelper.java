@@ -25,36 +25,8 @@ import okhttp3.Response;
 public class UserServerHelper {
     private static final String TAG = UserServerHelper.class.getSimpleName();
     private static UserServerHelper instance = null;
-    public static final String SERVER = "https://sxb.qcloud.com/sxb_dev/index.php?";
-    //    public static final String GET_LINK_SIG = SERVER + "svc=live&cmd=linksig";
     public static final String GET_LINK_SIG = "http://live.520cai.cn/index.php?svc=live&cmd=linksig";
-
     private boolean bDebug = false;
-
-    private String token = ""; //后续使用唯一标示
-    private String Sig = ""; //登录唯一标示
-
-    public class RequestBackInfo {
-
-        int errorCode;
-        String errorInfo;
-
-        RequestBackInfo(int code, String bad) {
-            errorCode = code;
-            errorInfo = bad;
-        }
-
-        public int getErrorCode() {
-            return errorCode;
-        }
-
-
-        public String getErrorInfo() {
-            return errorInfo;
-        }
-
-    }
-
 
     public static UserServerHelper getInstance() {
         if (instance == null) {

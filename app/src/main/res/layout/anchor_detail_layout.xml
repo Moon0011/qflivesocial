@@ -26,6 +26,38 @@
                     android:layout_height="match_parent" />
 
                 <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <EditText
+                        android:id="@+id/et_roomid"
+                        android:layout_width="match_parent"
+                        android:text="1588439941"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:hint="ROOM ID" />
+
+                    <EditText
+                        android:id="@+id/et_hostid"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/et_roomid"
+                        android:text="18371458526"
+                        android:layout_gravity="center"
+                        android:hint="HOST ID" />
+
+                    <EditText
+                        android:id="@+id/et_role"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/et_hostid"
+                        android:text=""
+                        android:layout_gravity="center"
+                        android:hint="ROLE" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/rl_top_head"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/anchor_detail_fl_video_top_height"

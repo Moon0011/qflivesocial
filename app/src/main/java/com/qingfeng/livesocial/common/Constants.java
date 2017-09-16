@@ -117,5 +117,35 @@ public class Constants {
     public static final int AVIMCMD_MULTI_HOST_SWITCH_CAMERA = AVIMCMD_MULTI_HOST_CONTROLL_MIC + 1; ////主播切换某个上麦成员MIC
     public static final String VIDEO_MEMBER_ROLE = "LiveGuest";
     public static final String NORMAL_MEMBER_ROLE = "Guest";
+    public static final String SD_GUEST = "Guest";
+    public static String curRole = Constants.HD_ROLE;//默认高清
+    public static String hostId = "";
+    public static final String PARAM_HOST_ID = "hostid";
+    public static int roomNum;
 
+    public static void setRoomNum(int roomNum) {
+        roomNum = roomNum;
+    }
+
+    public static String getChatRoomId() {
+        return "" + roomNum;
+    }
+
+    //支付宝
+    public static final String APPID = "2016042401330266";
+    public static final String RSA_PRIVATE = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKyi/otOsXQV8FNu\n" +
+            "tDiKnbDQIeWigRZlEyEcBIYCoam6IorXQ/CbIIwnfiKJl2345CI4yb28tEMKeP5h\n" +
+            "t5Uk4Z2Pp1Gg0MlN7TeqCNlOexNswb01hVLKmvFSCvoiJUg1orTlGqFvHTrXvXyG\n" +
+            "XFcgi8TVw7k7WcGZSXavZHNfx1/BAgMBAAECgYA35mtv5mJViYkRKwaWTGQ1TZ+8\n" +
+            "QLt16fKgxPa+AfohAFGRDZVFQqXuXBdezZjIFlCguCyzEHh6QNje3ftZAuE+4ElK\n" +
+            "jrPoWNiOzskn2CcCYMKEiPxKvL2BKl/kOhxIzjMhb6R3Y0sAOu3JUSPLamu4EF8o\n" +
+            "KxaDjzhc31vOK2GacQJBAOAnsAr5rwZhGk25fN3powI8peXnbUW0T2cZSnlxUbVJ\n" +
+            "FOxou4R22osxouQ1tQe8h1V8mApGVUMXhGdjpuFb+r0CQQDFKaHZzO64mIITJSrX\n" +
+            "xfgoWkxWD4/58DMzQIzbD+A57I0I0zSDauu65CDF24sKefgrwhYsvKFiGk0Al0jt\n" +
+            "QwtVAkBormAqX/x7EDIGhk9oG0pDKyuWuINxgAls7oS3PlKYRO7+kNKxxAe/5Yha\n" +
+            "5zIJ0OOq6qrecYYz9PGijwlKSXhJAkA815wamiMQ0/9P6ShPbcgmq7bi1+qWNomW\n" +
+            "R1UwRLXtKhJbptGNvHECO2Phqt49XWY4Gqy9IXirzXH1vLnEfewBAkEAnhfVqAeN\n" +
+            "LYvu6PH3LAcGtruAiUjIr4wQFbsWDJeYh3wUYd/Frc9e+q/vIZIxwsPeYmXLowMn\n" +
+            "4EC/hK+5VHalzQ==";
+    public static final String RSA2_PRIVATE = "";
 }

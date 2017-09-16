@@ -27,6 +27,10 @@ public interface LiveView extends MvpView {
 
     void cancelInviteView(String id);
 
+    void succInviteView(String id);
+
+    void agreeAnswer();
+
     void cancelMemberView(String id);
 
     void memberJoin(String id, String name);
@@ -47,5 +51,7 @@ public interface LiveView extends MvpView {
 
     void refuseLink(String msg);//拒绝连麦邀请
 
-    void unlinkroom();//挂断连接
+    void unlinkRoom();
+
+    void callingHangup(String id);
 }

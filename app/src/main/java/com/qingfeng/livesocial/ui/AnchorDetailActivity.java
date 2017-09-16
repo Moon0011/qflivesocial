@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -19,8 +20,10 @@ import com.qingfeng.livesocial.R;
 import com.qingfeng.livesocial.adapter.PhotoAdapter2;
 import com.qingfeng.livesocial.adapter.SendGiftAdapter;
 import com.qingfeng.livesocial.bean.AnchorDetailRespBean;
+import com.qingfeng.livesocial.bean.MySelfInfo;
 import com.qingfeng.livesocial.bean.RespBean;
 import com.qingfeng.livesocial.bean.SendGiftListRespBean;
+import com.qingfeng.livesocial.common.Constants;
 import com.qingfeng.livesocial.common.QFApplication;
 import com.qingfeng.livesocial.common.UIHelper;
 import com.qingfeng.livesocial.common.Urls;
@@ -40,6 +43,7 @@ import butterknife.OnClick;
 
 import static com.qingfeng.livesocial.common.Constants.PARAM_ATTENSTATUS;
 import static com.qingfeng.livesocial.common.Constants.PARAM_AUID;
+import static com.qingfeng.livesocial.common.Constants.PARAM_HOST_ID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_UID;
 import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
 
@@ -47,7 +51,7 @@ import static com.qingfeng.livesocial.common.Constants.PARAM_Y;
  * Created by Administrator on 2017/8/28.
  */
 
-public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener  {
+public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.OnItemClickListener {
 
     @Bind(R.id.video_bg_img)
     ImageView videoImg;
@@ -87,6 +91,12 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
     RecyclerView recyclelistview;
     @Bind(R.id.tv_attention)
     TextView tvAttention;
+    @Bind(R.id.et_roomid)
+    EditText etRoomid;
+    @Bind(R.id.et_hostid)
+    EditText etHostId;
+    @Bind(R.id.et_role)
+    EditText etRole;
     private String uid;
     private List<String> photoDatas;
     private PhotoAdapter2 photoAdapter;
@@ -100,6 +110,7 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
 
     @Override
     protected void initView() {
+        etRoomid.setText(String.valueOf(QFApplication.getInstance().getLoginUser().getCurroomnum()));
     }
 
     @Override
@@ -190,7 +201,21 @@ public class AnchorDetailActivity extends BaseActivity implements PhotoAdapter2.
                 dialog.show(getFragmentManager(), "sendgift");
                 break;
             case R.id.ll_tab_video:
-                gotoActivity(this, LiveActivity.class);
+                int role = Integer.valueOf(etRole.getText().toString().trim());
+                if (role == 1) {
+                    MySelfInfo.getInstance().setIdStatus(Constants.HOST);
+                    MySelfInfo.getInstance().setJoinRoomWay(true);
+                } else {
+                    MySelfInfo.getInstance().setIdStatus(Constants.MEMBER);
+                    MySelfInfo.getInstance().setJoinRoomWay(false);
+                }
+                MySelfInfo.getInstance().setGuestRole(Constants.SD_GUEST);
+                Constants.roomNum = Integer.valueOf(etRoomid.getText().toString().trim());
+                Bundle bundle = new Bundle();
+                bundle.putString(PARAM_HOST_ID, etHostId.getText().toString().trim());
+                gotoActivityWithBundle(this, LiveActivity.class, bundle);
+//                MySelfInfo.getInstance().setJoinRoomWay(true);
+//                gotoActivity(this, LiveActivity2.class);
                 break;
             case R.id.rl_attention:
                 if (!isAttention) {
